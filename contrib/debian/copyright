@@ -4,9 +4,9 @@ Upstream-Contact: contact@blinksv.io
 Source: https://github.com/blink-sv/blink-sv
 
 Files: *
-Copyright: 2009-2017, Blink Core Developers, 2017 Blink Developers
+Copyright: 2009-2017, Blink Core Developers, 2017 Bitcoin Developers
 License: Expat
-Comment: The Blink Developers encompasses those contributing to Blink
+Comment: The Bitcoin Developers encompasses those contributing to Blink
          client open source development (various clients).
          The Blink Core Developers encompasses the current developers
          listed on blink.org, as well as the numerous contributors to
