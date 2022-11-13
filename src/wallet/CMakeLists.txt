@@ -1,4 +1,4 @@
-# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2017 The Bitcoin developers
 
 project(wallet)
 

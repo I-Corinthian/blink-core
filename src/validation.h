@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017 The Blink developers
+// Copyright (c) 2017 The Bitcoin developers
 // Copyright (c) 2018-2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 

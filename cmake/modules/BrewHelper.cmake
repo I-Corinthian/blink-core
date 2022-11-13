@@ -1,4 +1,4 @@
-# Copyright (c) 2018 The Blink developers
+# Copyright (c) 2018 The Bitcoin developers
 
 find_program(BREW brew)
 

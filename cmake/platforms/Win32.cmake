@@ -1,4 +1,4 @@
-# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2017 The Bitcoin developers
 
 set(CMAKE_SYSTEM_NAME Windows)
 set(TOOLCHAIN_PREFIX i686-w64-mingw32)

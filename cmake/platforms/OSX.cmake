@@ -1,4 +1,4 @@
-# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2017 The Bitcoin developers
 
 set(CMAKE_SYSTEM_NAME Darwin)
 set(TOOLCHAIN_PREFIX x86_64-apple-darwin11)
