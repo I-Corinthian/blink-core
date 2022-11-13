@@ -11,7 +11,7 @@ from binascii import b2a_hex
 import copy
 
 from test_framework.blocktools import create_coinbase
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.mininode import CBlock
 from test_framework.util import *
 
@@ -28,7 +28,7 @@ def assert_template(node, block, expect, rehash=True):
     assert_equal(rsp, expect)
 
 
-class MiningTest(BitcoinTestFramework):
+class MiningTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.setup_clean_chain = False

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_HTTPSERVER_H
-#define BITCOIN_HTTPSERVER_H
+#ifndef BLINK_HTTPSERVER_H
+#define BLINK_HTTPSERVER_H
 
 #include <cstdint>
 #include <functional>
@@ -161,4 +161,4 @@ private:
     struct event *ev;
 };
 
-#endif // BITCOIN_HTTPSERVER_H
+#endif // BLINK_HTTPSERVER_H

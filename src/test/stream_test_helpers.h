@@ -1,8 +1,8 @@
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_STREAM_TEST_HELPERS_H
-#define BITCOIN_STREAM_TEST_HELPERS_H
+#ifndef BLINK_STREAM_TEST_HELPERS_H
+#define BLINK_STREAM_TEST_HELPERS_H
 
 #include "streams.h"
 #include "primitives/block.h"
@@ -149,4 +149,4 @@ inline CBlock BuildRandomTestBlock()
     return block;
 }
 
-#endif // BITCOIN_STREAM_TEST_HELPERS_H
+#endif // BLINK_STREAM_TEST_HELPERS_H

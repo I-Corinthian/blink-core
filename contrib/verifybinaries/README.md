@@ -5,10 +5,10 @@
 Make sure you obtain the proper release signing keys and verify the fingerprint with several independent sources.
 
 ```sh
-$ gpg --fingerprint "Bitcoin SV binary release signing key"
+$ gpg --fingerprint "Blink SV binary release signing key"
 pub   4096R/6431FF95 2019-02-08 [expires: 2021-02-07]
       Key fingerprint = 2E6B 6460 9F97 BD0C 3ABD  89E1 169E 3EC0 6431 FF95
-uid                  Daniel Connolly (Bitcoin SV binary release signing key) <d.connolly@nchain.com>
+uid                  Daniel Connolly (Blink SV binary release signing key) <d.connolly@nchain.com>
 
 $ gpg --fingerprint "Richard Mills"
 pub   4096R/50757AA0 2019-07-23
@@ -19,7 +19,7 @@ sub   4096R/EBCD82F3 2019-07-23
 
 #### Usage:
 
-This script attempts to download the signature file `SHA256SUMS.asc` from https://bitcoinsv.io.
+This script attempts to download the signature file `SHA256SUMS.asc` from https://blinksv.io.
 
 It first checks if the signature passes, and then downloads the files specified in the file, and checks if the hashes of these files match those that are specified in the signature file.
 

@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2018-2019 Bitcoin Association
+// Copyright (c) 2018-2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_SCRIPT_INTERPRETER_H
-#define BITCOIN_SCRIPT_INTERPRETER_H
+#ifndef BLINK_SCRIPT_INTERPRETER_H
+#define BLINK_SCRIPT_INTERPRETER_H
 
 #include "primitives/transaction.h"
 #include "script/script_flags.h"
@@ -132,4 +132,4 @@ std::optional<bool> VerifyScript(
     const BaseSignatureChecker& checker,
     ScriptError* serror = nullptr);
 
-#endif // BITCOIN_SCRIPT_INTERPRETER_H
+#endif // BLINK_SCRIPT_INTERPRETER_H

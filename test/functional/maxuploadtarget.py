@@ -16,7 +16,7 @@ from collections import defaultdict
 import time
 
 from test_framework.mininode import *
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 from test_framework.cdefs import LEGACY_MAX_BLOCK_SIZE
 
@@ -35,7 +35,7 @@ class TestNode(NodeConnCB):
         self.block_receive_map[message.block.sha256] += 1
 
 
-class MaxUploadTest(BitcoinTestFramework):
+class MaxUploadTest(BlinkTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

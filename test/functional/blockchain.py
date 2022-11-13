@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 """Test RPCs related to blockchainstate.
@@ -24,7 +24,7 @@ from decimal import Decimal
 import http.client
 import subprocess
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import (
     assert_equal,
     assert_raises,
@@ -34,7 +34,7 @@ from test_framework.util import (
 )
 
 
-class BlockchainTest(BitcoinTestFramework):
+class BlockchainTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.extra_args = [['-stopatheight=207']]

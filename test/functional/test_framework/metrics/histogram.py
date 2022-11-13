@@ -1,4 +1,4 @@
-"""Plot histograms and percentiles from the bitcoind.log
+"""Plot histograms and percentiles from the blinkd.log
 
 Usage:
   histogram.py [options] [<dir>... | --last]
@@ -11,7 +11,7 @@ Options:
   --only=<pattern>   Show only graphs with title containing pattern
 
 
-Find all bitcoind.log files in the specified locations, extract last logged
+Find all blinkd.log files in the specified locations, extract last logged
 histograms and display them
 
 """
@@ -262,14 +262,14 @@ def show_histograms(logs, *, key=prefix,
 
 
 def find_last_experiment(base: Path) -> List[str]:
-    last = base / sorted(base.rglob("bitcoind.log"))[-1].relative_to(base).parts[0]
+    last = base / sorted(base.rglob("blinkd.log"))[-1].relative_to(base).parts[0]
     print("last:", repr(last))
-    return list(map(str, last.rglob("bitcoind.log") if last.is_dir() else [last]))
+    return list(map(str, last.rglob("blinkd.log") if last.is_dir() else [last]))
 
 
 def filter_experiments(dirs: List[str]) -> List[Path]:
     return [path
-            for glob in (dir.rglob("bitcoind.log") if dir.is_dir() else [dir]
+            for glob in (dir.rglob("blinkd.log") if dir.is_dir() else [dir]
                          for dir in map(Path, dirs))
             for path in glob
             if path.exists()]

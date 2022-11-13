@@ -13,8 +13,8 @@
  * - Double-clicking selects the whole string as one word if it's all
  * alphanumeric.
  */
-#ifndef BITCOIN_BASE58_H
-#define BITCOIN_BASE58_H
+#ifndef BLINK_BASE58_H
+#define BLINK_BASE58_H
 
 #include "chainparams.h"
 #include "key.h"
@@ -108,7 +108,7 @@ public:
 /**
  * A base58-encoded secret key
  */
-class CBitcoinSecret : public CBase58Data {
+class CBlinkSecret : public CBase58Data {
 public:
     void SetKey(const CKey &vchSecret);
     CKey GetKey();
@@ -116,12 +116,12 @@ public:
     bool SetString(const char *pszSecret);
     bool SetString(const std::string &strSecret);
 
-    CBitcoinSecret(const CKey &vchSecret) { SetKey(vchSecret); }
-    CBitcoinSecret() {}
+    CBlinkSecret(const CKey &vchSecret) { SetKey(vchSecret); }
+    CBlinkSecret() {}
 };
 
 template <typename K, int Size, CChainParams::Base58Type Type>
-class CBitcoinExtKeyBase : public CBase58Data {
+class CBlinkExtKeyBase : public CBase58Data {
 public:
     void SetKey(const K &key) {
         uint8_t vch[Size];
@@ -139,23 +139,23 @@ public:
         return ret;
     }
 
-    CBitcoinExtKeyBase(const K &key) { SetKey(key); }
+    CBlinkExtKeyBase(const K &key) { SetKey(key); }
 
-    CBitcoinExtKeyBase(const std::string &strBase58c) {
+    CBlinkExtKeyBase(const std::string &strBase58c) {
         SetString(strBase58c.c_str(), Params().Base58Prefix(Type).size());
     }
 
-    CBitcoinExtKeyBase() {}
+    CBlinkExtKeyBase() {}
 };
 
-typedef CBitcoinExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE,
+typedef CBlinkExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE,
                            CChainParams::EXT_SECRET_KEY>
-    CBitcoinExtKey;
-typedef CBitcoinExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE,
+    CBlinkExtKey;
+typedef CBlinkExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE,
                            CChainParams::EXT_PUBLIC_KEY>
-    CBitcoinExtPubKey;
+    CBlinkExtPubKey;
 
 std::string EncodeBase58Addr(const CTxDestination &dest, const CChainParams &);
 CTxDestination DecodeBase58Addr(const std::string &str, const CChainParams &);
 
-#endif // BITCOIN_BASE58_H
+#endif // BLINK_BASE58_H

@@ -18,7 +18,7 @@ importing nodes pick up the new transactions regardless of whether rescans
 happened previously.
 '''
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import (
     assert_raises_rpc_error, connect_nodes, sync_blocks, assert_equal, set_node_times)
 
@@ -119,7 +119,7 @@ IMPORT_NODES = [ImportNode(*fields)
 TIMESTAMP_WINDOW = 2 * 60 * 60
 
 
-class ImportRescanTest(BitcoinTestFramework):
+class ImportRescanTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2 + len(IMPORT_NODES)
 

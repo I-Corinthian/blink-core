@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Copyright (c) 2016-2019 The Bitcoin Core developers
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-###   This script attempts to download the signature file SHA256SUMS.asc from bitcoinsv.io.
+###   This script attempts to download the signature file SHA256SUMS.asc from blinksv.io.
 ###   It first checks if the signature passes, and then downloads the files specified in
 ###   the file, and checks if the hashes of these files match those that are specified
 ###   in the signature file.
@@ -18,13 +18,13 @@ function clean_up {
    done
 }
 
-WORKINGDIR="/tmp/bitcoin_verify_binaries"
+WORKINGDIR="/tmp/blink_verify_binaries"
 TMPFILE="hashes.tmp"
 
 SIGNATUREFILENAME="SHA256SUMS.asc"
 RCSUBDIR="test"
-HOST1="https://download.bitcoinsv.io"
-BASEDIR="/bitcoinsv/"
+HOST1="https://download.blinksv.io"
+BASEDIR="/blinksv/"
 VERSIONPREFIX=""
 RCVERSIONSTRING="rc"
 
@@ -36,7 +36,7 @@ cd "$WORKINGDIR" || exit 1
 
 #test if a version number has been passed as an argument
 if [ -n "$1" ]; then
-   #let's also check if the version number includes the prefix 'bitcoin-',
+   #let's also check if the version number includes the prefix 'blink-',
    #  and add this prefix if it doesn't
    if [[ $1 == "$VERSIONPREFIX"* ]]; then
       VERSION="$1"
@@ -104,7 +104,7 @@ if [ $RET -ne 0 ]; then
       echo "Bad signature."
    elif [ $RET -eq 2 ]; then
       #or if a gpg error has occurred
-      echo "gpg error. Do you have the Bitcoin SV binary release signing key installed?"
+      echo "gpg error. Do you have the Blink SV binary release signing key installed?"
    fi
 
    echo "gpg output:"

@@ -14,7 +14,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from json import loads
 from time import sleep
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import connect_nodes, wait_until
 
 
@@ -39,7 +39,7 @@ class WebhookHandler(BaseHTTPRequestHandler):
 
 
 
-class SafeModeIBDTest(BitcoinTestFramework):
+class SafeModeIBDTest(BlinkTestFramework):
 
     def start_server(self):
         self.serverThread = threading.Thread(target=self.server.serve_forever)

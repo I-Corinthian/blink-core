@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019  Bitcoin Association
+# Copyright (c) 2019  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from time import sleep
@@ -9,7 +9,7 @@ from test_framework.key import CECKey
 from test_framework.mininode import CTransaction, msg_tx, CTxIn, COutPoint, CTxOut, msg_block, NetworkThread, CInv
 from test_framework.script import CScript, SignatureHashForkId, SIGHASH_ALL, SIGHASH_FORKID, OP_CHECKSIG, \
     OP_CODESEPARATOR, OP_TRUE, OP_VERIFY, OP_CHECKSIGVERIFY
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until
 
 def make_coinbase(connection):
@@ -100,7 +100,7 @@ def spend_separator_tx(tx_sep_tx, keys_for_sep_tx):
 # Tests creation and spending transactions with scriptPubKey in form:
 # <pk1> OP_CHECKSIGVERIFY OP_CODESEPARATOR <pk2> OP_CHECKSIGVERIFY OP_CODESEPARATOR ... <pk N_signings> OP_CHECKSIG
 
-class InvalidTx(BitcoinTestFramework):
+class InvalidTx(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

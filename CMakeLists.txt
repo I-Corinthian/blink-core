@@ -1,16 +1,16 @@
-# Copyright (c) 2017 The Bitcoin developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 cmake_minimum_required(VERSION 3.5)
-project(BitcoinSV)
+project(BlinkSV)
 #Reduce warnings on MSVC, to closer match GCC compiler settings
 if(POLICY CMP0092 AND MSVC)
    cmake_policy(SET CMP0092 NEW)
    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W2")
 endif()
 
-# remove ndebug from flags for bitcoind release/relwithdebinfo to work
+# remove ndebug from flags for blinkd release/relwithdebinfo to work
 add_definitions(-UNDEBUG)
 foreach (flags
     CMAKE_CXX_FLAGS_RELEASE

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022 Bitcoin Association
+# Copyright (c) 2022 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.mininode import msg_block, msg_getdata, CInv, CTransaction, NodeConnCB
 from test_framework.blocktools import merkle_root_from_branch
 from test_framework.miner_id import MinerIdKeys, make_miner_id_block, create_dataref_txn, create_dataref
@@ -50,7 +50,7 @@ class TestNode(NodeConnCB):
                 return msg
         return None
 
-class GetdataDataref(BitcoinTestFramework):
+class GetdataDataref(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 1

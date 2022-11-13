@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Verify that nocheck transactions already received via relaying are
@@ -9,7 +9,7 @@ with parameter "donotcheckfee" set to True
 """
 
 from test_framework.mininode import *
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 import time
 
@@ -39,7 +39,7 @@ class TestNode(NodeConnCB):
             self.txinvs = []
 
 
-class NoCheckCollisionTest(BitcoinTestFramework):
+class NoCheckCollisionTest(BlinkTestFramework):
 
     def created_signed_transaction(self, sats, node):
         utxo = create_confirmed_utxos(sats, node, 1, age=101)[0]

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 # Scenario:
@@ -19,13 +19,13 @@
 
 from test_framework.mininode import CBlock, CTransaction, msg_block, msg_gethdrsen, CTxOut, MAX_PROTOCOL_RECV_PAYLOAD_LENGTH, CTxIn, COutPoint, uint256_from_str, ToHex, FromHex
 from test_framework.util import assert_equal, hex_str_to_bytes
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.cdefs import ONE_MEGABYTE
 from test_framework.blocktools import create_coinbase, merkle_root_from_merkle_proof
 from test_framework.script import CScript, OP_RETURN, OP_DUP, OP_HASH160, OP_EQUALVERIFY, OP_CHECKSIG
 import math
 
-class BsvHeadersEnrichedTest(BitcoinTestFramework):
+class BsvHeadersEnrichedTest(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

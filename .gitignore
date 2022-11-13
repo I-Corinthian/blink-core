@@ -1,12 +1,12 @@
 *.tar.gz
 
 *.exe
-src/bitcoin
-src/bitcoind
-src/bitcoin-cli
-src/bitcoin-miner
-src/bitcoin-tx
-src/test/test_bitcoin
+src/blink
+src/blinkd
+src/blink-cli
+src/blink-miner
+src/blink-tx
+src/test/test_blink
 # autoreconf
 Makefile.in
 aclocal.m4
@@ -28,8 +28,8 @@ config.log
 config.status
 configure
 libtool
-src/config/bitcoin-config.h
-src/config/bitcoin-config.h.in
+src/config/blink-config.h
+src/config/blink-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 src/univalue/gen
@@ -77,7 +77,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_bitcoin.coverage/
+test_blink.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -92,7 +92,7 @@ test/cache/*
 
 /doc/doxygen/
 
-libbitcoinconsensus.pc
+libblinkconsensus.pc
 contrib/devtools/split-debug.sh
 
 # vagrant

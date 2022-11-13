@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017 The Bitcoin developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Exercise the command line functions specific to ABC functionality.
@@ -9,12 +9,12 @@ Currently:
 -excessiveblocksize=<blocksize_in_bytes>
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import assert_equal
 from test_framework.cdefs import LEGACY_MAX_BLOCK_SIZE, UINT32_MAX, ONE_MEGABYTE
 
 
-class ABC_CmdLine_Test (BitcoinTestFramework):
+class ABC_CmdLine_Test (BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 1

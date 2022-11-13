@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
-# Copyright (c) 2017 The Bitcoin developers
-# Copyright (c) 2018-2019 Bitcoin Association
+# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2018-2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test that we spot whether the excessiveblocksize configuration parameter
 is overridden in all cases.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import assert_equal
 from test_framework.cdefs import (ONE_MEGABYTE)
 
 import os
 
 # Check excessiveblocksize configuration override
-class BSVEbsOverridden(BitcoinTestFramework):
+class BSVEbsOverridden(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 1
@@ -49,7 +49,7 @@ class BSVEbsOverridden(BitcoinTestFramework):
 
         # Stop node, reconfigure and restart
         self.stop_node(0)
-        filename = os.path.join(self.options.tmpdir + "/node0", "bitcoin.conf")
+        filename = os.path.join(self.options.tmpdir + "/node0", "blink.conf")
         with open(filename, 'a', encoding='utf8') as f:
             f.write("excessiveblocksize=" + str(self.maxblocksize) + "\n")
         self.start_node(0, [])

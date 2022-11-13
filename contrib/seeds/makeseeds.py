@@ -34,7 +34,7 @@ PATTERN_IPV6 = re.compile(r"^\[([0-9a-z:]+)\]:(\d+)$")
 # Used to only select nodes with a user agent string compatible with the
 # BCH/UAHF specification.
 PATTERN_AGENT = re.compile(
-    r"^(/BitcoinABC:0.17.(\d+)\(\S+\)/|/BitcoinXT:0.11\(\S+\)/|/BUCash:1.3.(\d+)\(\S+\)/)")
+    r"^(/BlinkABC:0.17.(\d+)\(\S+\)/|/BlinkXT:0.11\(\S+\)/|/BUCash:1.3.(\d+)\(\S+\)/)")
 
 
 def parseline(line):
@@ -165,7 +165,7 @@ def main():
     # Sort by availability (and use last success as tie breaker)
     ips.sort(key=lambda x:
              (x['uptime'], x['lastsuccess'], x['ip']), reverse=True)
-    # Filter out hosts with multiple bitcoin ports, these are likely abusive
+    # Filter out hosts with multiple blink ports, these are likely abusive
     ips = filtermultiport(ips)
     # Look up ASNs and limit results, both per ASN and globally.
     # TODO during this bootstrap phase we need any BCH full nodes

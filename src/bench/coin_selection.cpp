@@ -1,5 +1,5 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "bench.h"
@@ -33,7 +33,7 @@ static void addCoin(const Amount nValue, const CWallet &wallet,
 // the hardest, as you need a wider selection of scenarios, just testing the
 // same one over and over isn't too useful. Generating random isn't useful
 // either for measurements."
-// (https://github.com/bitcoin/bitcoin/issues/7883#issuecomment-224807484)
+// (https://github.com/blink/blink/issues/7883#issuecomment-224807484)
 static void CoinSelection(benchmark::State &state) {
     SelectParams(CBaseChainParams::TESTNET);
     GlobalConfig::GetModifiableGlobalConfig().SetDefaultBlockSizeParams(Params().GetDefaultBlockSizeParams());

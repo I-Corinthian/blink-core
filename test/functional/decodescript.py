@@ -3,13 +3,13 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 from test_framework.mininode import *
 from io import BytesIO
 
 
-class DecodeScriptTest(BitcoinTestFramework):
+class DecodeScriptTest(BlinkTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

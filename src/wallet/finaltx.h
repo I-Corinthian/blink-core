@@ -1,9 +1,9 @@
-// Copyright (c) 2017 The Bitcoin developers
+// Copyright (c) 2017 The Blink developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_DEPRECATED_FINALTX_H
-#define BITCOIN_DEPRECATED_FINALTX_H
+#ifndef BLINK_DEPRECATED_FINALTX_H
+#define BLINK_DEPRECATED_FINALTX_H
 
 class CTransaction;
 
@@ -18,4 +18,4 @@ bool CheckFinalTx(
     int nMedianTimePast,
     int flags = -1);
 
-#endif // BITCOIN_DEPRECATED_FINALTX_H
+#endif // BLINK_DEPRECATED_FINALTX_H

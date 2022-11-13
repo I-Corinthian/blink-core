@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include <chainparamsbase.h>
@@ -46,7 +46,7 @@ std::string RPCClientConfig::GetServerHTTPHost() const
     }
 }
 
-RPCClientConfig RPCClientConfig::CreateForBitcoind()
+RPCClientConfig RPCClientConfig::CreateForBlinkd()
 {
     RPCClientConfig config {};
 
@@ -68,7 +68,7 @@ RPCClientConfig RPCClientConfig::CreateForBitcoind()
                 _("Could not locate RPC credentials. No authentication cookie "
                   "could be found, and RPC password is not set. See "
                   "-rpcpassword and -stdinrpcpass. Configuration file: (%s)"),
-                GetConfigFile(gArgs.GetArg("-conf", BITCOIN_CONF_FILENAME)).string().c_str()));
+                GetConfigFile(gArgs.GetArg("-conf", BLINK_CONF_FILENAME)).string().c_str()));
         }
     }
     else

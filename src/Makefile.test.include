@@ -1,13 +1,13 @@
 # Copyright (c) 2013-2016 The Bitcoin Core developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-TESTS += test/test_bitcoin
-LOG_DRIVER = $(srcdir)/test/test-bitcoin-driver
-EXTRA_DIST += test/test-bitcoin-driver
-bin_PROGRAMS += test/test_bitcoin
+TESTS += test/test_blink
+LOG_DRIVER = $(srcdir)/test/test-blink-driver
+EXTRA_DIST += test/test-blink-driver
+bin_PROGRAMS += test/test_blink
 TEST_SRCDIR = test
-TEST_BINARY=test/test_bitcoin$(EXEEXT)
+TEST_BINARY=test/test_blink$(EXEEXT)
 
 JSON_TEST_FILES = \
   test/data/script_tests.json \
@@ -22,8 +22,8 @@ RAW_TEST_FILES =
 
 GENERATED_TEST_FILES = $(JSON_TEST_FILES:.json=.json.h) $(RAW_TEST_FILES:.raw=.raw.h)
 
-# test_bitcoin binary #
-BITCOIN_TESTS =\
+# test_blink binary #
+BLINK_TESTS =\
   test/alertnotify_tests.cpp \
   test/arith_uint256_tests.cpp \
   test/scriptnum10.h \
@@ -148,9 +148,9 @@ BITCOIN_TESTS =\
   test/stream_test_helpers.h \
   test/string_writer_tests.cpp \
   test/taskcancellation_tests.cpp \
-  test/test_bitcoin.cpp \
-  test/test_bitcoin.h \
-  test/test_bitcoin_main.cpp \
+  test/test_blink.cpp \
+  test/test_blink.h \
+  test/test_blink_main.cpp \
   test/test_double_spend_detector.cpp \
   test/test_orphantxns.cpp \
   test/test_recent_rejects.cpp \
@@ -176,7 +176,7 @@ BITCOIN_TESTS =\
   test/webhook_client_tests.cpp
 
 if ENABLE_WALLET
-BITCOIN_TESTS += \
+BLINK_TESTS += \
   wallet/test/wallet_test_fixture.cpp \
   wallet/test/wallet_test_fixture.h \
   wallet/test/accounting_tests.cpp \
@@ -185,43 +185,43 @@ BITCOIN_TESTS += \
   wallet/test/crypto_tests.cpp
 endif
 
-test_test_bitcoin_SOURCES = $(BITCOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
-test_test_bitcoin_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) -I$(builddir)/test/ $(TESTDEFS) $(EVENT_CFLAGS)
-test_test_bitcoin_LDADD =
+test_test_blink_SOURCES = $(BLINK_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
+test_test_blink_CPPFLAGS = $(AM_CPPFLAGS) $(BLINK_INCLUDES) -I$(builddir)/test/ $(TESTDEFS) $(EVENT_CFLAGS)
+test_test_blink_LDADD =
 if ENABLE_WALLET
-test_test_bitcoin_LDADD += $(LIBBITCOIN_WALLET)
+test_test_blink_LDADD += $(LIBBLINK_WALLET)
 endif
-test_test_bitcoin_LDADD += $(LIBBITCOIN_SERVER) $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) \
+test_test_blink_LDADD += $(LIBBLINK_SERVER) $(LIBBLINK_CLI) $(LIBBLINK_COMMON) $(LIBBLINK_UTIL) $(LIBBLINK_CONSENSUS) $(LIBBLINK_CRYPTO) $(LIBUNIVALUE) \
   $(LIBLEVELDB) $(LIBCRC32C) $(LIBMEMENV) $(BOOST_LIBS) $(BOOST_UNIT_TEST_FRAMEWORK_LIB) $(LIBSECP256K1) $(EVENT_LIBS) $(EVENT_PTHREADS_LIBS) $(AIO_LIBS)
-test_test_bitcoin_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+test_test_blink_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
-test_test_bitcoin_LDADD += $(LIBBITCOIN_CONSENSUS) $(BDB_LIBS) $(OPENSSL_LIBS) $(MINIUPNPC_LIBS)
-test_test_bitcoin_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
+test_test_blink_LDADD += $(LIBBLINK_CONSENSUS) $(BDB_LIBS) $(OPENSSL_LIBS) $(MINIUPNPC_LIBS)
+test_test_blink_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
 
 if ENABLE_ZMQ
-test_test_bitcoin_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+test_test_blink_LDADD += $(LIBBLINK_ZMQ) $(ZMQ_LIBS)
 endif
 #
 
-nodist_test_test_bitcoin_SOURCES = $(GENERATED_TEST_FILES)
+nodist_test_test_blink_SOURCES = $(GENERATED_TEST_FILES)
 
-$(BITCOIN_TESTS): $(GENERATED_TEST_FILES)
+$(BLINK_TESTS): $(GENERATED_TEST_FILES)
 
-CLEAN_BITCOIN_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES)
+CLEAN_BLINK_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES)
 
-CLEANFILES += $(CLEAN_BITCOIN_TEST)
+CLEANFILES += $(CLEAN_BLINK_TEST)
 
-bitcoin_test: $(TEST_BINARY)
+blink_test: $(TEST_BINARY)
 
-bitcoin_test_check: $(TEST_BINARY) FORCE
+blink_test_check: $(TEST_BINARY) FORCE
 	$(MAKE) check-TESTS TESTS=$^
 
-bitcoin_test_clean : FORCE
-	rm -f $(CLEAN_BITCOIN_TEST) $(test_test_bitcoin_OBJECTS) $(TEST_BINARY)
+blink_test_clean : FORCE
+	rm -f $(CLEAN_BLINK_TEST) $(test_test_blink_OBJECTS) $(TEST_BINARY)
 
 check-local:
-	@echo "Running test/util/bitcoin-util-test.py..."
-	$(top_builddir)/test/util/bitcoin-util-test.py
+	@echo "Running test/util/blink-util-test.py..."
+	$(top_builddir)/test/util/blink-util-test.py
 	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C secp256k1 check
 if EMBEDDED_UNIVALUE
 	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C univalue check

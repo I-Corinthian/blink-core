@@ -1,4 +1,4 @@
-// Copyright 2019 The Bitcoin SV Developers
+// Copyright 2019 The Blink SV Developers
 // Based on vmtouch - https://github.com/hoytech/vmtouch
 //
 /***********************************************************************

@@ -1,14 +1,14 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2018 The Bitcoin developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2017-2018 The Blink developers
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "logging.h"
 #include "util.h"
 #include "utiltime.h"
 
-constexpr auto LOGFILE = "bitcoind.log";
+constexpr auto LOGFILE = "blinkd.log";
 
 bool fLogIPs = DEFAULT_LOGIPS;
 
@@ -170,7 +170,7 @@ int BCLog::Logger::LogPrintStr(const std::string &str)
 
 // Uses const char* as str type so that log entries from all nodes can be traced during 
 // functional tests. e.g.
-// bpftrace -e 'u:/root/sv/src/bitcoind:*Logger*log* { printf("%d %s\n", pid, str(arg1)) }'
+// bpftrace -e 'u:/root/sv/src/blinkd:*Logger*log* { printf("%d %s\n", pid, str(arg1)) }'
 int BCLog::Logger::log(const char* str) {
 
     // Returns total number of characters written.

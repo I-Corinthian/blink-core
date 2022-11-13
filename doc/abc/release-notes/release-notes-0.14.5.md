@@ -1,14 +1,14 @@
-Bitcoin ABC version 0.14.5 is now available from:
+Blink ABC version 0.14.5 is now available from:
 
-  <https://download.bitcoinabc.org/0.14.5/>
+  <https://download.blinkabc.org/0.14.5/>
 
 This release includes the following features and fixes:
 
 - Enforce strong replay protection (require SIGHASH_FORKID
   and SCRIPT_VERIFY_STRICTENC compliance)
 - Change currency units in user interface from BTC -> BCC
-- Add NODE_BITCOIN_CASH service bit (0x20)
-- Update BU backed seeder to btccash-seeder.bitcoinunlimited.info
+- Add NODE_BLINK_CASH service bit (0x20)
+- Update BU backed seeder to btccash-seeder.blinkunlimited.info
 - Update ABC logos for About menu, and testnet icon 
 - Various refactoring and cleanups
 

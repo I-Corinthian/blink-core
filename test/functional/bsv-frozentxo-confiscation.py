@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022 Bitcoin Association
+# Copyright (c) 2022 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test confiscation transactions
@@ -28,7 +28,7 @@ from test_framework.mininode import (
     CTxOut
 )
 from test_framework.script import CScript, hash160, OP_CHECKSIG, OP_DUP, OP_EQUALVERIFY, OP_FALSE, OP_HASH160, OP_NOP, OP_PUSHDATA1, OP_RETURN, OP_TRUE, CScriptOp
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
@@ -44,7 +44,7 @@ import time
 CTX_OP_RETURN = [OP_FALSE, OP_RETURN, b'cftx']
 
 
-class FrozenTXOConfiscation(BitcoinTestFramework):
+class FrozenTXOConfiscation(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -173,9 +173,9 @@ class FrozenTXOConfiscation(BitcoinTestFramework):
         assert_equal(result["notProcessed"], [])
 
     def check_log(self, node, line_text):
-        for line in open(glob.glob(node.datadir + "/regtest/bitcoind.log")[0]):
+        for line in open(glob.glob(node.datadir + "/regtest/blinkd.log")[0]):
             if re.search(line_text, line) is not None:
-                self.log.debug("Found line in bitcoind.log: %s", line.strip())
+                self.log.debug("Found line in blinkd.log: %s", line.strip())
                 return True
         return False
 
@@ -484,12 +484,12 @@ class FrozenTXOConfiscation(BitcoinTestFramework):
         assert_equal(node.rpc.getrawmempool(), [confiscate_tx.hash])
 
         mempool_scan_check_log_string = "Removing any confiscation transactions, which were previously valid, but are now not because the mempool height has become lower"
-        assert not self.check_log(node.rpc, mempool_scan_check_log_string) # bitcoind should not unnecessarily scan whole mempool to find invalid confiscation transactions.
+        assert not self.check_log(node.rpc, mempool_scan_check_log_string) # blinkd should not unnecessarily scan whole mempool to find invalid confiscation transactions.
 
         self.log.info(f"Invalidating block {root_block.hash} and checking that confiscation transaction {confiscate_tx.hash} is removed from mempool because it is no longer whitelisted at lower height")
         node.rpc.invalidateblock(root_block.hash)
         assert_equal(node.rpc.getrawmempool(), [])
-        assert self.check_log(node.rpc, mempool_scan_check_log_string) # bitcoind now should scan whole mempool
+        assert self.check_log(node.rpc, mempool_scan_check_log_string) # blinkd now should scan whole mempool
 
         # Cleanup
         node.rpc.reconsiderblock(root_block.hash) # this will also reconsider next block which was invalidated above

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020  Bitcoin Association
+# Copyright (c) 2020  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from test_framework.blocktools import create_block, create_coinbase, create_transaction
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.util import assert_equal, wait_until, assert_raises_rpc_error
 from test_framework.mininode import ToHex, msg_block, msg_tx, CBlock, CTransaction, CTxIn, COutPoint, CTxOut
 from test_framework.script import CScript, OP_TRUE, OP_RETURN
@@ -13,7 +13,7 @@ from binascii import b2a_hex
 def b2x(b):
     return b2a_hex(b).decode('ascii')
 
-class GetBlockTemplateRPCTest(BitcoinTestFramework):
+class GetBlockTemplateRPCTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True

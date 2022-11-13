@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  blinkd The blink core server.
+#
+#
+# chkconfig: 345 80 20
+# description: blinkd
+# processname: blinkd
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/blinkd, see below
+if [ -f /etc/sysconfig/blinkd ]; then
+        . /etc/sysconfig/blinkd
+fi
+
+RETVAL=0
+
+prog=blinkd
+# you can override the lockfile via BLINKD_LOCKFILE in /etc/sysconfig/blinkd
+lockfile=${BLINKD_LOCKFILE-/var/lock/subsys/blinkd}
+
+# blinkd defaults to /usr/bin/blinkd, override with BLINKD_BIN
+blinkd=${BLINKD_BIN-/usr/bin/blinkd}
+
+# blinkd opts default to -disablewallet, override with BLINKD_OPTS
+blinkd_opts=${BLINKD_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $blinkd $blinkd_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

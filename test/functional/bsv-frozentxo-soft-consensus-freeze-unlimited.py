@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test soft consensus freeze:

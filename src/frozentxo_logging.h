@@ -1,8 +1,8 @@
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_FROZENTXO_LOGGING_H
-#define BITCOIN_FROZENTXO_LOGGING_H
+#ifndef BLINK_FROZENTXO_LOGGING_H
+#define BLINK_FROZENTXO_LOGGING_H
 
 #include "frozentxo_db.h"
 #include "uint256.h"
@@ -146,4 +146,4 @@ public:
 
 
 
-#endif // BITCOIN_FROZENTXO_LOGGING_H
+#endif // BLINK_FROZENTXO_LOGGING_H

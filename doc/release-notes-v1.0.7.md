@@ -1,4 +1,4 @@
-# Bitcoin SV version 1.0.7 Release Notes
+# Blink SV version 1.0.7 Release Notes
 
 ## Headline changes since 1.0.6
 * Removed performance penalty for long chains. Mempool performance does not depend on the transaction's chain length anymore.
@@ -56,7 +56,7 @@
 * sendrawtransaction RPC - fix PrioritiseTransaction/ClearPrioritisation usage to be exception safe.
 * sendrawtransaction RPC - functional test – send already known transaction and create block.
 * sendrawtransaction RPC - check if transaction is already known before validation starts.
-* Remove bitcoin-seeder.
+* Remove blink-seeder.
 * Fix: Coredump at shutdown with scriptCheckQueuePool
 * Fix: Consolidation tx option 'acceptnonstdconsolidationinput' uses wrong type
 * Fix: Consolidation variable name and update function to respect interface
@@ -73,18 +73,18 @@
 * Removed call to virtual function Flush() in dtor of text writer
 * Refactor default parameters of virtual function in TextWriter
 * Backport performance improvement to rolling bloom filter
-* Fix: bench_bitcoin fails on build with --disable-wallet
+* Fix: bench_blink fails on build with --disable-wallet
 * Use pointer or reference to avoid slicing from "CAddress" to "CService
 * Fix: Uninitialized member in CWalletDBWrapper
 * Revert unordered->ordered map/set for COutPoint -> coins.
 * ZMQ: add method for distinct zmq ports when running functional tests in parallel
 * Fix: snprintf overflows write buffer
-* Remove 'bitcoin' prefix from worker thread names
+* Remove 'blink' prefix from worker thread names
 * Prevent unnecessary copies in range loops
 * Fix: Unhandled nullptr in GetDiskBlockStreamReader if file does not exist
 * Add list of supported stream policies to the output of getnetworkinfo
 * Provide an option to increase the number of open files for leveldb. Increasing number of open files improves performance of transaction validation.
-* Fix: Starting bitcoind with negative value for consolidation transaction parameters is setting very high values internally
+* Fix: Starting blinkd with negative value for consolidation transaction parameters is setting very high values internally
 * Remove dead code that was accidentally introduced by parallel block validation task
 * Fix: cURL example of gettxouts RPC help
 * Add stream type enumerations to python test framework
@@ -142,15 +142,15 @@
 N/A
 
 # Previous Releases
-* [Version 0.1.0](release-notes-v0.1.0.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.1.0/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.1.0) - 2018-10-15
-* [Version 0.1.1](release-notes-v0.1.1.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.1.1/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.1.1) - 2019-02-11
-* [Version 0.2.0](release-notes-v0.2.0.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.2.0/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.2.0) - 2019-06-05
-* [Version 0.2.1](release-notes-v0.2.1.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.2.1/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.2.1) - 2019-07-12
-* [Version 0.2.2.beta](release-notes-v0.2.2-beta.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.2.2.beta/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.2.2.beta) - 2019-10-30
-* [Version 1.0.0](release-notes-v1.0.0.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/1.0.0/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v1.0.0) - 2020-01-15
-* [Version 1.0.1](release-notes-v1.0.1.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/1.0.1/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v1.0.1) - 2020-01-28
-* [Version 1.0.2](release-notes-v1.0.2.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/1.0.2/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v1.0.2) - 2020-02-17
-* [Version 1.0.3](release-notes-v1.0.3.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/1.0.3/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v1.0.3) - 2020-04-28
-* [Version 1.0.4](release-notes-v1.0.4.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/1.0.4/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v1.0.4) - 2020-07-01
-* [Version 1.0.5](release-notes-v1.0.5.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/1.0.5/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v1.0.5) - 2020-09-08
-* [Version 1.0.6](release-notes-v1.0.6.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/1.0.6/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v1.0.6) - 2020-11-17
+* [Version 0.1.0](release-notes-v0.1.0.md) - [Download](https://download.blinksv.io/blinksv/0.1.0/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.1.0) - 2018-10-15
+* [Version 0.1.1](release-notes-v0.1.1.md) - [Download](https://download.blinksv.io/blinksv/0.1.1/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.1.1) - 2019-02-11
+* [Version 0.2.0](release-notes-v0.2.0.md) - [Download](https://download.blinksv.io/blinksv/0.2.0/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.2.0) - 2019-06-05
+* [Version 0.2.1](release-notes-v0.2.1.md) - [Download](https://download.blinksv.io/blinksv/0.2.1/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.2.1) - 2019-07-12
+* [Version 0.2.2.beta](release-notes-v0.2.2-beta.md) - [Download](https://download.blinksv.io/blinksv/0.2.2.beta/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.2.2.beta) - 2019-10-30
+* [Version 1.0.0](release-notes-v1.0.0.md) - [Download](https://download.blinksv.io/blinksv/1.0.0/) - [Source](https://github.com/blink-sv/blink-sv/tree/v1.0.0) - 2020-01-15
+* [Version 1.0.1](release-notes-v1.0.1.md) - [Download](https://download.blinksv.io/blinksv/1.0.1/) - [Source](https://github.com/blink-sv/blink-sv/tree/v1.0.1) - 2020-01-28
+* [Version 1.0.2](release-notes-v1.0.2.md) - [Download](https://download.blinksv.io/blinksv/1.0.2/) - [Source](https://github.com/blink-sv/blink-sv/tree/v1.0.2) - 2020-02-17
+* [Version 1.0.3](release-notes-v1.0.3.md) - [Download](https://download.blinksv.io/blinksv/1.0.3/) - [Source](https://github.com/blink-sv/blink-sv/tree/v1.0.3) - 2020-04-28
+* [Version 1.0.4](release-notes-v1.0.4.md) - [Download](https://download.blinksv.io/blinksv/1.0.4/) - [Source](https://github.com/blink-sv/blink-sv/tree/v1.0.4) - 2020-07-01
+* [Version 1.0.5](release-notes-v1.0.5.md) - [Download](https://download.blinksv.io/blinksv/1.0.5/) - [Source](https://github.com/blink-sv/blink-sv/tree/v1.0.5) - 2020-09-08
+* [Version 1.0.6](release-notes-v1.0.6.md) - [Download](https://download.blinksv.io/blinksv/1.0.6/) - [Source](https://github.com/blink-sv/blink-sv/tree/v1.0.6) - 2020-11-17

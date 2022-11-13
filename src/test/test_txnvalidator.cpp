@@ -1,11 +1,11 @@
-// Copyright (c) 2019 The Bitcoin SV developers
+// Copyright (c) 2019 The Blink SV developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "config.h"
 #include "key.h"
 #include "pubkey.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include "txmempool.h"
 #include "txn_validator.h"
 #include "test/mempool_test_access.h"

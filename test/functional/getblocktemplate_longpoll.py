@@ -3,7 +3,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 
 import threading
@@ -25,7 +25,7 @@ class LongpollThread(threading.Thread):
         self.node.getblocktemplate({'longpollid': self.longpollid})
 
 
-class GetBlockTemplateLPTest(BitcoinTestFramework):
+class GetBlockTemplateLPTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
 

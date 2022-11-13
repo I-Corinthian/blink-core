@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Testing that we correctly accept blocks even if due to race condition child
@@ -61,7 +61,7 @@ from test_framework.mininode import (
     NodeConnCB,
     msg_block,
 )
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.util import (
     assert_equal,
     p2p_port,
@@ -73,7 +73,7 @@ from test_framework.blocktools import create_transaction
 from test_framework.key import CECKey
 
 
-class PBVProcessingOrder(BitcoinTestFramework):
+class PBVProcessingOrder(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

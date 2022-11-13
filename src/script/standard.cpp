@@ -45,7 +45,7 @@ bool Solver(const CScript &scriptPubKey,
             // Standard tx, sender provides pubkey, receiver adds signature
             {TX_PUBKEY, CScript() << OP_PUBKEY << OP_CHECKSIG},
 
-            // Bitcoin address tx, sender provides hash of pubkey, receiver
+            // Blink address tx, sender provides hash of pubkey, receiver
             // provides signature and pubkey
             {
                 TX_PUBKEYHASH,

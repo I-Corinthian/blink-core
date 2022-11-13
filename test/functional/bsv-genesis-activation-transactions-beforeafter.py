@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test genesis activation height when sending transactions.
@@ -11,7 +11,7 @@ Genesis height is 102.
 2. Create and send transaction tx1 with OP_RETURN in the locking script.
 3. Generate an empty block (height 102). Genesis is activated.
 4. Create and send transaction tx2 with OP_TRUE in the unlocking that tries to spend tx1.
-   This transaction is NOT rejected as bitcoind does not check if input transactions in mempool are spendable.
+   This transaction is NOT rejected as blinkd does not check if input transactions in mempool are spendable.
 5. Generate new block with tx1 and tx2. It is on height 103 so it is not rejected.
 """
 from test_framework.test_framework import ComparisonTestFramework

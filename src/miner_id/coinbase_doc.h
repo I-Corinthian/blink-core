@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file
 // LICENSE.
 
@@ -26,7 +26,7 @@ static const std::set<std::string> SUPPORTED_VERSIONS = {"0.1", "0.2", "0.3"};
  * output.
  *
  * Fields miner_contact and extensions are optional in minerId, but we decide
- * not to store them as they are not needed in bitcoind. Field dynamicMinerId is
+ * not to store them as they are not needed in blinkd. Field dynamicMinerId is
  * used when verifying signature of dynamic signature, but there is no need to
  * store it though.
  */

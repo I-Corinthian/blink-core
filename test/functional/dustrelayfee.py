@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Verify that dust and non-dust tx outputs are rejected and accepted as expected,
 when the dustrelayfee and dustlimitfactor setting changes between releases or is configured manually.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import assert_raises_rpc_error, sync_blocks
 from test_framework.mininode import COIN
 from decimal import Decimal
@@ -34,7 +34,7 @@ def create_zero_fee_tx_funded_from(node, tx_id, small_value):
     signed = node.signrawtransaction(rawtx)
     return signed["hex"]
 
-class DustRelayFeeTest(BitcoinTestFramework):
+class DustRelayFeeTest(BlinkTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

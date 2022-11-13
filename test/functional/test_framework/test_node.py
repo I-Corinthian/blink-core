@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017 The Bitcoin Core developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
-"""Class for bitcoind node under test"""
+"""Class for blinkd node under test"""
 
 import decimal
 import errno
@@ -23,7 +23,7 @@ from .util import (
 )
 from .authproxy import JSONRPCException
 
-BITCOIND_PROC_WAIT_TIMEOUT = 120
+BLINKD_PROC_WAIT_TIMEOUT = 120
 
 # Keep a global list of started external processes so that they can be killed
 # before Python exits if they are still running.
@@ -31,7 +31,7 @@ TestNode_process_list = []
 
 
 class TestNode():
-    """A class for representing a bitcoind node under test.
+    """A class for representing a blinkd node under test.
 
     This class contains:
 
@@ -52,7 +52,7 @@ class TestNode():
             # Wait for up to 60 seconds for the RPC server to respond
             self.rpc_timeout = 60
         if binary is None:
-            self.binary = [os.getenv("BITCOIND", "bitcoind")]
+            self.binary = [os.getenv("BLINKD", "blinkd")]
         else:
             self.binary = binary
         self.stderr = stderr
@@ -63,7 +63,7 @@ class TestNode():
                      "-debug", "-debugexclude=libevent", "-debugexclude=leveldb", "-mocktime=" + str(mocktime), "-uacomment=testnode%d" % i]
 
         self.cli = TestNodeCLI(
-            os.getenv("BITCOINCLI", "bitcoin-cli"), self.datadir)
+            os.getenv("BLINKCLI", "blink-cli"), self.datadir)
 
         self.running = False
         self.process = None
@@ -79,7 +79,7 @@ class TestNode():
         return self.rpc.__getattr__(*args, **kwargs)
 
     def setRequiredArgs(self, inputArgs, runNodesWithRequiredParams):
-        """Sets the following required bitcoind arguments with default values if they are not already set.
+        """Sets the following required blinkd arguments with default values if they are not already set.
            This prevents node from failing in functional tests
         """
         if not runNodesWithRequiredParams:
@@ -91,7 +91,7 @@ class TestNode():
 
         allSetArgs = []
         #Config file parameters should be checked as well
-        configFilename = os.path.join(self.datadir, "bitcoin.conf")
+        configFilename = os.path.join(self.datadir, "blink.conf")
         with open(configFilename, 'r', encoding='utf8') as configFile:
             configFileArg = configFile.readline()
             while configFileArg:
@@ -126,15 +126,15 @@ class TestNode():
         self.process = subprocess.Popen(self.setRequiredArgs(self.args + extra_args, runNodesWithRequiredParams), stderr=stderr)
         TestNode_process_list.append(self.process) # Add node process to list of running external processes
         self.running = True
-        self.log.debug("bitcoind started, waiting for RPC to come up")
+        self.log.debug("blinkd started, waiting for RPC to come up")
 
     def wait_for_rpc_connection(self):
-        """Sets up an RPC connection to the bitcoind process. Returns False if unable to connect."""
+        """Sets up an RPC connection to the blinkd process. Returns False if unable to connect."""
         # Poll at a rate of four times per second
         poll_per_s = 4
         for _ in range(poll_per_s * self.rpc_timeout):
             assert self.process.poll(
-            ) is None, "bitcoind exited with status %i during initialization" % self.process.returncode
+            ) is None, "blinkd exited with status %i during initialization" % self.process.returncode
             try:
                 self.rpc = get_rpc_proxy(rpc_url(self.datadir, self.index, self.rpchost),
                                          self.index, timeout=self.rpc_timeout, coveragedir=self.coverage_dir)
@@ -150,11 +150,11 @@ class TestNode():
             except JSONRPCException as e:  # Initialization phase
                 if e.error['code'] != -28:  # RPC in warmup?
                     raise  # unknown JSON RPC exception
-            except ValueError as e:  # cookie file not found and no rpcuser or rpcassword. bitcoind still starting
+            except ValueError as e:  # cookie file not found and no rpcuser or rpcassword. blinkd still starting
                 if "No RPC credentials" not in str(e):
                     raise
             time.sleep(1.0 / poll_per_s)
-        raise AssertionError("Unable to connect to bitcoind")
+        raise AssertionError("Unable to connect to blinkd")
 
     def get_wallet_rpc(self, wallet_name):
         assert self.rpc_connected
@@ -195,7 +195,7 @@ class TestNode():
         self.log.debug("Node stopped")
         return True
 
-    def wait_until_stopped(self, timeout=BITCOIND_PROC_WAIT_TIMEOUT):
+    def wait_until_stopped(self, timeout=BLINKD_PROC_WAIT_TIMEOUT):
         wait_until(self.is_node_stopped, timeout=timeout)
 
     def wait_for_exit(self, timeout):
@@ -205,7 +205,7 @@ class TestNode():
     def node_encrypt_wallet(self, passphrase):
         """"Encrypts the wallet.
 
-        This causes bitcoind to shutdown, so this method takes
+        This causes blinkd to shutdown, so this method takes
         care of cleaning up resources."""
         self.encryptwallet(passphrase)
         self.wait_until_stopped()
@@ -221,7 +221,7 @@ class TestNode():
 
 
 class TestNodeCLI():
-    """Interface to bitcoin-cli for an individual node"""
+    """Interface to blink-cli for an individual node"""
 
     def __init__(self, binary, datadir):
         self.args = []
@@ -230,7 +230,7 @@ class TestNodeCLI():
         self.input = None
 
     def __call__(self, *args, input=None):
-        # TestNodeCLI is callable with bitcoin-cli command-line args
+        # TestNodeCLI is callable with blink-cli command-line args
         self.args = [str(arg) for arg in args]
         self.input = input
         return self
@@ -241,13 +241,13 @@ class TestNodeCLI():
         return dispatcher
 
     def send_cli(self, command, *args, **kwargs):
-        """Run bitcoin-cli command. Deserializes returned string as python object."""
+        """Run blink-cli command. Deserializes returned string as python object."""
 
         pos_args = [str(arg) for arg in args]
         named_args = [str(key) + "=" + str(value)
                       for (key, value) in kwargs.items()]
         assert not (
-            pos_args and named_args), "Cannot use positional arguments and named arguments in the same bitcoin-cli call"
+            pos_args and named_args), "Cannot use positional arguments and named arguments in the same blink-cli call"
 
         p_args = [self.binary, "-datadir=" + self.datadir] + self.args
         if named_args:

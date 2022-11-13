@@ -26,7 +26,7 @@ The proposed digest algorithm is only used when the `SIGHASH_FORKID` bit in the 
 
 In presence of the `SIGHASH_FORKID` flag in the signature's sighash type, the proposed algorithm is used.
 
-Signatures using `SIGHASH_FORKID` must be rejected before [UAHF](https://github.com/Bitcoin-UAHF/spec/blob/master/uahf-technical-spec.md) is activated.
+Signatures using `SIGHASH_FORKID` must be rejected before [UAHF](https://github.com/Blink-UAHF/spec/blob/master/uahf-technical-spec.md) is activated.
 
 In order to ensure proper activation, the reference implementation uses the `SCRIPT_ENABLE_SIGHASH_FORKID` flag when executing `EvalScript` .
 
@@ -70,7 +70,7 @@ Notes:
 
 #### value
 
-The 8-byte value of the amount of bitcoin spent in this input.
+The 8-byte value of the amount of blink spent in this input.
 
 #### hashOutputs
 
@@ -196,10 +196,10 @@ In that case the code can be simplified to omit the function.
 
 ## References
 
-<a name="bip143">[1]</a> https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki
+<a name="bip143">[1]</a> https://github.com/blink/bips/blob/master/bip-0143.mediawiki
 
-<a name="bip143Motivation">[2]</a> https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki#Motivation
+<a name="bip143Motivation">[2]</a> https://github.com/blink/bips/blob/master/bip-0143.mediawiki#Motivation
 
-<a name="OP_CHECKSIG">[3]</a> https://en.bitcoin.it/wiki/OP_CHECKSIG
+<a name="OP_CHECKSIG">[3]</a> https://en.blink.it/wiki/OP_CHECKSIG
 
-<a name="uahfspec">[4]</a> https://github.com/Bitcoin-UAHF/spec/blob/master/uahf-technical-spec.md
+<a name="uahfspec">[4]</a> https://github.com/Blink-UAHF/spec/blob/master/uahf-technical-spec.md

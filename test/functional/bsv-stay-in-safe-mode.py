@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test that sending blocks after already sending headers does not trigger exiting safe mode.
@@ -15,11 +15,11 @@ This also does not apply for case 4, where longer branch (20 headers) is sent fi
 from test_framework.authproxy import JSONRPCException
 from test_framework.blocktools import make_block, send_by_headers, wait_for_tip, wait_for_tip_status
 from test_framework.mininode import msg_block
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until
 import glob, shutil, os
 
-class StayInSafeMode(BitcoinTestFramework):
+class StayInSafeMode(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -80,7 +80,7 @@ class StayInSafeMode(BitcoinTestFramework):
             def wait_for_log():
                 safeModeChanges = 0
                 line_text = "WARNING: Safe mode level changed"
-                for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/bitcoind.log")[0]):
+                for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/blinkd.log")[0]):
                     if line_text in line:
                         self.log.info("Found line: %s", line)
                         safeModeChanges += 1

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 test_policy_freeze_: Checks that policy freeze is honored.
@@ -27,7 +27,7 @@ from test_framework.mininode import (
     ToHex
 )
 
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.blocktools import create_transaction, PreviousSpendableOutput
 from test_framework.script import CScript, OP_NOP, OP_TRUE, OP_CHECKSIG, SignatureHashForkId, SIGHASH_ALL, SIGHASH_FORKID
 from test_framework.key import CECKey
@@ -55,9 +55,9 @@ class Send_node():
         return False
 
     def check_log(self, line_text):
-        for line in open(glob.glob(self.tmpdir + f"/node{self.node_no}" + "/regtest/bitcoind.log")[0]):
+        for line in open(glob.glob(self.tmpdir + f"/node{self.node_no}" + "/regtest/blinkd.log")[0]):
             if re.search(line_text, line) is not None:
-                self.log.debug("Found line in bitcoind.log: %s", line.strip())
+                self.log.debug("Found line in blinkd.log: %s", line.strip())
                 return True
         return False
 
@@ -121,7 +121,7 @@ class P2P_send_node(Send_node):
         self.rejected_txs = []
         self.p2p.message_count["reject"] = 0
 
-class FrozenTXOTransactionFreeze(BitcoinTestFramework):
+class FrozenTXOTransactionFreeze(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

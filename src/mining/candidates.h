@@ -1,8 +1,8 @@
-// Copyright (c) 2019 Bitcoin Association.
+// Copyright (c) 2019 Blink Association.
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOINSV_CANDIDATES_H
-#define BITCOINSV_CANDIDATES_H
+#ifndef BLINKSV_CANDIDATES_H
+#define BLINKSV_CANDIDATES_H
 
 #include "primitives/block.h"
 
@@ -84,4 +84,4 @@ private:
 };
 
 
-#endif //BITCOINSV_CANDIDATES_H
+#endif //BLINKSV_CANDIDATES_H

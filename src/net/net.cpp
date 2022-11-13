@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019-2020 Bitcoin Association
+// Copyright (c) 2019-2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include "config/blink-config.h"
 #endif
 
 #include "net/net.h"
@@ -756,7 +756,7 @@ void CNode::copyStats(NodeStats &stats)
     }
 
     // Raw ping time is in microseconds, but show it to user as whole seconds
-    // (Bitcoin users should be well used to small numbers with many decimal
+    // (Blink users should be well used to small numbers with many decimal
     // places by now :)
     stats.dPingTime = ((double(nPingUsecTime)) / 1e6);
     stats.dMinPing = ((double(nMinPingUsecTime)) / 1e6);
@@ -1568,7 +1568,7 @@ void ThreadMapPort() {
             }
         }
 
-        std::string strDesc = "Bitcoin " + FormatFullVersion();
+        std::string strDesc = "Blink " + FormatFullVersion();
 
         try {
             while (true) {

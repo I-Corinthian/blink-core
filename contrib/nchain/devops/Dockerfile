@@ -1,4 +1,4 @@
-#Dockerfile for building Bitcoin SV
+#Dockerfile for building Blink SV
 FROM ubuntu:bionic
 LABEL maintainer=p.foster@nchain.com
 RUN apt-get update &&   \

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test scenario:
@@ -26,7 +26,7 @@ import re
 
 from test_framework.cdefs import ONE_MEGABYTE, ELEMENT_OVERHEAD, DEFAULT_SCRIPT_NUM_LENGTH_POLICY_AFTER_GENESIS
 from test_framework.mininode import NodeConn, NetworkThread, NodeConnCB, mininode_lock, FromHex
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.test_node import TestNode
 from test_framework.util import hex_str_to_bytes, assert_raises_rpc_error, assert_equal, wait_for_reject_message, \
     wait_until, p2p_port, bytes_to_hex_str, connect_nodes_bi, hashToHex, satoshi_round, connect_nodes, sync_blocks
@@ -46,7 +46,7 @@ def getInputScriptPubKey(node, input, index):
 def count_in_log(rpc, msg, node_dir, from_line=0):
     count = 0
     txes = set()
-    for line in open(glob.glob(rpc.options.tmpdir + node_dir + "/regtest/bitcoind.log")[0]).readlines()[from_line:]:
+    for line in open(glob.glob(rpc.options.tmpdir + node_dir + "/regtest/blinkd.log")[0]).readlines()[from_line:]:
         if msg in line:
             # Check if the specified reject message was found in log and add the transaction id to a set (to avoid duplicates)
             if "rejected" in line or "invalid orphan" in line:
@@ -59,7 +59,7 @@ def count_in_log(rpc, msg, node_dir, from_line=0):
     return len(txes)
 
 
-class SendrawtransactionsSkipFlags(BitcoinTestFramework):
+class SendrawtransactionsSkipFlags(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 2
@@ -1001,7 +1001,7 @@ class SendrawtransactionsSkipFlags(BitcoinTestFramework):
         self.log.info("Test reorg scenario")
 
         height0 = self.nodes[0].getblockchaininfo()['blocks']
-        logfile = open(glob.glob(self.options.tmpdir + "/node0/regtest/bitcoind.log")[0])
+        logfile = open(glob.glob(self.options.tmpdir + "/node0/regtest/blinkd.log")[0])
         from_line = len(logfile.readlines())
         logfile.close()
 

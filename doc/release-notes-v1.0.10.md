@@ -1,4 +1,4 @@
-# Bitcoin SV Node software – Upgrade to v1.0.10 Release
+# Blink SV Node software – Upgrade to v1.0.10 Release
 
 Overview
 --------
@@ -13,12 +13,12 @@ Performance improvements have been made to the processing of long complex transa
 Modification to processing of user agent strings
 ------------------------------------------------
 
-Currently it is possible that a node may connect to BCH nodes (There is advice on how to avoid this on bitcoin-sv github). Connecting to a non-BSV node is not fatal to the operation of the node but leads to wasted bandwidth and unnecessary block processing. Invalid blocks generate error messages which pollute the log files and make it difficult to see what is going on. The following steps have been taken to make it more likely that a node only connects to other BSV nodes.
+Currently it is possible that a node may connect to BCH nodes (There is advice on how to avoid this on blink-sv github). Connecting to a non-BSV node is not fatal to the operation of the node but leads to wasted bandwidth and unnecessary block processing. Invalid blocks generate error messages which pollute the log files and make it difficult to see what is going on. The following steps have been taken to make it more likely that a node only connects to other BSV nodes.
 
 *   **banclientua** \- contains the list of banned user agent substrings (the node will ban any peer that returns one of these user agent strings).  The default list is set to: "abc", "cash", "bch"
 *   **allowclientua** \- a newly introduced config option that contains a list of allowed user agent substrings that overrides **banclientua**.  The default list is empty.
 
-Matching is case insensitive. Note that the default list is cleared if a single **banclientua** parameter is set in the bitcoin config file or command line.  
+Matching is case insensitive. Note that the default list is cleared if a single **banclientua** parameter is set in the blink config file or command line.  
   
 Example config setting: 
 

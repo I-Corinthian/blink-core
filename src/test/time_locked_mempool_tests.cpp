@@ -1,11 +1,11 @@
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include <time_locked_mempool.h>
 #include <txn_validation_data.h>
 #include <validation.h>
 
-#include <test/test_bitcoin.h>
+#include <test/test_blink.h>
 
 #include <boost/test/unit_test.hpp>
 

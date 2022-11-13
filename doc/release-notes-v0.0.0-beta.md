@@ -1,4 +1,4 @@
-Bitcoin SV beta version is now available. 
+Blink SV beta version is now available. 
 
 This release includes the following features and fixes:
  - November 2018 upgrade activation. When the upgrade activates, the 

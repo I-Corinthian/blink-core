@@ -1,5 +1,5 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "clientversion.h"
@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both bitcoind and bitcoin-sv, to make it harder for attackers to
+ * for both blinkd and blink-sv, to make it harder for attackers to
  * target servers.
  */
-const std::string CLIENT_NAME("Bitcoin SV");
+const std::string CLIENT_NAME("Blink SV");
 
 /**
  * Client version number
@@ -103,7 +103,7 @@ std::string FormatFullVersion() {
 
 /**
  * Format the subversion field according to BIP 14 spec
- * (https://github.com/bitcoin/bips/blob/master/bip-0014.mediawiki)
+ * (https://github.com/blink/bips/blob/master/bip-0014.mediawiki)
  */
 std::string FormatSubVersion(const std::string &name, int nClientVersion,
                              const std::vector<std::string> &comments) {

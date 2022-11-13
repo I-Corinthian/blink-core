@@ -1,8 +1,8 @@
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_SCRIPT_LIMITEDSTACK_H
-#define BITCOIN_SCRIPT_LIMITEDSTACK_H
+#ifndef BLINK_SCRIPT_LIMITEDSTACK_H
+#define BLINK_SCRIPT_LIMITEDSTACK_H
 
 #include <cstdint>
 #include <functional>

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019-2020 Bitcoin Association
+# Copyright (c) 2019-2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test p2p behavior for non-final txns.
@@ -22,7 +22,7 @@ To submit transactions p2p and rpc interfaces are used
 """
 
 from test_framework.authproxy import JSONRPCException
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.script import CScript, OP_TRUE
 from test_framework.blocktools import create_transaction
 from test_framework.util import assert_equal, p2p_port, wait_until, check_for_log_msg, sync_blocks
@@ -30,7 +30,7 @@ from test_framework.mininode import ( NodeConn, NodeConnCB, NetworkThread, msg_t
         CTxIn, CTxOut, FromHex, ToHex)
 import time, copy
 
-class NonFinalP2PTest(BitcoinTestFramework):
+class NonFinalP2PTest(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 2

@@ -5,8 +5,8 @@
 /**
  * Utility functions shared by unit tests
  */
-#ifndef BITCOIN_TEST_TESTUTIL_H
-#define BITCOIN_TEST_TESTUTIL_H
+#ifndef BLINK_TEST_TESTUTIL_H
+#define BLINK_TEST_TESTUTIL_H
 
 #include <chrono>
 #include <optional>
@@ -45,4 +45,4 @@ namespace std
     }
 }
 
-#endif // BITCOIN_TEST_TESTUTIL_H
+#endif // BLINK_TEST_TESTUTIL_H

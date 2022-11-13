@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_POW_H
-#define BITCOIN_POW_H
+#ifndef BLINK_POW_H
+#define BLINK_POW_H
 
 #include <cstdint>
 
@@ -26,10 +26,10 @@ uint32_t CalculateNextWorkRequired(const CBlockIndex *pindexPrev,
 bool CheckProofOfWork(uint256 hash, uint32_t nBits, const Config &config);
 
 /**
- * Bitcoin cash's difficulty adjustment mechanism.
+ * Blink cash's difficulty adjustment mechanism.
  */
 uint32_t GetNextCashWorkRequired(const CBlockIndex *pindexPrev,
                                  const CBlockHeader *pblock,
                                  const Config &config);
 
-#endif // BITCOIN_POW_H
+#endif // BLINK_POW_H

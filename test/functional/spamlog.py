@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from test_framework.mininode import *
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.blocktools import create_block, create_coinbase
 from test_framework.util import *
 import time
@@ -28,7 +28,7 @@ class msg_garbage():
     def __repr__(self):
         return "garbage"#(announce=%s, version=%lu)" % (self.announce, self.version)
 
-class SpamLog(BitcoinTestFramework):
+class SpamLog(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.extra_args = [['-whitelist=127.0.0.1', '-debugexclude=net']]
@@ -52,7 +52,7 @@ class SpamLog(BitcoinTestFramework):
             self.test_node.send_message(garbage)
 
         # Check size of generated log file (arbitrary check it's below 100k)
-        logfile = "{}/node0/regtest/bitcoind.log".format(self.options.tmpdir)
+        logfile = "{}/node0/regtest/blinkd.log".format(self.options.tmpdir)
         size = os.path.getsize(logfile)
         self.log.info("Logile size = {}".format(size))
         assert(size < 1000000)

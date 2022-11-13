@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from functools import partial
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from io import BytesIO
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.blocktools import make_block, create_tx, send_by_headers, wait_for_tip
 from test_framework.mininode import NodeConnCB, NodeConn, NetworkThread, CTxOut, COIN, msg_dsdetected, CBlockHeader, BlockDetails, DSMerkleProof, MerkleProofNode, FromHex, CBlock
 from test_framework.util import p2p_port, assert_equal
@@ -60,7 +60,7 @@ class fake_msg_dsdetected():
         r = os.urandom(random.randint(100, 1000))
         return r
 
-class DSDetectedTests(BitcoinTestFramework):
+class DSDetectedTests(BlinkTestFramework):
 
     def __del__(self):
         self.stop_webhook_server()

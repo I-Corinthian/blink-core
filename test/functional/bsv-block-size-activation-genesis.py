@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
-# Copyright (c) 2017 The Bitcoin developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test excessiveblocksize that is a required parameter. Blocks should be accepted at set value.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 The Bitcoin SV developers
+# Copyright (c) 2021 The Blink SV developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,7 @@ import http.client as httplib
 from functools import partial
 from http.server import HTTPServer
 from ds_callback_service.CallbackService import CallbackService, RECEIVE, STATUS, RESPONSE_TIME, FLAG, reset_proofs
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import p2p_port, check_for_log_msg, assert_equal
 from test_framework.mininode import *
 from test_framework.script import *
@@ -66,7 +66,7 @@ def ping6(host):
 class HTTPServerV6(HTTPServer):
         address_family = socket.AF_INET6
 
-class DoubleSpendReport(BitcoinTestFramework):
+class DoubleSpendReport(BlinkTestFramework):
 
     def __del__(self):
         self.kill_server()
@@ -373,7 +373,7 @@ class DoubleSpendReport(BitcoinTestFramework):
         wait_until(lambda: tx1.hash in self.nodes[0].getrawmempool())
 
         self.stop_node(0)
-        # Restart bitcoind with parameters that reduce transaction validation time. Also set dsnotifylevel to 1, which means nonstandard transaction will not even validate.
+        # Restart blinkd with parameters that reduce transaction validation time. Also set dsnotifylevel to 1, which means nonstandard transaction will not even validate.
         self.start_node(0, extra_args=['-dsendpointport=8080', '-banscore=100000', '-genesisactivationheight=1', '-maxscriptsizepolicy=0', '-maxscriptnumlengthpolicy=250000',"-maxnonstdtxvalidationduration=11", "-dsnotifylevel=1"])
 
         self.createConnection()
@@ -389,7 +389,7 @@ class DoubleSpendReport(BitcoinTestFramework):
         wait_until(lambda: check_for_log_msg(self, "Ignoring txn {} conflicting input {} because it is non-standard".format(tx2.hash, 0), "/node0"))
 
         self.stop_node(0)
-        # Restart bitcoind with parameters that reduce transaction validation time. Also set dsnotifylevel to 2, which means nonstandard transaction will validate.
+        # Restart blinkd with parameters that reduce transaction validation time. Also set dsnotifylevel to 2, which means nonstandard transaction will validate.
         self.start_node(0, extra_args=['-dsendpointport=8080', '-banscore=100000', '-genesisactivationheight=1', '-maxscriptsizepolicy=0', '-maxscriptnumlengthpolicy=250000',"-maxnonstdtxvalidationduration=11", "-dsnotifylevel=2"])
 
         self.createConnection()
@@ -511,7 +511,7 @@ class DoubleSpendReport(BitcoinTestFramework):
 
     def check_doublespend_queue_size(self, utxo):
         self.stop_node(0)
-        # Restart bitcoind with low limit on double-spend queue length
+        # Restart blinkd with low limit on double-spend queue length
         self.start_node(0, extra_args=['-dsendpointport=8080',
                                        '-whitelist=127.0.0.1',
                                        '-genesisactivationheight=1',

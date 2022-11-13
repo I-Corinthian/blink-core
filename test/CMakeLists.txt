@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 ###
@@ -10,14 +10,14 @@ if(CMAKE_SYSTEM_NAME MATCHES "Windows")
 	set(EXEEXT ".exe")
 endif()
 
-if(NOT BUILD_BITCOIN_WALLET)
+if(NOT BUILD_BLINK_WALLET)
 	set(ENABLE_WALLET_TRUE "#")
 endif()
 
-if(NOT BUILD_BITCOIN_TX OR NOT BUILD_BITCOIN_TX)
-	set(BUILD_BITCOIN_UTILS_TRUE "#")
+if(NOT BUILD_BLINK_TX OR NOT BUILD_BLINK_TX)
+	set(BUILD_BLINK_UTILS_TRUE "#")
 endif()
-if(NOT BUILD_BITCOIN_ZMQ)
+if(NOT BUILD_BLINK_ZMQ)
 	set(ENABLE_ZMQ_TRUE "#")
 endif()
 
@@ -63,22 +63,22 @@ make_link(
 	${CMAKE_CURRENT_BINARY_DIR}/functional/create_cache.py
 )
 make_link(
-	${CMAKE_CURRENT_SOURCE_DIR}/util/bitcoin-util-test.py
-	${CMAKE_CURRENT_BINARY_DIR}/util/bitcoin-util-test.py
+	${CMAKE_CURRENT_SOURCE_DIR}/util/blink-util-test.py
+	${CMAKE_CURRENT_BINARY_DIR}/util/blink-util-test.py
 )
 
 # target needed to copy scripts into build directory for manual functional testing
 add_custom_target(testrunner
     DEPENDS
-        ../src/bitcoind
-        ../src/bitcoin-cli
+        ../src/blinkd
+        ../src/blink-cli
         ${CMAKE_CURRENT_BINARY_DIR}/functional/test_runner.py
         ${CMAKE_CURRENT_BINARY_DIR}/functional/create_cache.py
-        ${CMAKE_CURRENT_BINARY_DIR}/util/bitcoin-util-test.py
+        ${CMAKE_CURRENT_BINARY_DIR}/util/blink-util-test.py
 )
 
 IF (MSVC OR XCODE_VERSION)
-	# MSVC build requires configuration name to find buildbitcoind.exe
+	# MSVC build requires configuration name to find buildblinkd.exe
 	SET(extra_runner_prams --buildconfig  $<CONFIG>)
 endif()
 

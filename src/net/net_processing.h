@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_NET_PROCESSING_H
-#define BITCOIN_NET_PROCESSING_H
+#ifndef BLINK_NET_PROCESSING_H
+#define BLINK_NET_PROCESSING_H
 
 #include "net.h"
 #include "validationinterface.h"
@@ -87,4 +87,4 @@ bool ProcessMessages(const Config &config, const CNodePtr& pfrom, CConnman &conn
 bool SendMessages(const Config &config, const CNodePtr& pto, CConnman &connman,
                   const std::atomic<bool> &interrupt);
 
-#endif // BITCOIN_NET_PROCESSING_H
+#endif // BLINK_NET_PROCESSING_H

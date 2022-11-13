@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019-2020 Bitcoin Association
+// Copyright (c) 2019-2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_TXMEMPOOL_H
-#define BITCOIN_TXMEMPOOL_H
+#ifndef BLINK_TXMEMPOOL_H
+#define BLINK_TXMEMPOOL_H
 
 #include "amount.h"
 #include "cfile_util.h"
@@ -1520,4 +1520,4 @@ public:
     }
 };
 
-#endif // BITCOIN_TXMEMPOOL_H
+#endif // BLINK_TXMEMPOOL_H

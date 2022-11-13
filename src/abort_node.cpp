@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "abort_node.h"
@@ -15,7 +15,7 @@ bool AbortNode(const std::string &strMessage,
     LogPrintf("*** %s\n", strMessage);
     uiInterface.ThreadSafeMessageBox(
         userMessage.empty() ? _("Error: A fatal internal error occurred, see "
-                                "bitcoind.log for details")
+                                "blinkd.log for details")
                             : userMessage,
         "", CClientUIInterface::MSG_ERROR);
     StartShutdown();

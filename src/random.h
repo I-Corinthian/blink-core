@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_RANDOM_H
-#define BITCOIN_RANDOM_H
+#ifndef BLINK_RANDOM_H
+#define BLINK_RANDOM_H
 
 #include "crypto/chacha20.h"
 #include "crypto/common.h"
@@ -148,4 +148,4 @@ bool Random_SanityCheck();
 /** Initialize the RNG. */
 void RandomInit();
 
-#endif // BITCOIN_RANDOM_H
+#endif // BLINK_RANDOM_H

@@ -8,7 +8,7 @@
 #include "serialize.h"
 #include "streams.h"
 
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 
 #include <boost/range/adaptor/reversed.hpp>
 #include <boost/test/unit_test.hpp>

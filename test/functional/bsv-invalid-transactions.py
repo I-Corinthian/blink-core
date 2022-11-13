@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019  Bitcoin Association
+# Copyright (c) 2019  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from time import sleep
@@ -9,7 +9,7 @@ from test_framework.blocktools import create_block, create_coinbase
 from test_framework.key import CECKey
 from test_framework.mininode import CTransaction, msg_tx, CTxIn, COutPoint, CTxOut, msg_block
 from test_framework.script import CScript, SignatureHashForkId, SIGHASH_ALL, SIGHASH_FORKID, OP_CHECKSIG
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until, check_mempool_equals
 
 _lan_ip = None
@@ -117,7 +117,7 @@ def create_children_txs(parent_tx1, keys1, parent_tx2, keys2, invalidity=None):
 # 2. Sending low-fee orphans, before two valid parents -> parents accepted, orphans rejected, not banned
 # 3. Sending bad sgnature orphans, before two valid parents -> parents accepted, banned
 # 4. Sending valid orphans, before one valid and one invalid parent -> parents accepted, orphans not accepted, not banned
-class InvalidTx(BitcoinTestFramework):
+class InvalidTx(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

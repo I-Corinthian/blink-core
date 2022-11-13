@@ -1,7 +1,7 @@
 Developer Notes
 ===============
 
-These notes will be updated for Bitcoin SV when the Bitcoin SV team begin
+These notes will be updated for Blink SV when the Blink SV team begin
 accepting code contributions.
 
 Various coding styles have been used during the history of the codebase,
@@ -39,7 +39,7 @@ to clean up the patch automatically before submitting a pull request.
     - RIGHT: ChangeDirectory
   - DO NOT use obscure acronyms, DO uppercase any acronyms.
   - FINALLY, do not migrate existing code unless refactoring. It makes
-    forwarding-porting from Bitcoin Core more difficult.
+    forwarding-porting from Blink Core more difficult.
 
 The naming convention roughly mirrors [Microsoft Naming Conventions](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/general-naming-conventions)
 
@@ -176,13 +176,13 @@ CXXFLAGS="-g -ggdb -O0" or whatever debug flags you need.
 - CMake
 To enable debug in CMake run `cmake -DCMAKE_BUILD_TYPE=Debug`. Add the `--enable-debug` option to enable -DDEBUG_LOCKORDER. Then run make.
 
-**bitcoind.log**
+**blinkd.log**
 
-If the code is behaving strangely, take a look in the bitcoind.log file in the data directory;
+If the code is behaving strangely, take a look in the blinkd.log file in the data directory;
 error and debugging messages are written there.
 
 The -debug=... command-line option controls debugging; running with just -debug or -debug=1 will turn
-on all categories (and give you a very large bitcoind.log file).
+on all categories (and give you a very large blinkd.log file).
 
 **running and debugging tests**
 
@@ -192,7 +192,7 @@ For running functional tests, see `/test/README.md`
 Simple example of debugging unit tests with GDB on Linux:
 ```
 cd /build/src/test
-gdb test_bitcoin
+gdb test_blink
 break interpreter.cpp:295  # No path is necessary, just the file name and line number
 run
 # GDB hits the breakpoint
@@ -203,7 +203,7 @@ c           # continue
 Simple example of debugging unit tests with LLDB (OSX or Linux):
 ```
 cd /build/src/test
-lldb -- test_bitcoin
+lldb -- test_blink
 break set --file interpreter.cpp --line 295
 run
 ```
@@ -231,7 +231,7 @@ Supported sanitizers are:
 - `enable_asan` in CMake (`--enable-asan` for autotools) for detecting memory corruption, leaks, illegal memory access
   - This sanitizer does not work in combination with assembly version of crypto implementation
     so assembly must be disabled by setting `CRYPTO_USE_ASM` CMake list option to `OFF`
-    (`cmake -D BITCOIN_DEV_USE_ADDRESS_SANITIZER=ON -D CRYPTO_USE_ASM=OFF <path_to_source_code>`)
+    (`cmake -D BLINK_DEV_USE_ADDRESS_SANITIZER=ON -D CRYPTO_USE_ASM=OFF <path_to_source_code>`)
   - This sanitizer does not work in combination with thread sanitizer being enabled
   - gcc sanitizer can trigger `LeakSanitizer does not work under ptrace` error. In that case run the executable
     with `ASAN_OPTIONS` environment variable (`ASAN_OPTIONS=detect_leaks=0 <executable_name>`) to disable the offending
@@ -263,14 +263,14 @@ Script integration tests are built using `src/test/script_tests.cpp`:
 
 1. Uncomment the line with `#define UPDATE_JSON_TESTS`
 2. Add a new TestBuilder to the `script_build` test to cover your test case.
-3. `make && ./src/test/test_bitcoin --run_test=script_tests`
+3. `make && ./src/test/test_blink --run_test=script_tests`
 4. Copy your newly generated test JSON from `<build-dir>/src/script_tests.json.gen` to `src/test/data/script_tests.json`.
 
 Please commit your TestBuilder along with your generated test JSON and cleanup the uncommented #define before code review.
 
 **testnet and regtest modes**
 
-Run with the -testnet option to run with "play bitcoins" on the test network, if you
+Run with the -testnet option to run with "play blinks" on the test network, if you
 are testing multi-machine code that needs to operate across the internet.
 
 If you are testing something that can run on one machine, run with the -regtest option.
@@ -279,10 +279,10 @@ that run in -regtest mode.
 
 **DEBUG_LOCKORDER**
 
-Bitcoin Core is a multithreaded application, and deadlocks or other multithreading bugs
+Blink Core is a multithreaded application, and deadlocks or other multithreading bugs
 can be very difficult to track down. Compiling with -DDEBUG_LOCKORDER (configure
 CXXFLAGS="-DDEBUG_LOCKORDER -g") inserts run-time checks to keep track of which locks
-are held, and adds warnings to the bitcoind.log file if inconsistencies are detected.
+are held, and adds warnings to the blinkd.log file if inconsistencies are detected.
 
 Locking/mutex usage notes
 -------------------------
@@ -294,7 +294,7 @@ Deadlocks due to inconsistent lock ordering (thread 1 locks cs_main
 and then cs_wallet, while thread 2 locks them in the opposite order:
 result, deadlock as each waits for the other to release its lock) are
 a problem. Compile with -DDEBUG_LOCKORDER to get lock order
-inconsistencies reported in the bitcoind.log file.
+inconsistencies reported in the blinkd.log file.
 
 Re-architecting the core code so there are better-defined interfaces
 between the various components is a goal, with any necessary locking
@@ -328,7 +328,7 @@ Threads
 
 - ThreadRPCServer : Remote procedure call handler, listens on port 8332 for connections and services them.
 
-- BitcoinMiner : Generates bitcoins (if wallet is enabled).
+- BlinkMiner : Generates blinks (if wallet is enabled).
 
 - Shutdown : Does an orderly shutdown of everything.
 
@@ -338,7 +338,7 @@ Ignoring IDE/editor files
 In closed-source environments in which everyone uses the same IDE it is common
 to add temporary files it produces to the project-wide `.gitignore` file.
 
-However, in open source software such as Bitcoin Core, where everyone uses
+However, in open source software such as Blink Core, where everyone uses
 their own editors/IDE/tools, it is less common. Only you know what files your
 editor produces and this may change from version to version. The canonical way
 to do this is thus to create your local gitignore. Add this to `~/.gitconfig`:
@@ -368,7 +368,7 @@ Development guidelines
 ============================
 
 A few non-style-related recommendations for developers, as well as points to
-pay attention to for reviewers of Bitcoin Core code.
+pay attention to for reviewers of Blink Core code.
 
 Wallet
 -------
@@ -511,12 +511,12 @@ Subtrees
 
 Several parts of the repository are subtrees of software maintained elsewhere.
 
-Some of these are maintained by active developers of Bitcoin Core, in which case changes should probably go
+Some of these are maintained by active developers of Blink Core, in which case changes should probably go
 directly upstream without being PRed directly against the project.  They will be merged back in the next
 subtree merge.
 
 Others are external projects without a tight relationship with our project.  Changes to these should also
-be sent upstream but bugfixes may also be prudent to PR against Bitcoin Core so that they can be integrated
+be sent upstream but bugfixes may also be prudent to PR against Blink Core so that they can be integrated
 quickly.  Cosmetic changes should be purely taken upstream.
 
 There is a tool in contrib/devtools/git-subtree-check.sh to check a subtree directory for consistency with
@@ -528,10 +528,10 @@ Current subtrees include:
   - Upstream at https://github.com/google/leveldb ; Maintained by Google, but open important PRs to Core to avoid delay
 
 - src/libsecp256k1
-  - Upstream at https://github.com/bitcoin-core/secp256k1/ ; actively maintaned by Core contributors.
+  - Upstream at https://github.com/blink-core/secp256k1/ ; actively maintaned by Core contributors.
 
 - src/crypto/ctaes
-  - Upstream at https://github.com/bitcoin-core/ctaes ; actively maintained by Core contributors.
+  - Upstream at https://github.com/blink-core/ctaes ; actively maintained by Core contributors.
 
 - src/univalue
   - Upstream at https://github.com/jgarzik/univalue ; report important PRs to Core to avoid delay.
@@ -582,7 +582,7 @@ Git and GitHub tips
 
         [remote "upstream-pull"]
                 fetch = +refs/pull/*:refs/remotes/upstream-pull/*
-                url = git@github.com:bitcoin/bitcoin.git
+                url = git@github.com:blink/blink.git
 
   This will add an `upstream-pull` remote to your git repository, which can be fetched using `git fetch --all`
   or `git fetch upstream-pull`. Afterwards, you can use `upstream-pull/NUMBER/head` in arguments to `git show`,

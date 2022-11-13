@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2020 Bitcoin Association
+# Copyright (c) 2018-2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Check that orphan transaction with max allowed size is accepted.
@@ -9,7 +9,7 @@ Check that the getorphaninfo rpc is working.
 from test_framework.blocktools import create_transaction, create_coinbase, create_block
 from test_framework.mininode import msg_tx, msg_block
 from test_framework.script import CScript, OP_TRUE
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until, assert_equal, check_mempool_equals
 from test_framework.cdefs import DEFAULT_MAX_TX_SIZE_POLICY_AFTER_GENESIS
 
@@ -36,7 +36,7 @@ def make_big_orphan(tx_parent, size_bytes):
         add_bytes += diff
     return tx_child
 
-class TestMaxSizedOrphan(BitcoinTestFramework):
+class TestMaxSizedOrphan(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

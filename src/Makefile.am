@@ -1,5 +1,5 @@
 # Copyright (c) 2013-2016 The Bitcoin Core developers
-# Copyright (c) 2018-2021 Bitcoin Association
+# Copyright (c) 2018-2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 DIST_SUBDIRS = secp256k1 univalue
@@ -18,27 +18,27 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-BITCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
+BLINK_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
-BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
-BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
+BLINK_INCLUDES += -I$(srcdir)/secp256k1/include
+BLINK_INCLUDES += $(UNIVALUE_CFLAGS)
 
-LIBBITCOIN_SERVER=libbitcoin_server.a
-LIBBITCOIN_COMMON=libbitcoin_common.a
-LIBBITCOIN_CONSENSUS=libbitcoin_consensus.a
-LIBBITCOIN_CLI=libbitcoin_cli.a
-LIBBITCOIN_UTIL=libbitcoin_util.a
-LIBBITCOIN_CRYPTO=crypto/libbitcoin_crypto.a
+LIBBLINK_SERVER=libblink_server.a
+LIBBLINK_COMMON=libblink_common.a
+LIBBLINK_CONSENSUS=libblink_consensus.a
+LIBBLINK_CLI=libblink_cli.a
+LIBBLINK_UTIL=libblink_util.a
+LIBBLINK_CRYPTO=crypto/libblink_crypto.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBBITCOIN_ZMQ=libbitcoin_zmq.a
+LIBBLINK_ZMQ=libblink_zmq.a
 endif
-if BUILD_BITCOIN_LIBS
-LIBBITCOINCONSENSUS=libbitcoinconsensus.la
+if BUILD_BLINK_LIBS
+LIBBLINKCONSENSUS=libblinkconsensus.la
 endif
 if ENABLE_WALLET
-LIBBITCOIN_WALLET=libbitcoin_wallet.a
+LIBBLINK_WALLET=libblink_wallet.a
 endif
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
@@ -47,33 +47,33 @@ $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
 EXTRA_LIBRARIES += \
-  $(LIBBITCOIN_CRYPTO) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_CLI) \
-  $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_ZMQ)
+  $(LIBBLINK_CRYPTO) \
+  $(LIBBLINK_UTIL) \
+  $(LIBBLINK_COMMON) \
+  $(LIBBLINK_CONSENSUS) \
+  $(LIBBLINK_SERVER) \
+  $(LIBBLINK_CLI) \
+  $(LIBBLINK_WALLET) \
+  $(LIBBLINK_ZMQ)
 
-lib_LTLIBRARIES = $(LIBBITCOINCONSENSUS)
+lib_LTLIBRARIES = $(LIBBLINKCONSENSUS)
 
 bin_PROGRAMS =
 noinst_PROGRAMS =
 TESTS =
 BENCHMARKS =
 
-if BUILD_BITCOIND
-  bin_PROGRAMS += bitcoind
+if BUILD_BLINKD
+  bin_PROGRAMS += blinkd
 endif
 
-if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += bitcoin-cli bitcoin-tx bitcoin-miner
+if BUILD_BLINK_UTILS
+  bin_PROGRAMS += blink-cli blink-tx blink-miner
 endif
 
 .PHONY: FORCE check-symbols check-security
-# bitcoin core #
-BITCOIN_CORE_H = \
+# blink core #
+BLINK_CORE_H = \
   abort_node.h \
   addrdb.h \
   addrman.h \
@@ -290,12 +290,12 @@ obj/build.h: FORCE
 	@$(MKDIR_P) "$(builddir)/obj"
 	@$(top_srcdir)/share/genbuild.sh "$(abs_top_builddir)/src/obj/build.h" \
 	  "$(abs_top_srcdir)"
-libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
+libblink_util_a-clientversion.$(OBJEXT): obj/build.h
 
 # server:
-libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_server_a_SOURCES = \
+libblink_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BLINK_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libblink_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libblink_server_a_SOURCES = \
   abort_node.cpp \
   addrman.cpp \
   addrdb.cpp \
@@ -398,12 +398,12 @@ libbitcoin_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   vmtouch.cpp \
-  $(BITCOIN_CORE_H)
+  $(BLINK_CORE_H)
 
 if ENABLE_ZMQ
-libbitcoin_zmq_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
-libbitcoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_zmq_a_SOURCES = \
+libblink_zmq_a_CPPFLAGS = $(BLINK_INCLUDES) $(ZMQ_CFLAGS)
+libblink_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libblink_zmq_a_SOURCES = \
   zmq/zmq_publisher.cpp \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
@@ -412,9 +412,9 @@ endif
 
 
 # wallet: only linked when wallet enabled
-libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_wallet_a_SOURCES = \
+libblink_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BLINK_INCLUDES)
+libblink_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libblink_wallet_a_SOURCES = \
   wallet/crypter.cpp \
   wallet/db.cpp \
   wallet/finaltx.cpp \
@@ -422,12 +422,12 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/rpcwallet.cpp \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
-  $(BITCOIN_CORE_H)
+  $(BLINK_CORE_H)
 
 # crypto primitives library
-crypto_libbitcoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libbitcoin_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libbitcoin_crypto_a_SOURCES = \
+crypto_libblink_crypto_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libblink_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libblink_crypto_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
   crypto/chacha20.h \
@@ -447,13 +447,13 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sha512.h
 
 if USE_ASM
-crypto_libbitcoin_crypto_a_SOURCES += crypto/sha256_sse4.cpp
+crypto_libblink_crypto_a_SOURCES += crypto/sha256_sse4.cpp
 endif
 
 # consensus: shared between all executables that validate any consensus rules.
-libbitcoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) $(OPENSSL_LIBS) $(BITCOIN_INCLUDES)
-libbitcoin_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) $(OPENSSL_LIBS) $(PIE_FLAGS)
-libbitcoin_consensus_a_SOURCES = \
+libblink_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) $(OPENSSL_LIBS) $(BLINK_INCLUDES)
+libblink_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) $(OPENSSL_LIBS) $(PIE_FLAGS)
+libblink_consensus_a_SOURCES = \
   amount.h \
   arith_uint256.cpp \
   arith_uint256.h \
@@ -475,7 +475,7 @@ libbitcoin_consensus_a_SOURCES = \
   primitives/transaction.h \
   pubkey.cpp \
   pubkey.h \
-  script/bitcoinconsensus.cpp \
+  script/blinkconsensus.cpp \
   script/sighashtype.h \
   script/instruction.h \
   script/instruction_iterator.h \
@@ -501,10 +501,10 @@ libbitcoin_consensus_a_SOURCES = \
   utilstrencodings.h \
   version.h
 
-# common: shared between bitcoind and non-server tools
-libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_common_a_SOURCES = \
+# common: shared between blinkd and non-server tools
+libblink_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BLINK_INCLUDES)
+libblink_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libblink_common_a_SOURCES = \
   amount.cpp \
   base58.cpp \
   chainparams.cpp \
@@ -527,14 +527,14 @@ libbitcoin_common_a_SOURCES = \
   txhasher.cpp \
   warnings.cpp \
   write_preferring_upgradable_mutex.cpp \
-  $(BITCOIN_CORE_H)
+  $(BLINK_CORE_H)
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libbitcoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_util_a_SOURCES = \
+libblink_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BLINK_INCLUDES)
+libblink_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libblink_util_a_SOURCES = \
   support/lockedpool.cpp \
   chainparamsbase.cpp \
   clientversion.cpp \
@@ -555,17 +555,17 @@ libbitcoin_util_a_SOURCES = \
   utilmoneystr.cpp \
   utilstrencodings.cpp \
   utiltime.cpp \
-  $(BITCOIN_CORE_H)
+  $(BLINK_CORE_H)
 
 if GLIBC_BACK_COMPAT
-libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
+libblink_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
 # cli:
-libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_cli_a_SOURCES = \
+libblink_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BLINK_INCLUDES)
+libblink_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libblink_cli_a_SOURCES = \
   cfile_util.cpp \
   net/netaddress.cpp \
   net/netbase.cpp \
@@ -574,34 +574,34 @@ libbitcoin_cli_a_SOURCES = \
   rpc/client_utils.cpp \
   rpc/http_request.cpp \
   rpc/http_response.cpp \
-  $(BITCOIN_CORE_H)
+  $(BLINK_CORE_H)
 
-# bitcoind binary #
-bitcoind_SOURCES = bitcoind.cpp
-bitcoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-bitcoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bitcoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# blinkd binary #
+blinkd_SOURCES = blinkd.cpp
+blinkd_CPPFLAGS = $(AM_CPPFLAGS) $(BLINK_INCLUDES)
+blinkd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+blinkd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-bitcoind_SOURCES += bitcoind-res.rc
+blinkd_SOURCES += blinkd-res.rc
 endif
 
-bitcoind_LDADD = \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_CLI) \
-  $(LIBBITCOIN_COMMON) \
+blinkd_LDADD = \
+  $(LIBBLINK_SERVER) \
+  $(LIBBLINK_CLI) \
+  $(LIBBLINK_COMMON) \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_ZMQ) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBBLINK_UTIL) \
+  $(LIBBLINK_WALLET) \
+  $(LIBBLINK_ZMQ) \
+  $(LIBBLINK_CONSENSUS) \
+  $(LIBBLINK_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBCRC32C) \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-bitcoind_LDADD += \
+blinkd_LDADD += \
   $(BOOST_LIBS) \
   $(BDB_LIBS) \
   $(OPENSSL_LIBS) \
@@ -611,48 +611,48 @@ bitcoind_LDADD += \
   $(ZMQ_LIBS) \
   $(AIO_LIBS)
 
-# bitcoin-cli binary #
-bitcoin_cli_SOURCES = bitcoin-cli.cpp
-bitcoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-bitcoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bitcoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# blink-cli binary #
+blink_cli_SOURCES = blink-cli.cpp
+blink_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BLINK_INCLUDES) $(EVENT_CFLAGS)
+blink_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+blink_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-bitcoin_cli_SOURCES += bitcoin-cli-res.rc
+blink_cli_SOURCES += blink-cli-res.rc
 endif
 
-bitcoin_cli_LDADD = \
-  $(LIBBITCOIN_CLI) \
+blink_cli_LDADD = \
+  $(LIBBLINK_CLI) \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CRYPTO)
+  $(LIBBLINK_UTIL) \
+  $(LIBBLINK_CRYPTO)
 
-bitcoin_cli_LDADD += $(BOOST_LIBS) $(OPENSSL_LIBS) $(EVENT_LIBS)
+blink_cli_LDADD += $(BOOST_LIBS) $(OPENSSL_LIBS) $(EVENT_LIBS)
 #
 
-# bitcoin-tx binary #
-bitcoin_tx_SOURCES = bitcoin-tx.cpp
-bitcoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-bitcoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bitcoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# blink-tx binary #
+blink_tx_SOURCES = blink-tx.cpp
+blink_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BLINK_INCLUDES)
+blink_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+blink_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-bitcoin_tx_SOURCES += bitcoin-tx-res.rc
+blink_tx_SOURCES += blink-tx-res.rc
 endif
 
-bitcoin_tx_LDADD = \
+blink_tx_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBBLINK_COMMON) \
+  $(LIBBLINK_UTIL) \
+  $(LIBBLINK_CONSENSUS) \
+  $(LIBBLINK_CRYPTO) \
   $(LIBSECP256K1)
 
-bitcoin_tx_LDADD += $(BOOST_LIBS) $(OPENSSL_LIBS)
+blink_tx_LDADD += $(BOOST_LIBS) $(OPENSSL_LIBS)
 #
 
-# bitcoin-miner binary #
-bitcoin_miner_SOURCES = bitcoin-miner.cpp \
+# blink-miner binary #
+blink_miner_SOURCES = blink-miner.cpp \
 arith_uint256.cpp \
 arith_uint256.h \
 uint256.h \
@@ -661,32 +661,32 @@ crypto/sha512.h \
 crypto/chacha20.cpp \
 crypto/chacha20.h
  
-bitcoin_miner_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-bitcoin_miner_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bitcoin_miner_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+blink_miner_CPPFLAGS = $(AM_CPPFLAGS) $(BLINK_INCLUDES) $(EVENT_CFLAGS)
+blink_miner_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+blink_miner_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
  
-bitcoin_miner_LDADD = \
-  $(LIBBITCOIN_CLI) \
-  $(LIBBITCOIN_CRYPTO) \
+blink_miner_LDADD = \
+  $(LIBBLINK_CLI) \
+  $(LIBBLINK_CRYPTO) \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_UTIL)
+  $(LIBBLINK_UTIL)
  
-bitcoin_miner_LDADD += $(BOOST_LIBS) $(OPENSSL_LIBS) $(EVENT_LIBS)
+blink_miner_LDADD += $(BOOST_LIBS) $(OPENSSL_LIBS) $(EVENT_LIBS)
 #
 
-# bitcoinconsensus library #
-if BUILD_BITCOIN_LIBS
-include_HEADERS = script/bitcoinconsensus.h
-libbitcoinconsensus_la_SOURCES = $(crypto_libbitcoin_crypto_a_SOURCES) $(libbitcoin_consensus_a_SOURCES)
+# blinkconsensus library #
+if BUILD_BLINK_LIBS
+include_HEADERS = script/blinkconsensus.h
+libblinkconsensus_la_SOURCES = $(crypto_libblink_crypto_a_SOURCES) $(libblink_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
-  libbitcoinconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libblinkconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libbitcoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libbitcoinconsensus_la_LIBADD = $(LIBSECP256K1)
-libbitcoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) $(OPENSSL_LIBS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
-libbitcoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(BITCOIN_INCLUDES) $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) $(OPENSSL_LIBS) $(PIE_FLAGS)
+libblinkconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libblinkconsensus_la_LIBADD = $(LIBSECP256K1)
+libblinkconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) $(BLINK_INCLUDES) $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) $(OPENSSL_LIBS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BLINK_INTERNAL
+libblinkconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(BLINK_INCLUDES) $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) $(OPENSSL_LIBS) $(PIE_FLAGS)
 
 endif
 #

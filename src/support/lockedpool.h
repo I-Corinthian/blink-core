@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SUPPORT_LOCKEDPOOL_H
-#define BITCOIN_SUPPORT_LOCKEDPOOL_H
+#ifndef BLINK_SUPPORT_LOCKEDPOOL_H
+#define BLINK_SUPPORT_LOCKEDPOOL_H
 
 #include <cstdint>
 #include <list>
@@ -246,4 +246,4 @@ private:
     static std::once_flag init_flag;
 };
 
-#endif // BITCOIN_SUPPORT_LOCKEDPOOL_H
+#endif // BLINK_SUPPORT_LOCKEDPOOL_H

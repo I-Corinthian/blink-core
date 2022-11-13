@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
-# Copyright (c) 2019  Bitcoin Association
+# Copyright (c) 2019  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from test_framework.mininode import msg_mempool
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import assert_equal
 import time
 
@@ -14,7 +14,7 @@ import time
     # If rejectmempoolrequest=false mempool request is rejected only if peerbloomfilters=0.
 # Is a peer is whitelisted, mempool request is never rejected.
 
-class P2PMempoolTests(BitcoinTestFramework):
+class P2PMempoolTests(BlinkTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

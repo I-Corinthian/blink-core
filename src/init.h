@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_INIT_H
-#define BITCOIN_INIT_H
+#ifndef BLINK_INIT_H
+#define BLINK_INIT_H
 
 #include <atomic>
 #include <string>
@@ -46,7 +46,7 @@ void InitParameterInteraction();
 // Get/set AppInit finished flag
 std::atomic_bool& GetAppInitCompleted();
 
-/** Initialize bitcoin core: Basic context setup.
+/** Initialize blink core: Basic context setup.
  *  @note This can be done before daemonization.
  *  @pre Parameters should be parsed and config file should be read.
  */
@@ -66,7 +66,7 @@ bool AppInitParameterInteraction(ConfigInit &config);
  */
 bool AppInitSanityChecks();
 /**
- * Bitcoin core main initialization.
+ * Blink core main initialization.
  * @note This should only be done after daemonization.
  * @pre Parameters should be parsed and config file should be read,
  * AppInitSanityChecks should have been called.
@@ -75,11 +75,11 @@ bool AppInitMain(ConfigInit &config, boost::thread_group &threadGroup,
                  CScheduler &scheduler, const task::CCancellationToken& shutdownToken);
 
 /** The help message mode determines what help message to show */
-enum HelpMessageMode { HMM_BITCOIND };
+enum HelpMessageMode { HMM_BLINKD };
 
 /** Help for options shared between UI and daemon (for -help) */
 std::string HelpMessage(HelpMessageMode mode, const Config& config);
 /** Returns licensing information (for -version) */
 std::string LicenseInfo();
 
-#endif // BITCOIN_INIT_H
+#endif // BLINK_INIT_H

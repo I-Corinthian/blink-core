@@ -1,9 +1,9 @@
-// Copyright (c) 2017 The Bitcoin developers
+// Copyright (c) 2017 The Blink developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_RPCBLOCKCHAIN_H
-#define BITCOIN_RPCBLOCKCHAIN_H
+#ifndef BLINK_RPCBLOCKCHAIN_H
+#define BLINK_RPCBLOCKCHAIN_H
 
 #include <optional>
 #include <univalue.h>
@@ -162,4 +162,4 @@ void writeBlockHeaderEnhancedJSONFields(CJSONWriter& jWriter,
 double GetDifficulty(const CBlockIndex *blockindex);
 
 
-#endif // BITCOIN_RPCBLOCKCHAIN_H
+#endif // BLINK_RPCBLOCKCHAIN_H

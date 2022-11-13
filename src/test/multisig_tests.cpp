@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "key.h"
@@ -12,7 +12,7 @@
 #include "script/sighashtype.h"
 #include "script/sign.h"
 #include "taskcancellation.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include "uint256.h"
 #include "chainparams.h"
 #include "config.h"

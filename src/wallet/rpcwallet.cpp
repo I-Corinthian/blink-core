@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019-2020 Bitcoin Association
+// Copyright (c) 2019-2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "amount.h"
@@ -151,7 +151,7 @@ static UniValue getnewaddress(const Config &config,
     if (request.fHelp || request.params.size() > 1) {
         throw std::runtime_error(
             "getnewaddress ( \"account\" )\n"
-            "\nReturns a new Bitcoin address for receiving payments.\n"
+            "\nReturns a new Blink address for receiving payments.\n"
             "If 'account' is specified (DEPRECATED), it is added to the "
             "address book \n"
             "so payments received with the address will be credited to "
@@ -164,7 +164,7 @@ static UniValue getnewaddress(const Config &config,
             "not need to exist, it will be created if there is no account by "
             "the given name.\n"
             "\nResult:\n"
-            "\"address\"    (string) The new bitcoin address\n"
+            "\"address\"    (string) The new blink address\n"
             "\nExamples:\n" +
             HelpExampleCli("getnewaddress", "") +
             HelpExampleRpc("getnewaddress", ""));
@@ -218,7 +218,7 @@ static UniValue getaccountaddress(const Config &config,
     if (request.fHelp || request.params.size() != 1) {
         throw std::runtime_error(
             "getaccountaddress \"account\"\n"
-            "\nDEPRECATED. Returns the current Bitcoin address for receiving "
+            "\nDEPRECATED. Returns the current Blink address for receiving "
             "payments to this account.\n"
             "\nArguments:\n"
             "1. \"account\"       (string, required) The account name for the "
@@ -227,7 +227,7 @@ static UniValue getaccountaddress(const Config &config,
             "be created and a new address created  if there is no account by "
             "the given name.\n"
             "\nResult:\n"
-            "\"address\"          (string) The account bitcoin address\n"
+            "\"address\"          (string) The account blink address\n"
             "\nExamples:\n" +
             HelpExampleCli("getaccountaddress", "") +
             HelpExampleCli("getaccountaddress", "\"\"") +
@@ -256,7 +256,7 @@ static UniValue getrawchangeaddress(const Config &config,
     if (request.fHelp || request.params.size() > 1) {
         throw std::runtime_error(
             "getrawchangeaddress\n"
-            "\nReturns a new Bitcoin address, for receiving change.\n"
+            "\nReturns a new Blink address, for receiving change.\n"
             "This is for use with raw transactions, NOT normal use.\n"
             "\nResult:\n"
             "\"address\"    (string) The address\n"
@@ -300,7 +300,7 @@ static UniValue setaccount(const Config &config,
             "\nDEPRECATED. Sets the account associated with the given "
             "address.\n"
             "\nArguments:\n"
-            "1. \"address\"         (string, required) The bitcoin address to "
+            "1. \"address\"         (string, required) The blink address to "
             "be associated with an account.\n"
             "2. \"account\"         (string, required) The account to assign "
             "the address to.\n"
@@ -318,7 +318,7 @@ static UniValue setaccount(const Config &config,
         DecodeDestination(request.params[0].get_str(), config.GetChainParams());
     if (!IsValidDestination(dest)) {
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                           "Invalid Bitcoin address");
+                           "Invalid Blink address");
     }
 
     std::string strAccount;
@@ -359,7 +359,7 @@ static UniValue getaccount(const Config &config,
             "\nDEPRECATED. Returns the account associated with the given "
             "address.\n"
             "\nArguments:\n"
-            "1. \"address\"         (string, required) The bitcoin address for "
+            "1. \"address\"         (string, required) The blink address for "
             "account lookup.\n"
             "\nResult:\n"
             "\"accountname\"        (string) the account address\n"
@@ -376,7 +376,7 @@ static UniValue getaccount(const Config &config,
         DecodeDestination(request.params[0].get_str(), config.GetChainParams());
     if (!IsValidDestination(dest)) {
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                           "Invalid Bitcoin address");
+                           "Invalid Blink address");
     }
 
     std::string strAccount;
@@ -405,7 +405,7 @@ static UniValue getaddressesbyaccount(const Config &config,
             "1. \"account\"        (string, required) The account name.\n"
             "\nResult:\n"
             "[                     (json array of string)\n"
-            "  \"address\"         (string) a bitcoin address associated with "
+            "  \"address\"         (string) a blink address associated with "
             "the given account\n"
             "  ,...\n"
             "]\n"
@@ -449,7 +449,7 @@ static void SendMoney(CWallet *const pwallet, const CTxDestination &address,
             "Error: Peer-to-peer functionality missing or disabled");
     }
 
-    // Parse Bitcoin address
+    // Parse Blink address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
@@ -496,7 +496,7 @@ static UniValue sendtoaddress(const Config &config,
             "\nSend an amount to a given address.\n" +
             HelpRequiringPassphrase(pwallet) +
             "\nArguments:\n"
-            "1. \"address\"            (string, required) The bitcoin address "
+            "1. \"address\"            (string, required) The blink address "
             "to send to.\n"
             "2. \"amount\"             (numeric or string, required) The "
             "amount in " +
@@ -515,7 +515,7 @@ static UniValue sendtoaddress(const Config &config,
             "5. subtractfeefromamount  (boolean, optional, default=false) The "
             "fee will be deducted from the amount being sent.\n"
             "                             The recipient will receive less "
-            "bitcoins than you enter in the amount field.\n"
+            "blinks than you enter in the amount field.\n"
             "\nResult:\n"
             "\"txid\"                  (string) The transaction id.\n"
             "\nExamples:\n" +
@@ -587,7 +587,7 @@ static UniValue listaddressgroupings(const Config &config,
             "[\n"
             "  [\n"
             "    [\n"
-            "      \"address\",            (string) The bitcoin address\n"
+            "      \"address\",            (string) The blink address\n"
             "      amount,                 (numeric) The amount in " +
             CURRENCY_UNIT + "\n"
                             "      \"account\"             (string, optional) "
@@ -641,7 +641,7 @@ static UniValue signmessage(const Config &config,
             HelpRequiringPassphrase(pwallet) +
             "\n"
             "\nArguments:\n"
-            "1. \"address\"         (string, required) The bitcoin address to "
+            "1. \"address\"         (string, required) The blink address to "
             "use for the private key.\n"
             "2. \"message\"         (string, required) The message to create a "
             "signature of.\n"
@@ -714,7 +714,7 @@ static UniValue getreceivedbyaddress(const Config &config,
             "\nReturns the total amount received by the given address in "
             "transactions with at least minconf confirmations.\n"
             "\nArguments:\n"
-            "1. \"address\"         (string, required) The bitcoin address for "
+            "1. \"address\"         (string, required) The blink address for "
             "transactions.\n"
             "2. minconf             (numeric, optional, default=1) Only "
             "include transactions confirmed at least this many times.\n"
@@ -740,12 +740,12 @@ static UniValue getreceivedbyaddress(const Config &config,
 
     LOCK2(cs_main, pwallet->cs_wallet);
 
-    // Bitcoin address
+    // Blink address
     CTxDestination dest =
         DecodeDestination(request.params[0].get_str(), config.GetChainParams());
     if (!IsValidDestination(dest)) {
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                           "Invalid Bitcoin address");
+                           "Invalid Blink address");
     }
     CScript scriptPubKey = GetScriptForDestination(dest);
     if (!IsMine(*pwallet, scriptPubKey)) {
@@ -1038,7 +1038,7 @@ static UniValue sendfrom(const Config &config, const JSONRPCRequest &request) {
             "sendfrom \"fromaccount\" \"toaddress\" amount ( minconf "
             "\"comment\" \"comment_to\" )\n"
             "\nDEPRECATED (use sendtoaddress). Sent an amount from an account "
-            "to a bitcoin address." +
+            "to a blink address." +
             HelpRequiringPassphrase(pwallet) +
             "\n"
             "\nArguments:\n"
@@ -1051,7 +1051,7 @@ static UniValue sendfrom(const Config &config, const JSONRPCRequest &request) {
             "account's balance computation and transaction history can "
             "reflect\n"
             "                       the spend.\n"
-            "2. \"toaddress\"         (string, required) The bitcoin address "
+            "2. \"toaddress\"         (string, required) The blink address "
             "to send funds to.\n"
             "3. amount                (numeric or string, required) The amount "
             "in " +
@@ -1095,7 +1095,7 @@ static UniValue sendfrom(const Config &config, const JSONRPCRequest &request) {
         DecodeDestination(request.params[1].get_str(), config.GetChainParams());
     if (!IsValidDestination(dest)) {
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                           "Invalid Bitcoin address");
+                           "Invalid Blink address");
     }
     Amount nAmount = AmountFromValue(request.params[2]);
     if (nAmount <= Amount(0)) {
@@ -1156,7 +1156,7 @@ static UniValue sendmany(const Config &config, const JSONRPCRequest &request) {
             "2. \"amounts\"             (string, required) A json object with "
             "addresses and amounts\n"
             "    {\n"
-            "      \"address\":amount   (numeric or string) The bitcoin "
+            "      \"address\":amount   (numeric or string) The blink "
             "address is the key, the numeric amount (can be string) in " +
             CURRENCY_UNIT +
             " is the value\n"
@@ -1170,7 +1170,7 @@ static UniValue sendmany(const Config &config, const JSONRPCRequest &request) {
             "                           The fee will be equally deducted from "
             "the amount of each selected address.\n"
             "                           Those recipients will receive less "
-            "bitcoins than you enter in their corresponding amount field.\n"
+            "blinks than you enter in their corresponding amount field.\n"
             "                           If no addresses are specified here, "
             "the sender pays the fee.\n"
             "    [\n"
@@ -1249,7 +1249,7 @@ static UniValue sendmany(const Config &config, const JSONRPCRequest &request) {
         CTxDestination dest = DecodeDestination(name_, config.GetChainParams());
         if (!IsValidDestination(dest)) {
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                               std::string("Invalid Bitcoin address: ") +
+                               std::string("Invalid Blink address: ") +
                                    name_);
         }
 
@@ -1322,17 +1322,17 @@ static UniValue addmultisigaddress(const Config &config,
         std::string msg =
             "addmultisigaddress nrequired [\"key\",...] ( \"account\" )\n"
             "\nAdd a nrequired-to-sign multisignature address to the wallet.\n"
-            "Each key is a Bitcoin address or hex-encoded public key.\n"
+            "Each key is a Blink address or hex-encoded public key.\n"
             "If 'account' is specified (DEPRECATED), assign address to that "
             "account.\n"
 
             "\nArguments:\n"
             "1. nrequired        (numeric, required) The number of required "
             "signatures out of the n keys or addresses.\n"
-            "2. \"keys\"         (string, required) A json array of bitcoin "
+            "2. \"keys\"         (string, required) A json array of blink "
             "addresses or hex-encoded public keys\n"
             "     [\n"
-            "       \"address\"  (string) bitcoin address or hex-encoded "
+            "       \"address\"  (string) blink address or hex-encoded "
             "public key\n"
             "       ...,\n"
             "     ]\n"
@@ -1340,7 +1340,7 @@ static UniValue addmultisigaddress(const Config &config,
             "assign the addresses to.\n"
 
             "\nResult:\n"
-            "\"address\"         (string) A bitcoin address associated with "
+            "\"address\"         (string) A blink address associated with "
             "the keys.\n"
 
             "\nExamples:\n"
@@ -1766,7 +1766,7 @@ static UniValue listtransactions(const Config &config,
             "account name associated with the transaction. \n"
             "                                                It will be \"\" "
             "for the default account.\n"
-            "    \"address\":\"address\",    (string) The bitcoin address of "
+            "    \"address\":\"address\",    (string) The blink address of "
             "the transaction. Not present for \n"
             "                                                move transactions "
             "(category = move).\n"
@@ -2048,7 +2048,7 @@ static UniValue listsinceblock(const Config &config,
             "    \"account\":\"accountname\",       (string) DEPRECATED. The "
             "account name associated with the transaction. Will be \"\" for "
             "the default account.\n"
-            "    \"address\":\"address\",    (string) The bitcoin address of "
+            "    \"address\":\"address\",    (string) The blink address of "
             "the transaction. Not present for move transactions (category = "
             "move).\n"
             "    \"category\":\"send|receive\",     (string) The transaction "
@@ -2211,7 +2211,7 @@ static UniValue gettransaction(const Config &config,
             "      \"account\" : \"accountname\",      (string) DEPRECATED. "
             "The account name involved in the transaction, can be \"\" for the "
             "default account.\n"
-            "      \"address\" : \"address\",          (string) The bitcoin "
+            "      \"address\" : \"address\",          (string) The blink "
             "address involved in the transaction\n"
             "      \"category\" : \"send|receive\",    (string) The category, "
             "either 'send' or 'receive'\n"
@@ -2435,7 +2435,7 @@ static UniValue walletpassphrase(const Config &config,
             "\nStores the wallet decryption key in memory for 'timeout' "
             "seconds.\n"
             "This is needed prior to performing transactions related to "
-            "private keys such as sending bitcoins\n"
+            "private keys such as sending blinks\n"
             "\nArguments:\n"
             "1. \"passphrase\"     (string, required) The wallet passphrase\n"
             "2. timeout            (numeric, required) The time to keep the "
@@ -2639,7 +2639,7 @@ static UniValue encryptwallet(const Config &config,
             "\nEncrypt you wallet\n" +
             HelpExampleCli("encryptwallet", "\"my pass phrase\"") +
             "\nNow set the passphrase to use the wallet, such as for signing "
-            "or sending bitcoin\n" +
+            "or sending blink\n" +
             HelpExampleCli("walletpassphrase", "\"my pass phrase\"") +
             "\nNow we can so something like sign\n" +
             HelpExampleCli("signmessage", "\"address\" \"test message\"") +
@@ -2681,7 +2681,7 @@ static UniValue encryptwallet(const Config &config,
     // slack space in .dat files; that is bad if the old data is
     // unencrypted private keys. So:
     StartShutdown();
-    return "wallet encrypted; Bitcoin server stopping, restart to run with "
+    return "wallet encrypted; Blink server stopping, restart to run with "
            "encrypted wallet. The keypool has been flushed and a new HD seed "
            "was generated (if you are using HD). You need to make a new "
            "backup.";
@@ -2704,7 +2704,7 @@ static UniValue lockunspent(const Config &config,
             "If no transaction outputs are specified when unlocking then all "
             "current locked transaction outputs are unlocked.\n"
             "A locked transaction output will not be chosen by automatic coin "
-            "selection, when spending bitcoins.\n"
+            "selection, when spending blinks.\n"
             "Locks are stored in memory only. Nodes start with zero locked "
             "outputs, and the locked output list\n"
             "is always cleared (by virtue of process exit) when a node stops "
@@ -3077,10 +3077,10 @@ static UniValue listunspent(const Config &config,
             "confirmations to filter\n"
             "2. maxconf          (numeric, optional, default=9999999) The "
             "maximum confirmations to filter\n"
-            "3. \"addresses\"    (string) A json array of bitcoin addresses to "
+            "3. \"addresses\"    (string) A json array of blink addresses to "
             "filter\n"
             "    [\n"
-            "      \"address\"   (string) bitcoin address\n"
+            "      \"address\"   (string) blink address\n"
             "      ,...\n"
             "    ]\n"
             "4. include_unsafe (bool, optional, default=true) Include outputs "
@@ -3095,7 +3095,7 @@ static UniValue listunspent(const Config &config,
             "  {\n"
             "    \"txid\" : \"txid\",          (string) the transaction id \n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"address\" : \"address\",    (string) the bitcoin address\n"
+            "    \"address\" : \"address\",    (string) the blink address\n"
             "    \"account\" : \"account\",    (string) DEPRECATED. The "
             "associated account, or \"\" for the default account\n"
             "    \"scriptPubKey\" : \"key\",   (string) the script key\n"
@@ -3155,7 +3155,7 @@ static UniValue listunspent(const Config &config,
                 DecodeDestination(input.get_str(), config.GetChainParams());
             if (!IsValidDestination(dest)) {
                 throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                                   std::string("Invalid Bitcoin address: ") +
+                                   std::string("Invalid Blink address: ") +
                                        input.get_str());
             }
             if (!destinations.insert(dest).second) {
@@ -3266,7 +3266,7 @@ static UniValue fundrawtransaction(const Config &config,
             "2. options                 (object, optional)\n"
             "   {\n"
             "     \"changeAddress\"          (string, optional, default pool "
-            "address) The bitcoin address to receive the change\n"
+            "address) The blink address to receive the change\n"
             "     \"changePosition\"         (numeric, optional, default "
             "random) The index of the change output\n"
             "     \"includeWatching\"        (boolean, optional, default "
@@ -3286,7 +3286,7 @@ static UniValue fundrawtransaction(const Config &config,
             "                              The outputs are specified by their "
             "zero-based index, before any change output is added.\n"
             "                              Those recipients will receive less "
-            "bitcoins than you enter in their corresponding amount field.\n"
+            "blinks than you enter in their corresponding amount field.\n"
             "                              If no outputs are specified here, "
             "the sender pays the fee.\n"
             "                                  [vout_index,...]\n"
@@ -3359,7 +3359,7 @@ static UniValue fundrawtransaction(const Config &config,
                 if (!IsValidDestination(dest)) {
                     throw JSONRPCError(
                         RPC_INVALID_ADDRESS_OR_KEY,
-                        "changeAddress must be a valid bitcoin address");
+                        "changeAddress must be a valid blink address");
                 }
 
                 changeAddress = dest;

@@ -1,9 +1,9 @@
-// Copyright (c) 2017 The Bitcoin developers
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2017 The Blink developers
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_RPCMISC_H
-#define BITCOIN_RPCMISC_H
+#ifndef BLINK_RPCMISC_H
+#define BLINK_RPCMISC_H
 
 #include <string>
 #include <optional>
@@ -21,4 +21,4 @@ std::optional<uint32_t> GetFlagNumber(const std::string& flagName, std::string& 
 CScript createmultisig_redeemScript(CWallet *const pwallet,
                                     const UniValue &params);
 
-#endif // BITCOIN_RPCBLOCKCHAIN_H
+#endif // BLINK_RPCBLOCKCHAIN_H

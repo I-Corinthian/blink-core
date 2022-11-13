@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017 The Bitcoin developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-# Exercise the Bitcoin SV RPC calls.
+# Exercise the Blink SV RPC calls.
 
 import time
 import random
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import (assert_equal, assert_raises_rpc_error)
 from test_framework.cdefs import (ONE_MEGABYTE,
                                   LEGACY_MAX_BLOCK_SIZE,
                                   REGTEST_DEFAULT_MAX_BLOCK_SIZE)
 
 
-class ABC_RPC_Test (BitcoinTestFramework):
+class ABC_RPC_Test (BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 1

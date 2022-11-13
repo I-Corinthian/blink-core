@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.mininode import *
 from test_framework.script import CScript, OP_TRUE
 import datetime
 import contextlib
 
 # Test if the functionality -broadcastdelay works as expected.
-# Create 2 connections (connection1 and connection2) to bitcoind node and measure how long it takes for connection2 to receive a transaction that connection1 sends to bitcoind.
-# 1. -broadcastdelay is set to 0 to calculate the minimal delay that network and bitcoind need for this functionality. This should not be too large.
+# Create 2 connections (connection1 and connection2) to blinkd node and measure how long it takes for connection2 to receive a transaction that connection1 sends to blinkd.
+# 1. -broadcastdelay is set to 0 to calculate the minimal delay that network and blinkd need for this functionality. This should not be too large.
 # 2. Then, -broadcastdelay is not set, which means the default is used which is 150ms.
 #    Time for connection2 to receive a transaction should be around 150ms.
 # 3. At last, functionality is tested with -broadcastdelay set to 1 second to test it with some larger times.
@@ -33,7 +33,7 @@ class NetworkThreadPinging(Thread):
     def stop(self):
         self.conn = None
 
-class BroadcastDelayTest(BitcoinTestFramework):
+class BroadcastDelayTest(BlinkTestFramework):
 
     # ensure funding and returns  given number of transcations without submitting them
     def make_transactions(self, num_transactions):
@@ -83,7 +83,7 @@ class BroadcastDelayTest(BitcoinTestFramework):
             tx = txs.pop(0)
             begin_test = datetime.datetime.now()
 
-            # node1 sends transaction to bitcoind
+            # node1 sends transaction to blinkd
             connection1.cb.send_message(msg_tx(tx))
             # assert that node2 gets INV with previously sent transaction
             msg = [CInv(CInv.TX, tx.sha256)]
@@ -98,8 +98,8 @@ class BroadcastDelayTest(BitcoinTestFramework):
     def run_test(self):
         @contextlib.contextmanager
         def run_pinging_connection(connection):
-            # Connection3 is used here only for constantly pinging bitcoind node.
-            # It is needed so that bitcoind is awake all the time (without 100ms sleeps).
+            # Connection3 is used here only for constantly pinging blinkd node.
+            # It is needed so that blinkd is awake all the time (without 100ms sleeps).
             syncThr = NetworkThreadPinging(connection)
             try:
                 syncThr.start()

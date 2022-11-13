@@ -1,8 +1,8 @@
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_PROCESSINGBLOCKINDEX_H
-#define BITCOIN_PROCESSINGBLOCKINDEX_H
+#ifndef BLINK_PROCESSINGBLOCKINDEX_H
+#define BLINK_PROCESSINGBLOCKINDEX_H
 
 #include "primitives/block.h"
 #include "undo.h"

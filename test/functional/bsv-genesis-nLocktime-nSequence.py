@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test restoring the original meaning of nLockTime & nSequence
@@ -172,7 +172,7 @@ class BSVGenesis_Restore_nLockTime_nSequence(ComparisonTestFramework):
         sequence = n & 0x0000FFFF
         return sequence
 
-    # Get tip from bitcoind and allow us to build on it
+    # Get tip from blinkd and allow us to build on it
     def build_on_tip(self, n):
         tip_hash = int(self.nodes[0].getbestblockhash(), 16)
         tip_height = self.nodes[0].getblockcount()
@@ -229,7 +229,7 @@ class BSVGenesis_Restore_nLockTime_nSequence(ComparisonTestFramework):
         self.nodes[0].generate(self.genesisactivationheight - self.nodes[0].getblockcount())
         self.log.info("Genesis activated, height {}".format(self.nodes[0].getblockcount()))
 
-        # Get tip from bitcoind because it's further along than we are, and we want to build on it
+        # Get tip from blinkd because it's further along than we are, and we want to build on it
         self.build_on_tip(2)
 
         # Create block on height 601 with some more transactions for us to spend
@@ -396,7 +396,7 @@ class BSVGenesis_Restore_nLockTime_nSequence(ComparisonTestFramework):
         assert(tx4.hash not in nonfinalmempool)
         assert(tx5.hash in nonfinalmempool)
 
-        # Get tip from bitcoind because it's further along than we are, and we want to build on it
+        # Get tip from blinkd because it's further along than we are, and we want to build on it
         self.build_on_tip(4)
 
         # Create block with some more transactions for us to spend

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
-# Copyright (c) 2017 The Bitcoin developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 This test checks that if a peer send and excessive block size, it will get banned.
@@ -22,7 +22,7 @@ class BSV2MBlocks(ComparisonTestFramework):
         self.num_nodes = 1
         self.setup_clean_chain = True
         self.excessive_block_size = 2 * ONE_MEGABYTE
-        # Set arguments to run a bitcoind node with excessive blocksize 2Mb and banning time 10 seconds
+        # Set arguments to run a blinkd node with excessive blocksize 2Mb and banning time 10 seconds
         self.extra_args = [["-excessiveblocksize=%d" % self.excessive_block_size, "-blockmaxsize=%d" % self.excessive_block_size, "-bantime=10", '-rpcservertimeout=500']]
 
     def add_options(self, parser):

@@ -1,8 +1,8 @@
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_MERKLEDB_H
-#define BITCOIN_MERKLEDB_H
+#ifndef BLINK_MERKLEDB_H
+#define BLINK_MERKLEDB_H
 
 #include "dbwrapper.h"
 #include "chain.h"
@@ -207,4 +207,4 @@ public:
     bool GetIndexOutOfSync(bool& isIndexOutOfSyncOut);
 };
 
-#endif // BITCOIN_MERKLEDB_H
+#endif // BLINK_MERKLEDB_H

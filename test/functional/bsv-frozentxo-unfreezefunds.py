@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Check RPC functions used to unfreeze TXOs
 """
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 
 
-class FrozenTXORPCUnfreezeFunds (BitcoinTestFramework):
+class FrozenTXORPCUnfreezeFunds (BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True

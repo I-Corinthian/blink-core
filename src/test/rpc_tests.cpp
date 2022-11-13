@@ -1,5 +1,5 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "rpc/client.h"
@@ -16,7 +16,7 @@
 #include "policy/policy.h"
 #include "util.h"
 
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include "rpc/tojson.h"
 
 #include <boost/algorithm/string.hpp>
@@ -269,7 +269,7 @@ BOOST_AUTO_TEST_CASE(rpc_rawsign_missing_amount) {
     // Old format, missing amount parameter for prevout should generate
     // an RPC error.  This is because of new replay-protected tx's require
     // nonzero amount present in signed tx.
-    // See: https://github.com/Bitcoin-ABC/bitcoin-abc/issues/63
+    // See: https://github.com/Blink-ABC/blink-abc/issues/63
     // (We will re-use the tx + keys from the above rpc_rawsign test for
     // simplicity.)
     UniValue r;
@@ -700,8 +700,8 @@ BOOST_AUTO_TEST_CASE(client_config_ds_endpoint)
     );
 }
 
-// Create client configs for bitcoind
-BOOST_AUTO_TEST_CASE(client_config_bitcoind)
+// Create client configs for blinkd
+BOOST_AUTO_TEST_CASE(client_config_blinkd)
 {
     gArgs.ForceSetArg("-rpcconnect", "localhost:8080");
     gArgs.ForceSetArg("-rpcuser", "user");
@@ -712,7 +712,7 @@ BOOST_AUTO_TEST_CASE(client_config_bitcoind)
     using namespace rpc::client;
 
     BOOST_CHECK_NO_THROW(
-        RPCClientConfig config { RPCClientConfig::CreateForBitcoind() };
+        RPCClientConfig config { RPCClientConfig::CreateForBlinkd() };
         BOOST_CHECK_EQUAL(config.GetServerIP(), "localhost");
         BOOST_CHECK_EQUAL(config.GetServerPort(), 8080);
         BOOST_CHECK_EQUAL(config.GetServerHTTPHost(), "localhost");
@@ -794,12 +794,12 @@ BOOST_AUTO_TEST_CASE(http_requests)
     }
 
     {
-        // JSON RPC requests to bitcoind
+        // JSON RPC requests to blinkd
         gArgs.ForceSetArg("-rpcconnect", "localhost:8080");
         gArgs.ForceSetArg("-rpcuser", "user");
         gArgs.ForceSetArg("-rpcpassword", "passwd");
         gArgs.ForceSetArg("-rpcwallet", "walletname");
-        RPCClientConfig config { RPCClientConfig::CreateForBitcoind() };
+        RPCClientConfig config { RPCClientConfig::CreateForBlinkd() };
 
         auto rpcRequest { rpc::client::HTTPRequest::CreateJSONRPCRequest(config, method, params) };
         std::string strContents { rpcRequest.GetContents().begin(), rpcRequest.GetContents().end() };

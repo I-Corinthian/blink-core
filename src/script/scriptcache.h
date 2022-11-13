@@ -1,9 +1,9 @@
-// Copyright (c) 2017 - The Bitcoin Developers
+// Copyright (c) 2017 - The Blink Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SCRIPT_SCRIPTCACHE_H
-#define BITCOIN_SCRIPT_SCRIPTCACHE_H
+#ifndef BLINK_SCRIPT_SCRIPTCACHE_H
+#define BLINK_SCRIPT_SCRIPTCACHE_H
 
 #include "uint256.h"
 
@@ -33,4 +33,4 @@ bool IsKeyInScriptCache(uint256 key, bool erase);
 /** Add an entry in the cache. */
 void AddKeyInScriptCache(uint256 key);
 
-#endif // BITCOIN_SCRIPT_SCRIPTCACHE_H
+#endif // BLINK_SCRIPT_SCRIPTCACHE_H

@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "base58.h"
@@ -118,7 +118,7 @@ void getrawtransaction(const Config& config,
             "         \"type\" : \"pubkeyhash\",  (string) The type, eg "
             "'pubkeyhash'\n"
             "         \"addresses\" : [           (json array of string)\n"
-            "           \"address\"        (string) bitcoin address\n"
+            "           \"address\"        (string) blink address\n"
             "           ,...\n"
             "         ]\n"
             "       }\n"
@@ -219,10 +219,10 @@ void getrawtransaction(const Config& config,
 
     CJSONWriter jWriter(textWriter, false);
 
-    // Call into TxToJSON() in bitcoin-common to decode the transaction hex.
+    // Call into TxToJSON() in blink-common to decode the transaction hex.
     //
     // Blockchain contextual information (confirmations and blocktime) is not
-    // available to code in bitcoin-common, so we query them here and push the
+    // available to code in blink-common, so we query them here and push the
     // data as JSON.
 
     if (!hashBlock.IsNull())
@@ -510,7 +510,7 @@ static UniValue createrawtransaction(const Config &config,
             "with outputs\n"
             "    {\n"
             "      \"address\": x.xxx,    (numeric or string, required) The "
-            "key is the bitcoin address, the numeric value (can be string) is "
+            "key is the blink address, the numeric value (can be string) is "
             "the " +
             CURRENCY_UNIT +
             " amount\n"
@@ -615,7 +615,7 @@ static UniValue createrawtransaction(const Config &config,
                 DecodeDestination(name_, config.GetChainParams());
             if (!IsValidDestination(destination)) {
                 throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                                   std::string("Invalid Bitcoin address: ") +
+                                   std::string("Invalid Blink address: ") +
                                        name_);
             }
 
@@ -687,7 +687,7 @@ void decoderawtransaction(const Config& config,
             "'pubkeyhash'\n"
             "         \"addresses\" : [           (json array of string)\n"
             "           \"12tvKAXCxZjSmdNbao16dKXC8tRWfcF5oc\"   (string) "
-            "bitcoin address\n"
+            "blink address\n"
             "           ,...\n"
             "         ]\n"
             "       }\n"
@@ -765,7 +765,7 @@ static UniValue decodescript(const Config &config,
             "  \"type\":\"type\", (string) The output type\n"
             "  \"reqSigs\": n,    (numeric) The required signatures\n"
             "  \"addresses\": [   (json array of string)\n"
-            "     \"address\"     (string) bitcoin address\n"
+            "     \"address\"     (string) blink address\n"
             "     ,...\n"
             "  ],\n"
             "  \"p2sh\",\"address\" (string) address of P2SH script wrapping "
@@ -961,7 +961,7 @@ static UniValue signrawtransaction(const Config &config,
         UniValue keys = request.params[2].get_array();
         for (size_t idx = 0; idx < keys.size(); idx++) {
             UniValue k = keys[idx];
-            CBitcoinSecret vchSecret;
+            CBlinkSecret vchSecret;
             bool fGood = vchSecret.SetString(k.get_str());
             if (!fGood) {
                 throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
@@ -2279,7 +2279,7 @@ static UniValue getmerkleproof(const Config& config,
 static UniValue getmerkleproof2(const Config& config, const JSONRPCRequest& request)
 {
 
-    // see also TSC description in  https://tsc.bitcoinassociation.net/standards/merkle-proof-standardised-format/?utm_source=Twitter&utm_medium=social&utm_campaign=Orlo
+    // see also TSC description in  https://tsc.blinkassociation.net/standards/merkle-proof-standardised-format/?utm_source=Twitter&utm_medium=social&utm_campaign=Orlo
     auto message_to_user = [](std::string hints) -> std::string {
         std::ostringstream msg;
         if (!hints.empty())

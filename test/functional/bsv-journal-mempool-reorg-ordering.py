@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019  Bitcoin Association
+# Copyright (c) 2019  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 '''
@@ -39,7 +39,7 @@ from test_framework.cdefs import ONE_GIGABYTE
 from test_framework.key import CECKey
 from test_framework.mininode import CTransaction, msg_tx, CTxIn, COutPoint, CTxOut, msg_block, msg_tx
 from test_framework.script import CScript, SignatureHashForkId, SIGHASH_ALL, SIGHASH_FORKID, OP_CHECKSIG
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until
 
 _cntr = 1
@@ -316,7 +316,7 @@ a = tx_set("abcdegixyq", _name="'a'")
 
 # assert e == a, e.explain(a, context=c)
 
-class ReorgTests(BitcoinTestFramework):
+class ReorgTests(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

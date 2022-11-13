@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_VALIDATIONINTERFACE_H
-#define BITCOIN_VALIDATIONINTERFACE_H
+#ifndef BLINK_VALIDATIONINTERFACE_H
+#define BLINK_VALIDATIONINTERFACE_H
 
 #include "primitives/transaction.h" // CTransaction(Ref)
 #include "txmempool.h"
@@ -123,4 +123,4 @@ struct CMainSignals {
 
 CMainSignals &GetMainSignals();
 
-#endif // BITCOIN_VALIDATIONINTERFACE_H
+#endif // BLINK_VALIDATIONINTERFACE_H

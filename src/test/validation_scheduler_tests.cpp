@@ -1,9 +1,9 @@
-// Copyright (c) 2021 The Bitcoin SV developers
+// Copyright (c) 2021 The Blink SV developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "net/validation_scheduler.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 
 #include <boost/test/unit_test.hpp>
 #include <random>

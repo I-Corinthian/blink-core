@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021  Bitcoin Association
+# Copyright (c) 2021  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 from time import sleep
 
@@ -10,7 +10,7 @@ from test_framework.mininode import CTransaction, msg_tx, CTxIn, COutPoint, CTxO
     msg_headers
 from test_framework.script import CScript, OP_DROP, OP_CHECKSIG, SIGHASH_ALL, SIGHASH_FORKID, \
     SignatureHashForkId, OP_MUL
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until, check_mempool_equals
 
 """
@@ -48,7 +48,7 @@ from test_framework.util import wait_until, check_mempool_equals
 
 """
 
-class MemepoolAcceptingTransactionsDuringReorg(BitcoinTestFramework):
+class MemepoolAcceptingTransactionsDuringReorg(BlinkTestFramework):
 
     
     def __init__(self, *a, **kw):

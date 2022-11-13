@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include "config/blink-config.h"
 #endif
 
 #include "util.h"
@@ -84,8 +84,8 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char *const BITCOIN_CONF_FILENAME = "bitcoin.conf";
-const char *const BITCOIN_PID_FILENAME = "bitcoind.pid";
+const char *const BLINK_CONF_FILENAME = "blink.conf";
+const char *const BLINK_PID_FILENAME = "blinkd.pid";
 
 ArgsManager gArgs;
 
@@ -197,7 +197,7 @@ std::vector<std::string> ArgsManager::GetNonSensitiveParameters()
     std::vector<std::string> nonSensitiveParameters;
 
     // Parameter names (keys of mapMultiArgs) are in form of -name. They also need to be specified like that
-    // when starting bitcoind (e.g. bitcoin -name) or they will not be added to mapMultiArgs.
+    // when starting blinkd (e.g. blink -name) or they will not be added to mapMultiArgs.
     // Filter out sensitive parameters and remove first character (-)
     for(const auto& arg : mapMultiArgs)
     {
@@ -444,7 +444,7 @@ static std::string FormatException(const std::exception *pex,
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
-    const char *pszModule = "bitcoin";
+    const char *pszModule = "blink";
 #endif
     if (pex)
         return strprintf("EXCEPTION: %s       \n%s       \n%s in %s       \n",
@@ -462,13 +462,13 @@ void PrintExceptionContinue(const std::exception *pex, const char *pszThread) {
 }
 
 fs::path GetDefaultDataDir() {
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\Bitcoin
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\Bitcoin
-// Mac: ~/Library/Application Support/Bitcoin
-// Unix: ~/.bitcoin
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\Blink
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\Blink
+// Mac: ~/Library/Application Support/Blink
+// Unix: ~/.blink
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Bitcoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Blink";
 #else
     fs::path pathRet;
     char *pszHome = getenv("HOME");
@@ -478,10 +478,10 @@ fs::path GetDefaultDataDir() {
         pathRet = fs::path(pszHome);
 #ifdef __APPLE__
     // Mac
-    return pathRet / "Library/Application Support/Bitcoin";
+    return pathRet / "Library/Application Support/Blink";
 #else
     // Unix
-    return pathRet / ".bitcoin";
+    return pathRet / ".blink";
 #endif
 #endif
 }
@@ -533,7 +533,7 @@ fs::path GetConfigFile(const std::string &confPath) {
 void ArgsManager::ReadConfigFile(const std::string &confPath) {
     fs::ifstream streamConfig(GetConfigFile(confPath));
 
-    // No bitcoin.conf file is OK
+    // No blink.conf file is OK
     if (!streamConfig.good()) return;
 
     {
@@ -546,7 +546,7 @@ void ArgsManager::ReadConfigFile(const std::string &confPath) {
              end;
              it != end; ++it) {
             // Don't overwrite existing settings so command line settings
-            // override bitcoin.conf
+            // override blink.conf
             std::string strKey = std::string("-") + it->string_key;
             std::string strValue = it->value[0];
             InterpretNegativeSetting(strKey, strValue);
@@ -562,7 +562,7 @@ void ArgsManager::ReadConfigFile(const std::string &confPath) {
 
 #ifndef WIN32
 fs::path GetPidFile() {
-    fs::path pathPidFile(gArgs.GetArg("-pid", BITCOIN_PID_FILENAME));
+    fs::path pathPidFile(gArgs.GetArg("-pid", BLINK_PID_FILENAME));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }

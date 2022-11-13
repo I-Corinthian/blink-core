@@ -258,14 +258,14 @@ CTxDestination DecodeDestination(const std::string &str,
 }
 } // namespace
 
-void CBitcoinSecret::SetKey(const CKey &vchSecret) {
+void CBlinkSecret::SetKey(const CKey &vchSecret) {
     assert(vchSecret.IsValid());
     SetData(Params().Base58Prefix(CChainParams::SECRET_KEY), vchSecret.begin(),
             vchSecret.size());
     if (vchSecret.IsCompressed()) vchData.push_back(1);
 }
 
-CKey CBitcoinSecret::GetKey() {
+CKey CBlinkSecret::GetKey() {
     CKey ret;
     assert(vchData.size() >= 32);
     ret.Set(vchData.begin(), vchData.begin() + 32,
@@ -273,7 +273,7 @@ CKey CBitcoinSecret::GetKey() {
     return ret;
 }
 
-bool CBitcoinSecret::IsValid() const {
+bool CBlinkSecret::IsValid() const {
     bool fExpectedFormat =
         vchData.size() == 32 || (vchData.size() == 33 && vchData[32] == 1);
     bool fCorrectVersion =
@@ -281,11 +281,11 @@ bool CBitcoinSecret::IsValid() const {
     return fExpectedFormat && fCorrectVersion;
 }
 
-bool CBitcoinSecret::SetString(const char *pszSecret) {
+bool CBlinkSecret::SetString(const char *pszSecret) {
     return CBase58Data::SetString(pszSecret) && IsValid();
 }
 
-bool CBitcoinSecret::SetString(const std::string &strSecret) {
+bool CBlinkSecret::SetString(const std::string &strSecret) {
     return SetString(strSecret.c_str());
 }
 

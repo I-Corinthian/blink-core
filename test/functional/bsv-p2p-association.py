@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 '''
 Test association and stream handling within P2P.
 '''
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.mininode import (create_association_id, msg_createstream, mininode_lock,
     NetworkThread, NodeConn, NodeConnCB, wait_until)
 from test_framework.util import assert_equal, connect_nodes, p2p_port
@@ -47,7 +47,7 @@ class TestNode(NodeConnCB):
         return blockhash in self.blocksSeen
 
 
-class P2PAssociation(BitcoinTestFramework):
+class P2PAssociation(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

@@ -1,4 +1,4 @@
-#Bitcoin SV System Requirements
+#Blink SV System Requirements
 
-The minimum suggested system requirements for the current release of Bitcoin SV can be found on the
-website [here](https://bitcoinsv.io/2019/08/02/bitcoin-sv-node-system-requirements/).
+The minimum suggested system requirements for the current release of Blink SV can be found on the
+website [here](https://blinksv.io/2019/08/02/blink-sv-node-system-requirements/).

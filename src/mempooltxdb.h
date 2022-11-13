@@ -1,9 +1,9 @@
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file
 // LICENSE.
 
-#ifndef BITCOIN_MEMPOOLTXDB_H
-#define BITCOIN_MEMPOOLTXDB_H
+#ifndef BLINK_MEMPOOLTXDB_H
+#define BLINK_MEMPOOLTXDB_H
 
 #include "dbwrapper.h"
 #include "txhasher.h"
@@ -240,4 +240,4 @@ private:
     void Work();
 };
 
-#endif // BITCOIN_MEMPOOLTXDB_H
+#endif // BLINK_MEMPOOLTXDB_H

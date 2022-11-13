@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_PRIMITIVES_BLOCK_H
-#define BITCOIN_PRIMITIVES_BLOCK_H
+#ifndef BLINK_PRIMITIVES_BLOCK_H
+#define BLINK_PRIMITIVES_BLOCK_H
 
 #include <algorithm>
 
@@ -172,4 +172,4 @@ struct CBlockLocator {
     bool IsNull() const { return vHave.empty(); }
 };
 
-#endif // BITCOIN_PRIMITIVES_BLOCK_H
+#endif // BLINK_PRIMITIVES_BLOCK_H

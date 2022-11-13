@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 from decimal import Decimal
 from time import sleep
 from test_framework.blocktools import ChainManager
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import check_for_log_msg, sync_mempools, wait_until, sync_blocks, connect_nodes_bi
 
 
-class SelfishMiningTest(BitcoinTestFramework):
+class SelfishMiningTest(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

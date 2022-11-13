@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file
 // LICENSE.
 
@@ -20,7 +20,7 @@
 #include "utilstrencodings.h"
 #include "validation.h"
 
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 
 namespace ba = boost::algorithm;
 

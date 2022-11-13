@@ -1,9 +1,9 @@
 // Copyright (c) 2015 The Bitcoin Core developers
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_MERKLE
-#define BITCOIN_MERKLE
+#ifndef BLINK_MERKLE
+#define BLINK_MERKLE
 
 #include <cstdint>
 #include <vector>

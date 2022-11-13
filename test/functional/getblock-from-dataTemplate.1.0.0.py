@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test getblock RPCs on pregenerated data with node version 1.0.0.
@@ -7,10 +7,10 @@ Blocks that were created before the introduction of CDiskBlockMetaData class, d
 """
 import shutil
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 
-class GetBlockRPCTest(BitcoinTestFramework):
+class GetBlockRPCTest(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

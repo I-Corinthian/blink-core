@@ -5,7 +5,7 @@
 
 # Exercise the listtransactions API
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 from test_framework.mininode import CTransaction, COIN
 from io import BytesIO
@@ -18,7 +18,7 @@ def txFromHex(hexstring):
     return tx
 
 
-class ListTransactionsTest(BitcoinTestFramework):
+class ListTransactionsTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
 

@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 The Bitcoin SV developers
+# Copyright (c) 2019 The Blink SV developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 from test_framework import mininode
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 import time
 from test_framework.blocktools import create_block, create_coinbase
 
-class BsvProtoconfViolationTest(BitcoinTestFramework):
+class BsvProtoconfViolationTest(BlinkTestFramework):
 
     def add_options(self, parser):
         parser.add_option("--testbinary", dest="testbinary",
-                          default=os.getenv("BITCOIND", "bitcoind"),
-                          help="bitcoind binary to test")
+                          default=os.getenv("BLINKD", "blinkd"),
+                          help="blinkd binary to test")
 
     def set_test_params(self):
         self.setup_clean_chain = True

@@ -3,7 +3,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 from test_framework.mininode import CTransaction, NetworkThread
 from test_framework.blocktools import create_coinbase, create_block
@@ -39,7 +39,7 @@ Generate 427 more blocks.
 '''
 
 
-class NULLDUMMYTest(BitcoinTestFramework):
+class NULLDUMMYTest(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 1

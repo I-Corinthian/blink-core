@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test mempool persistence.
 
-By default, bitcoind will dump mempool on shutdown and
+By default, blinkd will dump mempool on shutdown and
 then reload it on startup. This can be overridden with
 the -persistmempool=0 command line option.
 
@@ -32,13 +32,13 @@ Test is as follows:
 """
 import time
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 from test_framework.mininode import CTransaction, CTxOut, CTxIn, COutPoint, ToHex, FromHex
 from test_framework.script import CScript, OP_TRUE
 
 
-class MempoolPersistTest(BitcoinTestFramework):
+class MempoolPersistTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 3
         self.extra_args = [["-genesisactivationheight=100"],
@@ -96,7 +96,7 @@ class MempoolPersistTest(BitcoinTestFramework):
         self.stop_nodes()
         self.start_node(0)
         self.start_node(1)
-        # Give bitcoind a second to reload the mempool
+        # Give blinkd a second to reload the mempool
         time.sleep(1)
         wait_until(lambda: len(self.nodes[0].getrawmempool()) == 5)
         wait_until(lambda: len(self.nodes[0].getrawnonfinalmempool()) == 2)
@@ -107,7 +107,7 @@ class MempoolPersistTest(BitcoinTestFramework):
             "Stop-start node0 with -persistmempool=0. Verify that it doesn't load its mempool.dat file.")
         self.stop_nodes()
         self.start_node(0, extra_args=["-persistmempool=0"])
-        # Give bitcoind a second to reload the mempool
+        # Give blinkd a second to reload the mempool
         time.sleep(1)
         assert_equal(len(self.nodes[0].getrawmempool()), 0)
         assert_equal(len(self.nodes[0].getrawnonfinalmempool()), 0)

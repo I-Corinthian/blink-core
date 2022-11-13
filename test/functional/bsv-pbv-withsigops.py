@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 This test shows making the "hard" blocks that take long to validate
@@ -35,7 +35,7 @@ from test_framework.mininode import (
     NodeConnCB,
     msg_block,
 )
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.util import (
     p2p_port,
     assert_equal,
@@ -52,7 +52,7 @@ class PreviousSpendableOutput:
         self.n = n  # the output we're spending
 
 
-class PBVWithSigOps(BitcoinTestFramework):
+class PBVWithSigOps(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -152,7 +152,7 @@ class PBVWithSigOps(BitcoinTestFramework):
             text_block2 = "Verify 8000 txins"
             text_block3 = "Verify 2000 txins"
             results = 0
-            for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/bitcoind.log")[0]):
+            for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/blinkd.log")[0]):
                 if text_activation in line:
                     results += 1
                 elif text_block2 in line:
@@ -168,7 +168,7 @@ class PBVWithSigOps(BitcoinTestFramework):
         text_activation = f"Block {block2_hard.hash} was not activated as best"
         text_block2 = "Verify 8000 txins"
         text_block3 = "Verify 2000 txins"
-        for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/bitcoind.log")[0]):
+        for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/blinkd.log")[0]):
             if text_activation in line:
                 self.log.info(f"block2_hard was not activated as block3_easy won the validation race")
             elif text_block2 in line:

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
-# Copyright (c) 2017 The Bitcoin developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 This test checks simple acceptance of bigger blocks via p2p.
@@ -18,7 +18,7 @@ from test_framework.blocktools import *
 import time
 from test_framework.script import *
 
-# TestNode: A peer we use to send messages to bitcoind, and store responses.
+# TestNode: A peer we use to send messages to blinkd, and store responses.
 class TestNode(NodeConnCB):
 
     def __init__(self):

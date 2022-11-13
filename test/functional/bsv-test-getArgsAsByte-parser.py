@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test GetArgAsBytes human readable unit parser with -maxmempool parameter.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import assert_equal
 
 import  os
 
-class GetArgAsBytesTest(BitcoinTestFramework):
+class GetArgAsBytesTest(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -18,11 +18,11 @@ class GetArgAsBytesTest(BitcoinTestFramework):
 
     def setup_chain(self):
         super().setup_chain()
-        with open(os.path.join(self.options.tmpdir + "/node0", "bitcoin.conf"), 'a', encoding='utf8') as f:
+        with open(os.path.join(self.options.tmpdir + "/node0", "blink.conf"), 'a', encoding='utf8') as f:
             f.write("maxmempool=500MB\n")
 
     def run_test(self):
-        # Test that parameters are also settable via the bitcoin.conf file.
+        # Test that parameters are also settable via the blink.conf file.
         assert_equal(self.nodes[0].getmempoolinfo()["maxmempool"], 500000000)
 
         # No unit (-maxmempool parameter is in mega bytes by default)

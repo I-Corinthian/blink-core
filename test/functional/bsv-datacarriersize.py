@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 from time import sleep
 
 from test_framework.cdefs import MAX_TX_SIZE_POLICY_BEFORE_GENESIS
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import assert_equal
 from test_framework.mininode import *
 from test_framework.script import CScript, OP_RETURN, OP_FALSE
@@ -15,7 +15,7 @@ from test_framework.blocktools import calc_needed_data_size
 # 2. Send transaction with script that contains 500B. It should be accepted.
 # 3. Send transaction with script that contains 501B. It should be rejected.
 
-class DataCarrierSizeTest(BitcoinTestFramework):
+class DataCarrierSizeTest(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 1

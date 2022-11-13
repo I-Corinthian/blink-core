@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019-2020 Bitcoin Association
+# Copyright (c) 2019-2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 """
@@ -45,23 +45,23 @@ Test case 4:
 import json
 
 from test_framework.script import CTransaction, CScript, OP_TRUE, CTxOut
-from test_framework.test_framework import BitcoinTestFramework, SkipTest, ToHex, FromHex
+from test_framework.test_framework import BlinkTestFramework, SkipTest, ToHex, FromHex
 from test_framework.util import (assert_equal, check_zmq_test_requirements, 
                                  disconnect_nodes_bi, connect_nodes_bi, sync_blocks,
                                  zmq_port)
 from test_framework.mininode import CTxIn, COutPoint
 
 
-class ZMQRemovedFromMempool(BitcoinTestFramework):
+class ZMQRemovedFromMempool(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.setup_clean_chain = True
 
     def setup_nodes(self):
 
-        # Check that bitcoin has been built with ZMQ enabled and we have python zmq package installed.
+        # Check that blink has been built with ZMQ enabled and we have python zmq package installed.
         check_zmq_test_requirements(self.options.configfile,
-                                    SkipTest("bitcoind has not been built with zmq enabled."))
+                                    SkipTest("blinkd has not been built with zmq enabled."))
         # import zmq when we know we have the requirements for test with zmq.
         import zmq
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021  Bitcoin Association
+# Copyright (c) 2021  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 from time import sleep, time
 
@@ -7,7 +7,7 @@ from test_framework.blocktools import create_block, create_coinbase, send_by_hea
 from test_framework.cdefs import ONE_MEGABYTE
 from test_framework.mininode import CTransaction, msg_tx, CTxIn, COutPoint, CTxOut, msg_block
 from test_framework.script import CScript, OP_DROP, OP_TRUE, OP_FALSE, OP_RETURN
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until, check_mempool_equals, connect_nodes_bi, count_log_msg
 
 """
@@ -34,7 +34,7 @@ CASE 3: Testing on a node with two connections, after download starts on the tes
 
 """
 
-class BlockDownloadTimeout(BitcoinTestFramework):
+class BlockDownloadTimeout(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

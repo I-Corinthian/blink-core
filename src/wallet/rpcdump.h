@@ -1,9 +1,9 @@
-// Copyright (c) 2017 The Bitcoin developers
+// Copyright (c) 2017 The Blink developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_WALLET_RPCDUMP_H
-#define BITCOIN_WALLET_RPCDUMP_H
+#ifndef BLINK_WALLET_RPCDUMP_H
+#define BLINK_WALLET_RPCDUMP_H
 
 #include <univalue.h>
 
@@ -17,4 +17,4 @@ UniValue importmulti(const Config &config, const JSONRPCRequest &request);
 UniValue dumpwallet(const Config &config, const JSONRPCRequest &request);
 UniValue importwallet(const Config &config, const JSONRPCRequest &request);
 
-#endif // BITCOIN_WALLET_RPCDUMP_H
+#endif // BLINK_WALLET_RPCDUMP_H

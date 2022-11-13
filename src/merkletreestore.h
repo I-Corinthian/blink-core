@@ -1,8 +1,8 @@
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_MERKLETREESTORE_H
-#define BITCOIN_MERKLETREESTORE_H
+#ifndef BLINK_MERKLETREESTORE_H
+#define BLINK_MERKLETREESTORE_H
 
 #include "block_hasher.h"
 #include "validation.h"

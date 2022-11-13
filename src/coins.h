@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_COINS_H
-#define BITCOIN_COINS_H
+#ifndef BLINK_COINS_H
+#define BLINK_COINS_H
 
 #include "compressor.h"
 #include "core_memusage.h"
@@ -559,7 +559,7 @@ public:
     bool SpendCoin(const COutPoint &outpoint, CoinWithScript *moveto = nullptr);
 
     /**
-     * Amount of bitcoins coming in to a transaction
+     * Amount of blinks coming in to a transaction
      * Note that lightweight clients may not know anything besides the hash of
      * previous transactions, so may not be able to calculate this.
      *
@@ -675,4 +675,4 @@ protected:
 void AddCoins(CCoinsViewCache &cache, const CTransaction &tx, bool fConfiscation, int32_t nHeight, int32_t genesisActivationHeight,
               bool check = false);
 
-#endif // BITCOIN_COINS_H
+#endif // BLINK_COINS_H

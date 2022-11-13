@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Bitcoin SV developers
+// Copyright (c) 2020 The Blink SV developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 

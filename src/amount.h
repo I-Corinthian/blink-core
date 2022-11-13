@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_AMOUNT_H
-#define BITCOIN_AMOUNT_H
+#ifndef BLINK_AMOUNT_H
+#define BLINK_AMOUNT_H
 
 #include "serialize.h"
 
@@ -149,7 +149,7 @@ extern const std::string CURRENCY_UNIT;
 /**
  * No amount larger than this (in satoshi) is valid.
  *
- * Note that this constant is *not* the total money supply, which in Bitcoin SV
+ * Note that this constant is *not* the total money supply, which in Blink SV
  * currently happens to be less than 21,000,000 BSV for various reasons, but
  * rather a sanity check. As this sanity check is used by consensus-critical
  * validation code, the exact value of the MAX_MONEY constant is consensus
@@ -217,4 +217,4 @@ public:
     }
 };
 
-#endif //  BITCOIN_AMOUNT_H
+#endif //  BLINK_AMOUNT_H

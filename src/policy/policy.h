@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019-2020 Bitcoin Association
+// Copyright (c) 2019-2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_POLICY_POLICY_H
-#define BITCOIN_POLICY_POLICY_H
+#ifndef BLINK_POLICY_POLICY_H
+#define BLINK_POLICY_POLICY_H
 
 #include "consensus/consensus.h"
 #include "script/interpreter.h"
@@ -230,4 +230,4 @@ std::optional<bool> AreInputsStandard(
     const CCoinsViewCache &mapInputs,
     const int32_t mempoolHeight);
 
-#endif // BITCOIN_POLICY_POLICY_H
+#endif // BLINK_POLICY_POLICY_H

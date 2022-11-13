@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_STREAMS_H
-#define BITCOIN_STREAMS_H
+#ifndef BLINK_STREAMS_H
+#define BLINK_STREAMS_H
 
 #include "cfile_util.h"
 #include "serialize.h"
@@ -968,4 +968,4 @@ private:
     size_t mConsumed = 0u;
 };
 
-#endif // BITCOIN_STREAMS_H
+#endif // BLINK_STREAMS_H

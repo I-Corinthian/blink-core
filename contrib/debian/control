@@ -1,4 +1,4 @@
-Source: bitcoin
+Source: blink
 Section: utils
 Priority: optional
 Maintainer: Jonas Smedegaard <dr@jones.dk>
@@ -19,33 +19,33 @@ Build-Depends: debhelper,
  libboost-test-dev (>> 1.35) | libboost-test1.35-dev,
  python
 Standards-Version: 3.9.2
-Homepage: https://bitcoinsv.io/
-Vcs-Git: https://github.com/bitcoin-sv/bitcoin-sv.git
-Vcs-Browser: https://github.com/bitcoin-sv/bitcoin-sv
+Homepage: https://blinksv.io/
+Vcs-Git: https://github.com/blink-sv/blink-sv.git
+Vcs-Browser: https://github.com/blink-sv/blink-sv
 
-Package: bitcoind
+Package: blinkd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- Bitcoin is an experimental new digital currency that enables instant
- payments to anyone, anywhere in the world. Bitcoin uses peer-to-peer
+ Blink is an experimental new digital currency that enables instant
+ payments to anyone, anywhere in the world. Blink uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Bitcoin SV
+ and issuing money are carried out collectively by the network. Blink SV
  is the name of the open source software which enables the use of this currency.
  .
- This package provides the daemon, bitcoind, and the CLI tool
- bitcoin-cli to interact with the daemon.
+ This package provides the daemon, blinkd, and the CLI tool
+ blink-cli to interact with the daemon.
 
-Package: bitcoin-tx
+Package: blink-tx
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer digital currency - standalone transaction tool
- Bitcoin is an experimental new digital currency that enables instant
- payments to anyone, anywhere in the world. Bitcoin uses peer-to-peer
+ Blink is an experimental new digital currency that enables instant
+ payments to anyone, anywhere in the world. Blink uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Bitcoin SV
+ and issuing money are carried out collectively by the network. Blink SV
  is the name of the open source software which enables the use of this currency.
  .
- This package provides bitcoin-tx, a command-line transaction creation
- tool which can be used without a bitcoin daemon.  Some means of
+ This package provides blink-tx, a command-line transaction creation
+ tool which can be used without a blink daemon.  Some means of
  exchanging minimal transaction data with peers is still required.

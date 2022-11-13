@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 '''
@@ -8,11 +8,11 @@ accurately reflects the state of the mempool at all times, including after a reo
 
 Build a block based on the journal and check that everything still looks consistent.
 
-Note that most of the actual checking occurs inside the bitcoind process, we are just
+Note that most of the actual checking occurs inside the blinkd process, we are just
 setting up situations for that testing to happen here.
 '''
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.mininode import *
 from test_framework.util import *
 from test_framework.cdefs import (ONE_MEGABYTE)
@@ -155,7 +155,7 @@ def mempool_sizes(nodes):
     return res
 
 
-class MiningJournal(BitcoinTestFramework):
+class MiningJournal(BlinkTestFramework):
 
     def set_test_params(self):
         max_tip_age = 365 * 24 * 60 * 60

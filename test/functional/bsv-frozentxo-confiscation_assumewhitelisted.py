@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022 Bitcoin Association
+# Copyright (c) 2022 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test -assumewhitelistedblockdepth option
@@ -14,7 +14,7 @@ from test_framework.mininode import (
     CTxOut
 )
 from test_framework.script import CScript, hash160, OP_CHECKSIG, OP_DUP, OP_EQUALVERIFY, OP_FALSE, OP_HASH160, OP_RETURN, OP_TRUE
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
@@ -31,7 +31,7 @@ import time
 CTX_OP_RETURN = [OP_FALSE, OP_RETURN, b'cftx']
 
 
-class FrozenTXOConfiscation_AssumeWhitelisted(BitcoinTestFramework):
+class FrozenTXOConfiscation_AssumeWhitelisted(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

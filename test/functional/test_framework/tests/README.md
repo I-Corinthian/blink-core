@@ -3,7 +3,7 @@ Test framework sanity tests
 
 This folder is intended for sanity tests (self tests) of the test framework.
 
-Tests here are not intended to test Bitcoin functionality, but rather to
+Tests here are not intended to test Blink functionality, but rather to
 test aspects of the Python test framework.
 
 As such, they are not bound into the regular test suites embedded  in the

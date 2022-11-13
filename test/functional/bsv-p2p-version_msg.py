@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 '''
 Test P2P version message error handling.
 '''
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.mininode import mininode_lock, NetworkThread, NodeConn, NodeConnCB, wait_until, msg_version, ser_string
 from test_framework.util import assert_equal, connect_nodes, p2p_port, check_for_log_msg
 
@@ -41,7 +41,7 @@ class msg_version_bad(msg_version):
         ))
         return r
 
-class P2PVersion(BitcoinTestFramework):
+class P2PVersion(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

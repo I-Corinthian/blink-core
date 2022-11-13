@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2018 The Bitcoin developers
-// Copyright (c) 2018-2019 Bitcoin Association
+// Copyright (c) 2017-2018 The Blink developers
+// Copyright (c) 2018-2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_SCRIPT_SCRIPTFLAGS_H
-#define BITCOIN_SCRIPT_SCRIPTFLAGS_H
+#ifndef BLINK_SCRIPT_SCRIPTFLAGS_H
+#define BLINK_SCRIPT_SCRIPTFLAGS_H
 
 /** Script verification flags */
 enum {
@@ -105,4 +105,4 @@ enum {
     SCRIPT_FLAG_LAST = (1U << 20)
 };
 
-#endif // BITCOIN_SCRIPT_SCRIPTFLAGS_H
+#endif // BLINK_SCRIPT_SCRIPTFLAGS_H

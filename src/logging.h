@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2018 The Bitcoin developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2017-2018 The Blink developers
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_LOGGING_H
-#define BITCOIN_LOGGING_H
+#ifndef BLINK_LOGGING_H
+#define BLINK_LOGGING_H
 
 #include <atomic>
 #include <cstdint>
@@ -137,4 +137,4 @@ bool GetLogCategory(BCLog::LogFlags &flag, const std::string &str);
         GetLogger().LogPrintStr(tfm::format(__VA_ARGS__));                     \
     } while (0)
 
-#endif // BITCOIN_LOGGING_H
+#endif // BLINK_LOGGING_H

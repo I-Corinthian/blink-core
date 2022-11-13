@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019  Bitcoin Association
+# Copyright (c) 2019  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 import json
 import urllib
@@ -12,7 +12,7 @@ from test_framework.mininode import CTransaction, msg_tx, CTxIn, COutPoint, CTxO
     ToHex
 from test_framework.script import CScript, SignatureHashForkId, SIGHASH_ALL, SIGHASH_FORKID, OP_CHECKSIG, \
     OP_CODESEPARATOR, OP_TRUE, OP_VERIFY, OP_CHECKSIGVERIFY, OP_RETURN
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until, bytes_to_hex_str
 
 OP_TRUE_OP_RETURN_SCRIPT = CScript([OP_TRUE, OP_RETURN, b"xxx" ])
@@ -50,7 +50,7 @@ def spend_tx_to_data(tx_to_spend, key_for_tx_to_spend):
 
 
 # This test tries to check if OP_TRUE OP_RETURN tx is in mempook
-class SpendingOpReturnTx(BitcoinTestFramework):
+class SpendingOpReturnTx(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

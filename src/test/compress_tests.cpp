@@ -1,9 +1,9 @@
 // Copyright (c) 2012-2015 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "compressor.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include "util.h"
 
 #include <cstdint>

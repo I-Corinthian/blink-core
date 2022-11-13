@@ -7,14 +7,14 @@
 # Test rpc http basics
 #
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 
 import http.client
 import urllib.parse
 
 
-class HTTPBasicsTest (BitcoinTestFramework):
+class HTTPBasicsTest (BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 3
         self.extra_args = [["-rpccorsdomain=null"], [], []]
@@ -105,7 +105,7 @@ class HTTPBasicsTest (BitcoinTestFramework):
         out1 = conn.getresponse().read()
         assert(b'"error":null' in out1)
         assert(conn.sock != None)
-        # connection must be closed because bitcoind should use
+        # connection must be closed because blinkd should use
         # keep-alive by default
 
         # Check excessive request size

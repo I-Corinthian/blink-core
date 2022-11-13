@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CHAIN_H
-#define BITCOIN_CHAIN_H
+#ifndef BLINK_CHAIN_H
+#define BLINK_CHAIN_H
 
 #include "block_index.h"
 
@@ -96,4 +96,4 @@ public:
     CBlockIndex *FindEarliestAtLeast(int64_t nTime) const;
 };
 
-#endif // BITCOIN_CHAIN_H
+#endif // BLINK_CHAIN_H

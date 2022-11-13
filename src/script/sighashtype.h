@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2018 Bitcoin developers
+// Copyright (c) 2017-2018 Blink developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SCRIPT_HASH_TYPE_H
-#define BITCOIN_SCRIPT_HASH_TYPE_H
+#ifndef BLINK_SCRIPT_HASH_TYPE_H
+#define BLINK_SCRIPT_HASH_TYPE_H
 
 #include "serialize.h"
 
@@ -87,4 +87,4 @@ public:
     }
 };
 
-#endif // BITCOIN_SCRIPT_HASH_TYPE_H
+#endif // BLINK_SCRIPT_HASH_TYPE_H

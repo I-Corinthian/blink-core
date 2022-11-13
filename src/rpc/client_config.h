@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #pragma once
@@ -25,7 +25,7 @@ class RPCClientConfig
     static constexpr int DEFAULT_DS_ENDPOINT_SLOW_TIMEOUT { 60 };
 
     // Factory methods
-    static RPCClientConfig CreateForBitcoind();
+    static RPCClientConfig CreateForBlinkd();
     static RPCClientConfig CreateForDoubleSpendEndpoint(const Config& config,
                                                         const std::string& addr,
                                                         int timeout,

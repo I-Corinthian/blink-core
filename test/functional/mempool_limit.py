@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 # Test mempool limiting together/eviction with the wallet
@@ -9,7 +9,7 @@
 # 3. Send another transaction with the same size as the first one and higher fee rate (0.00001999 BSV/kB).
 # 4. Mempool is full when the last transaction arrives to the mempool - the first one should be evicted (replaced with the last one) because of the smaller fee rate.
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import create_confirmed_utxos, satoshi_round, bytes_to_hex_str, assert_equal
 import decimal
 
@@ -26,7 +26,7 @@ def send_tx_with_data(node, utxo, fee, data_size):
 
     return node.sendrawtransaction(signedTxn)
 
-class MempoolLimitTest(BitcoinTestFramework):
+class MempoolLimitTest(BlinkTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

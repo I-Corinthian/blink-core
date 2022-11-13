@@ -1,14 +1,14 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017 The Bitcoin developers
-// Copyright (c) 2018-2019 Bitcoin Association
+// Copyright (c) 2017 The Blink developers
+// Copyright (c) 2018-2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_VALIDATION_H
-#define BITCOIN_VALIDATION_H
+#ifndef BLINK_VALIDATION_H
+#define BLINK_VALIDATION_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include "config/blink-config.h"
 #endif
 
 #include "amount.h"
@@ -1190,4 +1190,4 @@ void InitFrozenTXO(std::size_t cache_size);
  */
 void ShutdownFrozenTXO();
 
-#endif // BITCOIN_VALIDATION_H
+#endif // BLINK_VALIDATION_H

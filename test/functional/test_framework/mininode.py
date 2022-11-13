@@ -2,20 +2,20 @@
 # Copyright (c) 2010 ArtForz -- public domain half-a-node
 # Copyright (c) 2012 Jeff Garzik
 # Copyright (c) 2010-2016 The Bitcoin Core developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-"""Bitcoin P2P network half-a-node.
+"""Blink P2P network half-a-node.
 
 This python code was modified from ArtForz' public domain  half-a-node, as
 found in the mini-node branch of http://github.com/jgarzik/pynode.
 
-NodeConn: an object which manages p2p connectivity to a bitcoin node
+NodeConn: an object which manages p2p connectivity to a blink node
 NodeConnCB: a base class that describes the interface for receiving
             callbacks with network messages from a NodeConn
 CBlock, CTransaction, CBlockHeader, CTxIn, CTxOut, etc....:
     data structures that should map to corresponding structures in
-    bitcoin/primitives
+    blink/primitives
 msg_block, msg_tx, msg_headers, etc.:
     data structures that represent network messages
 ser_*, deser_*: functions that handle serialization/deserialization
@@ -62,7 +62,7 @@ NODE_GETUTXO = (1 << 1)
 NODE_BLOOM = (1 << 2)
 NODE_WITNESS = (1 << 3)
 NODE_XTHIN = (1 << 4)
-NODE_BITCOIN_CASH = (1 << 5)
+NODE_BLINK_CASH = (1 << 5)
 
 # Howmuch data will be read from the network at once
 READ_BUFFER_SIZE = 1024 * 256
@@ -348,7 +348,7 @@ def create_association_id():
     return uuid.uuid4()
 
 
-# Objects that map to bitcoind objects, which can be serialized/deserialized
+# Objects that map to blinkd objects, which can be serialized/deserialized
 
 
 # Because the nVersion field has not been passed before the VERSION message the protocol uses an old format for the CAddress (missing nTime)
@@ -1740,7 +1740,7 @@ class msg_headers():
         self.headers = []
 
     def deserialize(self, f):
-        # comment in bitcoind indicates these should be deserialized as blocks
+        # comment in blinkd indicates these should be deserialized as blocks
         blocks = deser_vector(f, CBlock)
         for x in blocks:
             self.headers.append(CBlockHeader(x))
@@ -1788,7 +1788,7 @@ class msg_hdrsen():
         self.headers = []
 
     def deserialize(self, f):
-        # comment in bitcoind indicates these should be deserialized as blocks
+        # comment in blinkd indicates these should be deserialized as blocks
         self.headers = deser_vector(f, CBlockHeaderEnriched)
 
     def serialize(self):
@@ -2100,7 +2100,7 @@ class msg_datareftx():
 
 
 class NodeConnCB():
-    """Callback and helper functions for P2P connection to a bitcoind node.
+    """Callback and helper functions for P2P connection to a blinkd node.
 
     Individual testcases should subclass this and override the on_* methods
     if they want to alter message handling behaviour.
@@ -2511,7 +2511,7 @@ class NodeConn(asyncore.dispatcher):
                 self.send_message(vt, True)
                 self.assocID = vt.assocID
 
-            logger.info('Connecting to Bitcoin Node: %s:%d' %
+            logger.info('Connecting to Blink Node: %s:%d' %
                         (self.dstaddr, self.dstport))
 
             try:

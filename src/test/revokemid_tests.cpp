@@ -1,10 +1,10 @@
-// Copyright (c) 2022 Bitcoin Association
+// Copyright (c) 2022 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "miner_id/revokemid.h"
 #include "key.h"
 
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 
 #include <boost/test/unit_test.hpp>
 

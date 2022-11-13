@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022 Bitcoin Association
+# Copyright (c) 2022 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from test_framework.mininode import NodeConnCB, NodeConn, NetworkThread, msg_feefilter, mininode_lock
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import sync_blocks, p2p_port, wait_until, hashToHex
 import time
 
@@ -55,7 +55,7 @@ class TestNode(NodeConnCB):
             self.txinvs = []
 
 
-class FeeFilterTest(BitcoinTestFramework):
+class FeeFilterTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
 

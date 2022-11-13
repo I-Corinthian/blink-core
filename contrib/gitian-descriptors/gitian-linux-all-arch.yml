@@ -1,5 +1,5 @@
 ---
-name: "bitcoin-sv-1.0.13-linux"
+name: "blink-sv-1.0.13-linux"
 enable_cache: true
 suites:
 - "bionic"
@@ -32,8 +32,8 @@ packages:
 - "ca-certificates"
 - "python"
 remotes:
-- "url": "https://github.com/bitcoin-sv/bitcoin-sv.git"
-  "dir": "bitcoin"
+- "url": "https://github.com/blink-sv/blink-sv.git"
+  "dir": "blink"
 files: []
 script: |
 
@@ -119,7 +119,7 @@ script: |
   chmod +x ${WRAP_DIR}/${prog}
   done
 
-  cd bitcoin
+  cd blink
   BASEPREFIX=`pwd`/depends
   # Build dependencies for each host
   for i in $HOSTS; do
@@ -146,13 +146,13 @@ script: |
   ./autogen.sh
   CONFIG_SITE=${BASEPREFIX}/`echo "${HOSTS}" | awk '{print $1;}'`/share/config.site ./configure $ENABLE_PROD --prefix=/
   make dist
-  SOURCEDIST=`echo bitcoin-sv-*.tar.gz`
+  SOURCEDIST=`echo blink-sv-*.tar.gz`
   DISTNAME=`echo ${SOURCEDIST} | sed 's/.tar.*//'`
   # Correct tar file order
   mkdir -p temp
   pushd temp
   tar xf ../$SOURCEDIST
-  find bitcoin-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
+  find blink-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
   popd
 
   # Workaround for tarball not building with the bare tag version (prep)

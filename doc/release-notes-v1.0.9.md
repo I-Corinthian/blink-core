@@ -1,6 +1,6 @@
 # Public
 
-# Bitcoin SV Node software – Upgrade to v1.0.9 Release
+# Blink SV Node software – Upgrade to v1.0.9 Release
 Version 1.0.9 release is a recommended upgrade from version 1.0.8; This new version brings improved safe mode processing, webhook notifications, block double spend P2P notification messages and the possibility to freeze transaction outputs that are the target of double spends.
 
 Content details listed below:  
@@ -33,7 +33,7 @@ Exchanges and miners will be notified if a suspicious event (most likely an atta
 
 Notification about a block reorganisation is part of the safe mode notification.
 
-The Bitcoin SV Node software currently contains “safe-mode” logic to detect competing chains and de-activate wallet RPC calls (put into safe-mode). The safe-mode logic has been updated so that chain detection is configurable (allowing for users to customise their sensitivity to suspicious events) and triggers notifications via webhooks to exchanges/miners/application providers.
+The Blink SV Node software currently contains “safe-mode” logic to detect competing chains and de-activate wallet RPC calls (put into safe-mode). The safe-mode logic has been updated so that chain detection is configurable (allowing for users to customise their sensitivity to suspicious events) and triggers notifications via webhooks to exchanges/miners/application providers.
 
 
 **Notification of double spends**
@@ -87,7 +87,7 @@ block_header:
 
 
 
-The DSD P2P message specification can be found at https://github.com/bitcoin-sv-specs/protocol/blob/master/p2p/DSD_P2P.md
+The DSD P2P message specification can be found at https://github.com/blink-sv-specs/protocol/blob/master/p2p/DSD_P2P.md
 
 #### Webhook DSD notification message.
 
@@ -257,10 +257,10 @@ This release introduces new RPCs.
 The release contains optimisation to the processing of long, complex chains of transactions under extreme loads.
 
 **Binaries and source code can be downloaded here:**
-**<https://download.bitcoinsv.io/bitcoinsv/>** 
+**<https://download.blinksv.io/blinksv/>** 
 
-Should you have any support questions, please direct them via **<support@bitcoinsv.io>** or via telegram at **<https://t.me/bitcoinsvsupport>**
+Should you have any support questions, please direct them via **<support@blinksv.io>** or via telegram at **<https://t.me/blinksvsupport>**
 
-Thank you for your continued support of Bitcoin SV.
+Thank you for your continued support of Blink SV.
 
-**Sent on behalf of Steve Shadders and the Bitcoin SV Infrastructure team.**
+**Sent on behalf of Steve Shadders and the Blink SV Infrastructure team.**

@@ -1,8 +1,8 @@
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_MERKLETREE_H
-#define BITCOIN_MERKLETREE_H
+#ifndef BLINK_MERKLETREE_H
+#define BLINK_MERKLETREE_H
 
 #include "consensus/consensus.h"
 #include "primitives/transaction.h"

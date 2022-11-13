@@ -3,7 +3,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 from test_framework.mininode import COIN
 
@@ -15,7 +15,7 @@ def get_unspent(listunspent, amount):
         'Could not find unspent with amount={}'.format(amount))
 
 
-class RawTransactionsTest(BitcoinTestFramework):
+class RawTransactionsTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
         self.setup_clean_chain = True
@@ -193,7 +193,7 @@ class RawTransactionsTest(BitcoinTestFramework):
         assert_equal(utx['txid'], dec_tx['vin'][0]['txid'])
 
         assert_raises_rpc_error(
-            -5, "changeAddress must be a valid bitcoin address",
+            -5, "changeAddress must be a valid blink address",
             self.nodes[2].fundrawtransaction, rawtx, {'changeAddress': 'foobar'})
 
         #

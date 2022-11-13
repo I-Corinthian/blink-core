@@ -1,9 +1,9 @@
 // Copyright (c) 2017 Amaury SÉCHET
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_CONFIG_H
-#define BITCOIN_CONFIG_H
+#ifndef BLINK_CONFIG_H
+#define BLINK_CONFIG_H
 
 static_assert(sizeof(void*) >= 8, "32 bit systems are not supported");
 

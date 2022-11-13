@@ -1,11 +1,11 @@
-// Copyright (c) 2020 Bitcoin Association.
+// Copyright (c) 2020 Blink Association.
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include <config.h>
 #include <net/association.h>
 #include <net/stream.h>
 #include <net/stream_policy_factory.h>
-#include <test/test_bitcoin.h>
+#include <test/test_blink.h>
 
 #include <boost/algorithm/string.hpp>
 #include <boost/test/unit_test.hpp>

@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SCRIPT_SIGN_H
-#define BITCOIN_SCRIPT_SIGN_H
+#ifndef BLINK_SCRIPT_SIGN_H
+#define BLINK_SCRIPT_SIGN_H
 
 #include "script/interpreter.h"
 #include "script/sighashtype.h"
@@ -107,4 +107,4 @@ SignatureData DataFromTransaction(const CMutableTransaction &tx,
 void UpdateTransaction(CMutableTransaction &tx, unsigned int nIn,
                        const SignatureData &data);
 
-#endif // BITCOIN_SCRIPT_SIGN_H
+#endif // BLINK_SCRIPT_SIGN_H

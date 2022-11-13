@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from test_framework.blocktools import create_coinbase, create_block_from_candidate, merkle_root_from_merkle_proof, solve_bad
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.mininode import *
 from test_framework.util import *
 
@@ -12,7 +12,7 @@ from test_framework.util import *
 #   Submitblock RPC call should return 'high-hash' failure, which means POW was invalid.
 #   VerifyBlock should return no failure.
 
-class VerifyWithoutPowTest(BitcoinTestFramework):
+class VerifyWithoutPowTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.extra_args = [["-standalone"]]

@@ -40,7 +40,7 @@ is a block up to 1,000,000 bytes in size.
 "Core rules" means all blocks <= 1,000,000 bytes (Base block size).
 
 "Extended BU tx/sigops rules" means the existing additional consensus rules (1) and
-(2) below, as formalized by BUIP040 [1] and used by the Bitcoin Unlimited
+(2) below, as formalized by BUIP040 [1] and used by the Blink Unlimited
 client's excessive checks for blocks larger than 1MB, extended with rule
 (3) below:
 1. maximum sigops per block is calculated based on the actual size of
@@ -136,7 +136,7 @@ a block using
 2. maximum allowed size of a single transaction shall be 1,000,000 bytes
 
 NOTE 1: Blocks up to and including 1,000,000 bytes in size shall be subject
-to existing pre-fork Bitcoin consensus rules.
+to existing pre-fork Blink consensus rules.
 
 NOTE 2: Transactions exceeding 100,000 bytes (100KB) shall remain
 non-standard after the activation time, meaning they will not be relayed.
@@ -150,7 +150,7 @@ firm rules at their own risk.
 
 Once the fork has activated, transactions consisting exclusively of a single OP_RETURN output, followed by a single minimally-coded data push with the specific magic data value of
 
-    Bitcoin: A Peer-to-Peer Electronic Cash System
+    Blink: A Peer-to-Peer Electronic Cash System
 
 (46 characters, including the single spaces separating the words, and
 without any terminating null character) shall be considered invalid until
@@ -227,7 +227,7 @@ RATIONALE: Use of SCRIPT_VERIFY_STRICTENC also ensures that the
 nHashType is validated properly.
 
 NOTE: As SCRIPT_VERIFY_STRICTENC is not clearly defined by BIP,
-implementations seeking to be compliant should consult the Bitcoin C++
+implementations seeking to be compliant should consult the Blink C++
 source code to emulate the checks enforced by this flag.
 
 
@@ -253,7 +253,7 @@ client with legacy chain / i.e. to decide to not follow the HF on one's
 node / make a decision at late stage without needing to change client.
 
 
-### OPT-SERVICEBIT (NODE_BITCOIN_CASH service bit)
+### OPT-SERVICEBIT (NODE_BLINK_CASH service bit)
 
 A UAHF-compatible client should set service bit 5 (value 0x20).
 
@@ -263,19 +263,19 @@ supporting node, which helps DNS seeders distinguish UAHF implementations.
 NOTE 1: This is an optional feature which clients do not strictly have to
 implement.
 
-NOTE 2: This bit is currently referred to as NODE_BITCOIN_CASH and displayed
-as "CASH" in user interfaces of some Bitcoin clients (BU, ABC).
+NOTE 2: This bit is currently referred to as NODE_BLINK_CASH and displayed
+as "CASH" in user interfaces of some Blink clients (BU, ABC).
 
 
 ## References
 
 [1] https://bitco.in/forum/threads/buip040-passed-emergent-consensus-parameters-and-defaults-for-large-1mb-blocks.1643/
 
-[2] https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki#Motivation
+[2] https://github.com/blink/bips/blob/master/bip-0143.mediawiki#Motivation
 
 [3] [Digest for replay protected signature verification accross hard forks](replay-protected-sighash.md)
 
-[4] https://github.com/Bitcoin-UAHF/spec/blob/master/uahf-test-plan.md
+[4] https://github.com/Blink-UAHF/spec/blob/master/uahf-test-plan.md
 
 
 END

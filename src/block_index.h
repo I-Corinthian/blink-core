@@ -1,8 +1,8 @@
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_BLOCKINDEX_H
-#define BITCOIN_BLOCKINDEX_H
+#ifndef BLINK_BLOCKINDEX_H
+#define BLINK_BLOCKINDEX_H
 
 #include "arith_uint256.h"
 #include "consensus/params.h"

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 The Bitcoin SV developers
+# Copyright (c) 2019 The Blink SV developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 from test_framework import mininode
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 import time
 import struct
@@ -31,7 +31,7 @@ class CProtoconfWithZeroFields():
             % (self.number_of_fields)
 
 # New class that represents Protoconf upgraded with a new field,
-# not implemented by current version of bitcoind
+# not implemented by current version of blinkd
 class CProtoconfWithNewField(mininode.CProtoconf):
 
     def __init__(self, number_of_fields=2, max_recv_payload_length=0, new_property=0):
@@ -67,7 +67,7 @@ class msg_protoconf_largest():
     def __repr__(self):
         return "msg_protoconf(data=%s)" % (repr(self.data))
 
-class BsvProtoconfVersionsCompatibility(BitcoinTestFramework):
+class BsvProtoconfVersionsCompatibility(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -103,7 +103,7 @@ class BsvProtoconfVersionsCompatibility(BitcoinTestFramework):
         ELEMENTS_PER_2MiB = 58254
 
         # 1. test
-        # Send protoconf with 0 fields. Bitcoind should disconnect the node, since minimum number of fields is 1
+        # Send protoconf with 0 fields. Blinkd should disconnect the node, since minimum number of fields is 1
         test_node = mininode.NodeConnCB()
         def send_protoconf(conn):
             conn.send_message(mininode.msg_protoconf(CProtoconfWithZeroFields()))
@@ -143,7 +143,7 @@ class BsvProtoconfVersionsCompatibility(BitcoinTestFramework):
 
         # Set MESSAGE_LENGTH_1MiB_PLUS_1_ELEMENT to one that is slightly larger than 1MiB
         # 1MiB -- 29126 elements --> work with 29127 elements
-        # In that way it is sure that bitcoind does not just take default (1MiB value).
+        # In that way it is sure that blinkd does not just take default (1MiB value).
         MESSAGE_LENGTH_1MiB_PLUS_1_ELEMENT = 1 * 1024 * 1024 + 4 + 32
         with run_connection(test_node, "2 fields"):
             expected_inv_len = mininode.CInv.estimateMaxInvElements(MESSAGE_LENGTH_1MiB_PLUS_1_ELEMENT) #29127 elements
@@ -153,14 +153,14 @@ class BsvProtoconfVersionsCompatibility(BitcoinTestFramework):
             # 3.0. Prepare initial block. Needed so that GETDATA can be send back.
             self.nodes[0].generate(1)
 
-            # 3.1. Receive bitcoind's protoconf (currently 2MiB) and send it Inv message
+            # 3.1. Receive blinkd's protoconf (currently 2MiB) and send it Inv message
             test_node.wait_for_protoconf()
             max_recv_payload_length = test_node.last_message["protoconf"].protoconf.max_recv_payload_length
             assert_equal(max_recv_payload_length, mininode.MAX_PROTOCOL_RECV_PAYLOAD_LENGTH)
             maxInvElements =  mininode.CInv.estimateMaxInvElements(max_recv_payload_length)
-            logger.info("Received bitcoind max message size: {} B, which represents {} elements. ".format(max_recv_payload_length, maxInvElements))
+            logger.info("Received blinkd max message size: {} B, which represents {} elements. ".format(max_recv_payload_length, maxInvElements))
 
-            # 3.2. Send bitcoind Inv message (should be 2MiB)
+            # 3.2. Send blinkd Inv message (should be 2MiB)
             test_node.send_message(mininode.msg_inv([mininode.CInv(mininode.CInv.TX, i) for i in range(0, maxInvElements)]))
 
             # 3.3. Receive GetData.

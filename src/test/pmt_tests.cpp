@@ -1,5 +1,5 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "arith_uint256.h"
@@ -7,7 +7,7 @@
 #include "merkleblock.h"
 #include "serialize.h"
 #include "streams.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include "uint256.h"
 #include "version.h"
 #include "merkletree.h"

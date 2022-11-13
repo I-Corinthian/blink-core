@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CRYPTO_SHA512_H
-#define BITCOIN_CRYPTO_SHA512_H
+#ifndef BLINK_CRYPTO_SHA512_H
+#define BLINK_CRYPTO_SHA512_H
 
 #include <cstdint>
 #include <cstdlib>
@@ -24,4 +24,4 @@ public:
     CSHA512 &Reset();
 };
 
-#endif // BITCOIN_CRYPTO_SHA512_H
+#endif // BLINK_CRYPTO_SHA512_H

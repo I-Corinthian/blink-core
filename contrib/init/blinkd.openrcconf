@@ -1,0 +1,33 @@
+# /etc/conf.d/blinkd: config file for /etc/init.d/blinkd
+
+# Config file location
+#BLINKD_CONFIGFILE="/etc/blink/blink.conf"
+
+# What directory to write pidfile to?  (created and owned by $BLINKD_USER)
+#BLINKD_PIDDIR="/var/run/blinkd"
+
+# What filename to give the pidfile
+#BLINKD_PIDFILE="${BLINKD_PIDDIR}/blinkd.pid"
+
+# Where to write blinkd data (be mindful that the blockchain is large)
+#BLINKD_DATADIR="/var/lib/blinkd"
+
+# User and group to own blinkd process
+#BLINKD_USER="blink"
+#BLINKD_GROUP="blink"
+
+# Path to blinkd executable
+#BLINKD_BIN="/usr/bin/blinkd"
+
+# Nice value to run blinkd under
+#BLINKD_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BLINKD_OPTS="-disablewallet"
+
+# The timeout in seconds OpenRC will wait for blinkd to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+BLINKD_SIGTERM_TIMEOUT=60

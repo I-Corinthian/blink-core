@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "rpc/client.h"
@@ -245,7 +245,7 @@ UniValue RPCConvertNamedValues(const std::string &strMethod,
 UniValue CallRPC(const std::string &strMethod, const UniValue &params)
 {
     // Create config & response objects
-    rpc::client::RPCClientConfig config { rpc::client::RPCClientConfig::CreateForBitcoind() };
+    rpc::client::RPCClientConfig config { rpc::client::RPCClientConfig::CreateForBlinkd() };
     rpc::client::StringHTTPResponse response {};
 
     // Call RPC
@@ -305,7 +305,7 @@ int AppInitRPC(int argc, char *argv[], const std::string& usage_format, const st
     }
     try
     {
-        gArgs.ReadConfigFile(gArgs.GetArg("-conf", BITCOIN_CONF_FILENAME));
+        gArgs.ReadConfigFile(gArgs.GetArg("-conf", BLINK_CONF_FILENAME));
     }
     catch (const std::exception &e)
     {

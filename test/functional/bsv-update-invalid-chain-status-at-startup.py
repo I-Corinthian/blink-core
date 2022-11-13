@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test that at startup node updates header-only tip statuses of forks that contain invalid blocks.
@@ -34,11 +34,11 @@ After node starts, statuses of invalid forks should be invalid instead of header
 import shutil
 
 from time import sleep
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 from test_framework.blocktools import wait_for_tip, wait_for_tip_status
 
-class UpdateInvalidChainAtStartup(BitcoinTestFramework):
+class UpdateInvalidChainAtStartup(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

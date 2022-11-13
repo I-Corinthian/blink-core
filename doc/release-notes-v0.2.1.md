@@ -1,4 +1,4 @@
-# Bitcoin SV version 0.2.1 Release Notes
+# Blink SV version 0.2.1 Release Notes
 
 ## List of Changes
     getblock optionally returns rpc transaction details
@@ -8,7 +8,7 @@
     libgen.h included unconditionally in vmtouch.cpp.
     Fixes for Mac and Windows builds.
     Minor refactoring and potential bug fixes.
-    Remove Bitcoin ABC cashaddr address format.
+    Remove Blink ABC cashaddr address format.
     Increase UTXO cache default to hold the entire UTXO set in cache.
     Calls to TestBlockValidity() call are now configurable using -blockcandidatevaliditytest option.
     Support for OP_FALSE OP_RETURN as a standard transactions
@@ -19,6 +19,6 @@
 NA
 
 # Previous Releases
-* [Version 0.1.0](release-notes-v0.1.0.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.1.0/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.1.0) - 2018-10-15
-* [Version 0.1.1](release-notes-v0.1.1.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.1.1/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.1.1) - 2019-02-11
-* [Version 0.2.0](release-notes-v0.2.0.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.2.0/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.2.0) - 2019-06-05
+* [Version 0.1.0](release-notes-v0.1.0.md) - [Download](https://download.blinksv.io/blinksv/0.1.0/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.1.0) - 2018-10-15
+* [Version 0.1.1](release-notes-v0.1.1.md) - [Download](https://download.blinksv.io/blinksv/0.1.1/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.1.1) - 2019-02-11
+* [Version 0.2.0](release-notes-v0.2.0.md) - [Download](https://download.blinksv.io/blinksv/0.2.0/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.2.0) - 2019-06-05

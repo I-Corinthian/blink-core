@@ -7,7 +7,7 @@
 # Test BIP68 implementation
 #
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 from test_framework.script import *
 from test_framework.mininode import *
@@ -23,7 +23,7 @@ SEQUENCE_LOCKTIME_MASK = 0x0000ffff
 NOT_FINAL_ERROR = "64: non-BIP68-final"
 
 
-class BIP68Test(BitcoinTestFramework):
+class BIP68Test(BlinkTestFramework):
     def calculate_mining_fee(self, tx):
         tx_size = len(ToHex(tx))
         fee = self.blockmintxfee_sats * tx_size

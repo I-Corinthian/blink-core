@@ -6,21 +6,21 @@
 
 import struct
 
-from test_framework.test_framework import BitcoinTestFramework, SkipTest
+from test_framework.test_framework import BlinkTestFramework, SkipTest
 from test_framework.util import (assert_equal, bytes_to_hex_str,
                                  hash256, check_zmq_test_requirements,
                                  zmq_port)
 
 
-class ZMQTest (BitcoinTestFramework):
+class ZMQTest (BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
 
     def setup_nodes(self):
 
-        # Check that bitcoin has been built with ZMQ enabled and we have python zmq package installed.
+        # Check that blink has been built with ZMQ enabled and we have python zmq package installed.
         check_zmq_test_requirements(self.options.configfile,
-                                    SkipTest("bitcoind has not been built with zmq enabled."))
+                                    SkipTest("blinkd has not been built with zmq enabled."))
         # import zmq when we know we have the requirements for test with zmq.
         import zmq
 

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "wallet/wallet.h"
@@ -2302,7 +2302,7 @@ void CWallet::AvailableCoins(std::vector<COutput> &vCoins, bool fOnlySafe,
 
         bool safeTx = pcoin->IsTrusted();
 
-        // Bitcoin-ABC: Removed check that prevents consideration of coins from
+        // Blink-ABC: Removed check that prevents consideration of coins from
         // transactions that are replacing other transactions. This check based
         // on pcoin->mapValue.count("replaces_txid") which was not being set
         // anywhere.
@@ -2316,7 +2316,7 @@ void CWallet::AvailableCoins(std::vector<COutput> &vCoins, bool fOnlySafe,
         // D could all be accepted (instead of just B and D, or just A and A'
         // like the user would want).
 
-        // Bitcoin-ABC: retained this check as 'replaced_by_txid' is still set
+        // Blink-ABC: retained this check as 'replaced_by_txid' is still set
         // in the wallet code.
         if (nDepth == 0 && pcoin->mapValue.count("replaced_by_txid")) {
             safeTx = false;
@@ -2831,7 +2831,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient> &vecSend,
             if (nChange > Amount(0)) {
                 // Fill a vout to ourself.
                 // TODO: pass in scriptChange instead of reservekey so change
-                // transaction isn't always pay-to-bitcoin-address.
+                // transaction isn't always pay-to-blink-address.
                 CScript scriptChange;
 
                 // Coin control: send change to custom address.
@@ -3905,8 +3905,8 @@ void CWallet::GetKeyBirthTimes(
  *   the block time.
  *
  * For more information see CWalletTx::nTimeSmart,
- * https://bitcointalk.org/?topic=54527, or
- * https://github.com/bitcoin/bitcoin/pull/1393.
+ * https://blinktalk.org/?topic=54527, or
+ * https://github.com/blink/blink/pull/1393.
  */
 unsigned int CWallet::ComputeTimeSmart(const CWalletTx &wtx) const {
     unsigned int nTimeSmart = wtx.nTimeReceived;

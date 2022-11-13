@@ -1,4 +1,4 @@
-# Bitcoin SV version 0.2.2 Release Notes
+# Blink SV version 0.2.2 Release Notes
 
 This is an optional beta release for the BSV mainnet; however it is a required update for the Scaling Test Network. 
 Miners are encouraged to test this release carefully and maintain a v0.2.1 version on standby.
@@ -6,7 +6,7 @@ Miners are encouraged to test this release carefully and maintain a v0.2.1 versi
 ## List of Changes
 * Do not load whole block into memory when responding to getblock request
 * Windows build errors
-* add bitcoin-miner to CMakeLists && Add Visual Studio 2017 Linux remote debug support
+* add blink-miner to CMakeLists && Add Visual Studio 2017 Linux remote debug support
 * Mempool journal for mining candidates.
 * Use the journal to build incremental mining candidates
 * Race condition in ConnMan::ParallelForEachNode
@@ -18,7 +18,7 @@ Miners are encouraged to test this release carefully and maintain a v0.2.1 versi
 * Use single copy of helper functions in functional tests
 * Provide a way to communicate protocol message size and other limits to other peers
 * bsv-block-size-activation-default test is failing
-* fix bitcoin-util-test.py
+* fix blink-util-test.py
 * Use OP_FALSE OP_RETURN when generating transactions containing data
 * Rest API /rest/block/BLOCK-HASH.json not working when response greater than 2 MB
 * Include thread name in debug log message
@@ -38,19 +38,19 @@ The STN blockchain has grown to over 1TB and it has served its current purpose o
 1 million transactions per block. The STN is being reset to reduce the size of the blockchain (from ~1.5TB to about 
 1MB). 
 
-The Bitcoin SV Node implementation will automatically switch to the new blockchain, however this may take a large amount
+The Blink SV Node implementation will automatically switch to the new blockchain, however this may take a large amount
 of time and it will not automatically clear the blocks from the old blockchain from disk. We recommend that you manually
 clear the old block data and start from scratch with the STN. For more information, see the 
-[bitcoinscaling.io website](http://bitcoinscaling.io/oct-2019-stn-rollback).
+[blinkscaling.io website](http://blinkscaling.io/oct-2019-stn-rollback).
   
 * The Scaling Test Network has been reset at block height 1. This block has hash 
   `00000000e23f9436cc8a6d6aaaa515a7b84e7a1720fc9f92805c0007c77420c4`.
-* Previous releases of Bitcoin SV node software are not compatiable with this reset. Please upgrade to continue using the STN
+* Previous releases of Blink SV node software are not compatiable with this reset. Please upgrade to continue using the STN
 * Acceptance of low difficutly blocks after 20mn has been disabled to bring behaviour more in line with mainnet
 * STN Blocks and Chaindata folders can be deleted before running this release.
 
 # Previous Releases
-* [Version 0.1.0](release-notes-v0.1.0.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.1.0/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.1.0) - 2018-10-15
-* [Version 0.1.1](release-notes-v0.1.1.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.1.1/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.1.1) - 2019-02-11
-* [Version 0.2.0](release-notes-v0.2.0.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.2.0/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.2.0) - 2019-06-05
-* [Version 0.2.1](release-notes-v0.2.1.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.2.1/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.2.1) - 2019-07-12
+* [Version 0.1.0](release-notes-v0.1.0.md) - [Download](https://download.blinksv.io/blinksv/0.1.0/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.1.0) - 2018-10-15
+* [Version 0.1.1](release-notes-v0.1.1.md) - [Download](https://download.blinksv.io/blinksv/0.1.1/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.1.1) - 2019-02-11
+* [Version 0.2.0](release-notes-v0.2.0.md) - [Download](https://download.blinksv.io/blinksv/0.2.0/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.2.0) - 2019-06-05
+* [Version 0.2.1](release-notes-v0.2.1.md) - [Download](https://download.blinksv.io/blinksv/0.2.1/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.2.1) - 2019-07-12

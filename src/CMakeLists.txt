@@ -1,9 +1,9 @@
-# Copyright (c) 2017 The Bitcoin developers
-# Copyright (c) 2019-2020 Bitcoin Association
+# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2019-2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 cmake_minimum_required(VERSION 3.5)
-project(BitcoinSV)
+project(BlinkSV)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -12,13 +12,13 @@ set(CMAKE_C_VISIBILITY_PRESET hidden)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 option(ENABLE_PROD_BUILD "Enable production build" OFF)
-option(BUILD_BITCOIN_WALLET "Activate the wallet functionality" ON)
-option(BUILD_BITCOIN_ZMQ "Activate the ZeroMQ functionalities" ON)
+option(BUILD_BLINK_WALLET "Activate the wallet functionality" ON)
+option(BUILD_BLINK_ZMQ "Activate the ZeroMQ functionalities" ON)
 
-option(BUILD_BITCOIN_CLI "Build bitcoin-cli" ON)
-option(BUILD_BITCOIN_TX "Build bitcoin-tx" ON)
-option(BUILD_BITCOIN_MINER "Build bitcoin-miner" ON)
-option(BUILD_BITCOIN_BENCH "Build benchmarks" ON)
+option(BUILD_BLINK_CLI "Build blink-cli" ON)
+option(BUILD_BLINK_TX "Build blink-tx" ON)
+option(BUILD_BLINK_MINER "Build blink-miner" ON)
+option(BUILD_BLINK_BENCH "Build benchmarks" ON)
 
 # Ensure that WINDRES_PREPROC is enabled when using windres.
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -67,7 +67,7 @@ if(MSVC)
 	add_compile_options("/MP")
 
 	# Fix Cmake's default compiler options - see also https://gitlab.kitware.com/cmake/community/wikis/FAQ#dynamic-replace
-	# - remove default NDEBUG compile definition to solve #error "Bitcoin cannot be compiled without assertions"
+	# - remove default NDEBUG compile definition to solve #error "Blink cannot be compiled without assertions"
 	# - use static runtime instead of dynamic runtime to match the external libraries  
 	foreach(flag_var
 		CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
@@ -101,9 +101,9 @@ add_subdirectory(leveldb)
 add_subdirectory(secp256k1)
 add_subdirectory(univalue)
 
-# Because the Bitcoin ABc source code is disorganised, we
+# Because the Blink ABc source code is disorganised, we
 # end up with a bunch of libraries without any aparent
-# cohesive structure. This is inherited from Bitcoin Core
+# cohesive structure. This is inherited from Blink Core
 # and reflecting this.
 # TODO: Improve the structure once cmake is rocking.
 
@@ -342,15 +342,15 @@ add_library(common
 
 target_link_libraries(common util secp256k1)
 
-# libbitcoinconsensus
-add_library(bitcoinconsensus
+# libblinkconsensus
+add_library(blinkconsensus
 	arith_uint256.cpp
 	big_int.cpp
 	hash.cpp
 	primitives/transaction.cpp
 	pubkey.cpp
-	script/bitcoinconsensus.cpp
-	script/bitcoinconsensus.h
+	script/blinkconsensus.cpp
+	script/blinkconsensus.h
 	script/instruction.h
 	script/instruction_iterator.h
 	script/interpreter.cpp
@@ -361,13 +361,13 @@ add_library(bitcoinconsensus
 	script/script_num.cpp
 )
 
-target_link_libraries(bitcoinconsensus common)
-target_include_directories(bitcoinconsensus
+target_link_libraries(blinkconsensus common)
+target_include_directories(blinkconsensus
 	PRIVATE
 		${OPENSSL_INCLUDE_DIR}
 )
 
-# Bitcoin server facilities
+# Blink server facilities
 add_library(server
 	abort_node.cpp
 	abort_node.h
@@ -568,7 +568,7 @@ target_include_directories(server
 
 target_link_libraries(server
 	${EVENT_LIBRARY}
-	bitcoinconsensus
+	blinkconsensus
 	leveldb
 )
 
@@ -584,18 +584,18 @@ endif()
 add_subdirectory(test)
 
 # Benchmark suite
-if(BUILD_BITCOIN_BENCH)
+if(BUILD_BLINK_BENCH)
 	add_subdirectory(bench)
 endif()
 
 # Wallet
-if(BUILD_BITCOIN_WALLET)
+if(BUILD_BLINK_WALLET)
 	add_subdirectory(wallet)
 	target_link_libraries(server wallet)
 endif()
 
 # ZeroMQ
-if(BUILD_BITCOIN_ZMQ)
+if(BUILD_BLINK_ZMQ)
 	add_subdirectory(zmq)
 	target_link_libraries(server zmq)
 endif()
@@ -622,52 +622,52 @@ add_library(rpcclient
 )
 target_link_libraries(rpcclient univalue util)
 
-# bitcoin-cli
-if(BUILD_BITCOIN_CLI)
-	add_executable(bitcoin-cli bitcoin-cli.cpp
+# blink-cli
+if(BUILD_BLINK_CLI)
+	add_executable(blink-cli blink-cli.cpp
 )
 	if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-		target_sources(bitcoin-cli PRIVATE bitcoin-cli-res.rc)
+		target_sources(blink-cli PRIVATE blink-cli-res.rc)
 	endif()
 
-	target_include_directories(bitcoin-cli PRIVATE ${EVENT_INCLUDE_DIR})
-	target_link_libraries(bitcoin-cli common rpcclient ${EVENT_LIBRARY})
+	target_include_directories(blink-cli PRIVATE ${EVENT_INCLUDE_DIR})
+	target_link_libraries(blink-cli common rpcclient ${EVENT_LIBRARY})
 endif()
 
-# bitcoin-tx
-if(BUILD_BITCOIN_TX)
-	add_executable(bitcoin-tx bitcoin-tx.cpp
+# blink-tx
+if(BUILD_BLINK_TX)
+	add_executable(blink-tx blink-tx.cpp
 )
 	if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-		target_sources(bitcoin-tx PRIVATE bitcoin-tx-res.rc)
+		target_sources(blink-tx PRIVATE blink-tx-res.rc)
 	endif()
 
-	target_link_libraries(bitcoin-tx bitcoinconsensus)
+	target_link_libraries(blink-tx blinkconsensus)
 endif()
 
-# bitcoin-miner
-if(BUILD_BITCOIN_MINER)
-	add_executable(bitcoin-miner bitcoin-miner.cpp
+# blink-miner
+if(BUILD_BLINK_MINER)
+	add_executable(blink-miner blink-miner.cpp
 )
-	target_include_directories(bitcoin-miner PRIVATE ${EVENT_INCLUDE_DIR})
-	target_link_libraries(bitcoin-miner common rpcclient bitcoinconsensus ${EVENT_LIBRARY})
+	target_include_directories(blink-miner PRIVATE ${EVENT_INCLUDE_DIR})
+	target_link_libraries(blink-miner common rpcclient blinkconsensus ${EVENT_LIBRARY})
 endif()
 
-# bitcoind
-add_executable(bitcoind bitcoind.cpp
+# blinkd
+add_executable(blinkd blinkd.cpp
 )
 target_link_libraries(
-	bitcoind
+	blinkd
 	server
     rpcclient
 	$<$<PLATFORM_ID:Linux>:rt>) # use librt.so for aio on Linux
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-	target_sources(bitcoind PRIVATE bitcoind-res.rc)
+	target_sources(blinkd PRIVATE blinkd-res.rc)
 endif()
 
 if (MSVC)
 	# prevents default build from running unit tests automaticaly
-	set_target_properties(check-bitcoin PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD TRUE)
+	set_target_properties(check-blink PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD TRUE)
 	set_target_properties(check-secp256k1 PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD TRUE)
 	set_target_properties(check-univalue PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD TRUE)
 	set_target_properties(check-all PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD TRUE)

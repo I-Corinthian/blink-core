@@ -1,17 +1,17 @@
 // Copyright (c) 2014-2015 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_CHAINPARAMSBASE_H
-#define BITCOIN_CHAINPARAMSBASE_H
+#ifndef BLINK_CHAINPARAMSBASE_H
+#define BLINK_CHAINPARAMSBASE_H
 
 #include <memory>
 #include <string>
 
 /**
  * CBaseChainParams defines the base parameters
- * (shared between bitcoin-cli and bitcoind)
- * of a given instance of the Bitcoin system.
+ * (shared between blink-cli and blinkd)
+ * of a given instance of the Blink system.
  */
 class CBaseChainParams
 {
@@ -62,4 +62,4 @@ void SelectBaseParams(const std::string &chain);
  */
 std::string ChainNameFromCommandLine();
 
-#endif // BITCOIN_CHAINPARAMSBASE_H
+#endif // BLINK_CHAINPARAMSBASE_H

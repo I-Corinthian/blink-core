@@ -1,12 +1,12 @@
 Responsible Disclosure Policy
 =============================
 
-Please check the [Bitcoin SV website](https://bitcoinsv.io/security/) for the most up-to-date version of this policy.
+Please check the [Blink SV website](https://blinksv.io/security/) for the most up-to-date version of this policy.
 
 Introduction
 ------------
 Security is core to our values, and we value the input of security researchers acting in good faith to help us maintain 
-high standards of security and privacy for our users and the Bitcoin SV blockchain. This includes encouraging 
+high standards of security and privacy for our users and the Blink SV blockchain. This includes encouraging 
 responsible vulnerability research and disclosure. This policy sets out our definition of good faith in the context of 
 finding and reporting vulnerabilities, as well as what you can expect from us in return.
 
@@ -64,7 +64,7 @@ Official Channels
 -----------------
 To help us receive vulnerability submissions we use the following official reporting channel:
 
-* email: security@bitcoinsv.io
+* email: security@blinksv.io
 
 If you think you’ve found a vulnerability, please include the following details with your report and be as descriptive 
 as possible:
@@ -74,7 +74,7 @@ as possible:
   recordings, and proof-of-concept scripts are all helpful), and
 * Your name/handle and a link for recognition.
 
-Please encrypt all information that you send to us using our PGP key (security@bitcoinsv.io). This key is available from 
+Please encrypt all information that you send to us using our PGP key (security@blinksv.io). This key is available from 
 Public PGP Key Servers such as the [MIT PGP Public Key Server](https://pgp.mit.edu/). The PGP key has ID `7A20AB62` and 
 fingerprint `E8EB 970A 1C60 7DF0 822E 1388 F969 76FD 7A20 AB62`. The PGP key is included in its entirety at the
 bottom of this page for your convenience.
@@ -82,7 +82,7 @@ bottom of this page for your convenience.
 Rewards
 -------
 A ‘bounty’ or reward may be payable for the responsible disclosure of vulnerabilities in accordance with our policy and 
-ground rules, and provided that the Bitcoin SV security team is one of the original recipients of the disclosure.
+ground rules, and provided that the Blink SV security team is one of the original recipients of the disclosure.
 
 The final amount is always chosen at the discretion of the reward panel, but the general guidelines below provides 
 examples of the maximum rewards that may be payable based on the severity of the vulnerability that has been found. 
@@ -95,17 +95,17 @@ network will be considered economically unviable.
 | Reward*	| $100,000 USD | $50,000 USD | $10,000 USD | $1,000 USD |
  
 
-*All rewards will be paid out in Bitcoin SV from CoinGeek Mining’s open source budget.
+*All rewards will be paid out in Blink SV from CoinGeek Mining’s open source budget.
 
 Scope
 -----
-Our bug bounty policy focuses on the code base for Bitcoin SV and spans end-to-end: from soundness of protocols (such 
+Our bug bounty policy focuses on the code base for Blink SV and spans end-to-end: from soundness of protocols (such 
 as the blockchain consensus model, the wire and p2p protocols, proof of work, etc.), protocol implementation and 
 compliance to network security and consensus integrity. Classical client security as well as security of cryptographic 
 primitives are also part of the policy.
 
 Scope is limited to code contained in specified branches of the repository located at: 
-[https://github.com/bitcoin-sv/bitcoin-sv](https://github.com/bitcoin-sv/bitcoin-sv). 
+[https://github.com/blink-sv/blink-sv](https://github.com/blink-sv/blink-sv). 
 Branches in and out of scope are specified by the branch name:
 
 Branches in scope:
@@ -120,7 +120,7 @@ Branches out of scope:
 * all other branches not specified as in scope
 
 The scope of this policy is limited to those Operating Systems & hardware platforms for which binaries are released
-by the Bitcoin SV Node implementation team. 
+by the Blink SV Node implementation team. 
  
 
 Out-of-scope
@@ -138,12 +138,12 @@ Resource exhaustion attacks out of scope
 ----------------------------------------
 
 We define "resource exhaustion attack" as an exploit designed to consume large amounts of CPU, memory, bandwidth or 
-storage resources whether by normal operation of the Bitcoin SV protocol or by intentionally crafting blocks or 
+storage resources whether by normal operation of the Blink SV protocol or by intentionally crafting blocks or 
 transactions with unusual behavioural characteristics.
 
-Bitcoin by design requires that miners competitively push the boundaries of resource limits to ensure ongoing growth in 
+Blink by design requires that miners competitively push the boundaries of resource limits to ensure ongoing growth in 
 network capacity. As such default settings of various resource limiting features are intentionally defaulted to values 
-which may not be considered safe under unusual situations. It is intended for operators of the Bitcoin SV software to 
+which may not be considered safe under unusual situations. It is intended for operators of the Blink SV software to 
 choose and set these limits. Various other mechanisms, both technical and economic, are in place to discourage such 
 attacks either by making them expensive to execute, by minimising their impact on the majority of network operations or 
 by limiting resource usage with configurable consensus or policy limits.
@@ -159,8 +159,8 @@ in this category are subject to the following conditions:
 * The attack must be demonstrably executable on a version of the software that would otherwise be deemed in scope if not 
   for the resource exhaustion attack exclusion
 
-For obvious security reasons it would not be responsible for the Bitcoin SV team to publicly document known attack vectors. 
-This necessarily requires a degree of good faith however it is strongly in the interest of the Bitcoin SV team to 
+For obvious security reasons it would not be responsible for the Blink SV team to publicly document known attack vectors. 
+This necessarily requires a degree of good faith however it is strongly in the interest of the Blink SV team to 
 encourage such disclosures and build trust with the security research community through building a track record of 
 making such bounty awards.
 
@@ -170,9 +170,9 @@ Sensitive data
 Please note, we do not want to receive any sensitive data during any disclosure, such as personally identifiable 
 information (PII) or any data associated with private/public keys.
 
-If in any doubt, send an email to `security@bitcoinsv.io`.
+If in any doubt, send an email to `security@blinksv.io`.
 
-Bitcoin SV Security Team PGP Key
+Blink SV Security Team PGP Key
 --------------------------------
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----

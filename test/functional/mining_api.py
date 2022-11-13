@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 """
@@ -13,7 +13,7 @@ the candidate size
 """
 
 from test_framework.blocktools import create_coinbase, merkle_root_from_merkle_proof, solve_bad, create_block_from_candidate
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.mininode import CBlock, ToHex
 from test_framework.util import connect_nodes_bi, create_confirmed_utxos, satoshi_round, assert_raises_rpc_error, assert_equal, wait_until, sync_blocks, sync_mempools
 from decimal import Decimal
@@ -98,7 +98,7 @@ def connect_nodes_mesh(nodes):
             connect_nodes_bi(nodes, i, j)
 
 # The main test class
-class MiningTest(BitcoinTestFramework):
+class MiningTest(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 2

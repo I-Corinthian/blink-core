@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Bitcoin Association.
+// Copyright (c) 2019 Blink Association.
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "mining/journal.h"
@@ -6,7 +6,7 @@
 #include "mining/journal_change_set.h"
 #include "random.h"
 
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 
 #include <boost/test/unit_test.hpp>
 

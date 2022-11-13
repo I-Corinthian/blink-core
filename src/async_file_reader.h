@@ -1,8 +1,8 @@
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_ASYNC_FILE_READER_H
-#define BITCOIN_ASYNC_FILE_READER_H
+#ifndef BLINK_ASYNC_FILE_READER_H
+#define BLINK_ASYNC_FILE_READER_H
 
 #include <cstdio>
 #include <memory>
@@ -170,4 +170,4 @@
 
 #endif
 
-#endif // BITCOIN_ASYNC_FILE_READER_H
+#endif // BLINK_ASYNC_FILE_READER_H

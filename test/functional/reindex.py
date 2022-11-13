@@ -6,12 +6,12 @@
 #
 # Test -reindex and -reindex-chainstate with CheckBlockIndex
 #
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until
 import time
 
 
-class ReindexTest(BitcoinTestFramework):
+class ReindexTest(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

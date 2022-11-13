@@ -1,8 +1,8 @@
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_BLOCKSTREAMS_H
-#define BITCOIN_BLOCKSTREAMS_H
+#ifndef BLINK_BLOCKSTREAMS_H
+#define BLINK_BLOCKSTREAMS_H
 
 #include "primitives/block.h"
 #include "block_index.h"
@@ -245,4 +245,4 @@ private:
     size_t mLastChunkSize = 0u;
 };
 
-#endif // BITCOIN_BLOCKSTREAMS_H
+#endif // BLINK_BLOCKSTREAMS_H

@@ -1,5 +1,5 @@
 // Copyright (c) 2015 G. Andrew Stone
-// Copyright (c) 2018-2019 Bitcoin Association.
+// Copyright (c) 2018-2019 Blink Association.
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "mining.h"
@@ -46,12 +46,12 @@ CMiningCandidateRef mkblocktemplate(const Config& config, bool coinbaseRequired)
 
     if ((g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0) && !gArgs.IsArgSet("-standalone")) 
     {
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Bitcoin is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Blink is not connected!");
     }
 
     if (IsInitialBlockDownload()) 
     {
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Bitcoin is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Blink is downloading blocks...");
     }
 
     if(!mining::g_miningFactory)

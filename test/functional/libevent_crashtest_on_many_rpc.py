@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-# Test many rpc calls against bitcoind to reveal a
+# Test many rpc calls against blinkd to reveal a
 # crash regression introduced by libevent-2.1.7
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 
 import http.client
@@ -14,7 +14,7 @@ import requests
 import json
 
 
-class RpcFloddingTest (BitcoinTestFramework):
+class RpcFloddingTest (BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
 

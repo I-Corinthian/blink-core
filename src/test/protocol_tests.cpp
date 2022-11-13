@@ -1,11 +1,11 @@
-// Copyright (c) 2019-2021 Bitcoin Association.
+// Copyright (c) 2019-2021 Blink Association.
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "config.h"
 #include "netmessagemaker.h"
 #include "protocol.h"
 
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 
 #include <boost/test/unit_test.hpp>
 

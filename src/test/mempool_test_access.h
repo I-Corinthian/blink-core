@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_TEST_MEMPOOL_TEST_ACCESS_H
-#define BITCOIN_TEST_MEMPOOL_TEST_ACCESS_H
+#ifndef BLINK_TEST_MEMPOOL_TEST_ACCESS_H
+#define BLINK_TEST_MEMPOOL_TEST_ACCESS_H
 
 #include "txmempool.h"
 #include "mempooltxdb.h"
@@ -146,4 +146,4 @@ template<> struct CTxMemPoolEntry::UnitTestAccess<UnitTestAccessTag>
 
 using CTestTxMemPoolEntry = CTxMemPoolEntry::UnitTestAccess<UnitTestAccessTag>;
 
-#endif // BITCOIN_TEST_MEMPOOL_TEST_ACCESS_H
+#endif // BLINK_TEST_MEMPOOL_TEST_ACCESS_H

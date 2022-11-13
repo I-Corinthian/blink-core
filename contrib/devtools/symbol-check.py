@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Copyright (c) 2014 Wladimir J. van der Laan
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 '''
 A script to check that the (Linux) executables produced by gitian only contain
@@ -57,7 +57,7 @@ READELF_CMD = os.getenv('READELF', '/usr/bin/readelf')
 CPPFILT_CMD = os.getenv('CPPFILT', '/usr/bin/c++filt')
 # Allowed NEEDED libraries
 ALLOWED_LIBRARIES = {
-    # bitcoind
+    # blinkd
     'libgcc_s.so.1',  # GCC base support
     'libc.so.6',  # C library
     'libpthread.so.0',  # threading

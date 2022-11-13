@@ -25,7 +25,7 @@ Introduction
 ============
 
 This document describes the reinstatement of big number arithmetic into
-Bitcoin SV. Big Number arithmetic will remove the current limit
+Blink SV. Big Number arithmetic will remove the current limit
 on the size of numbers in the Script language. Big number support will
 enable cryptographic functionality in Script.
 
@@ -37,7 +37,7 @@ if it had been processed by the original implementation.
 Pre-Genesis Functionality
 =========================
 
-In the current implementation of Bitcoin Script valid numbers are
+In the current implementation of Blink Script valid numbers are
 limited to 4-bytes. The semantics are subtle, though: operands must be
 in the range \[-2^31 +1...2^31 -1\], but results may overflow; overflows 
 will not raise errors as long as the results are not used in a subsequent numeric operations.

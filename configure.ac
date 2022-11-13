@@ -6,22 +6,22 @@ define(_CLIENT_VERSION_REVISION, 13)
 define(_CLIENT_VERSION_BUILD, 0)
 define(_COPYRIGHT_YEAR, 2022)
 define(_COPYRIGHT_HOLDERS,[The %s Association])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Bitcoin]])
-AC_INIT([Bitcoin SV],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/bitcoin-sv/bitcoin-sv/issues],[bitcoin-sv],[https://bitcoinsv.io/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Blink]])
+AC_INIT([Blink SV],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/blink-sv/blink-sv/issues],[blink-sv],[https://blinksv.io/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
-AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
+AC_CONFIG_HEADERS([src/config/blink-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=bitcoind
-BITCOIN_CLI_NAME=bitcoin-cli
-BITCOIN_TX_NAME=bitcoin-tx
+BLINK_DAEMON_NAME=blinkd
+BLINK_CLI_NAME=blink-cli
+BLINK_TX_NAME=blink-tx
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef BITCOIN_BITCOIN_CONFIG_H])
-AH_TOP([#define BITCOIN_BITCOIN_CONFIG_H])
-AH_BOTTOM([#endif // BITCOIN_BITCOIN_CONFIG_H])
+AH_TOP([#ifndef BLINK_BLINK_CONFIG_H])
+AH_TOP([#define BLINK_BLINK_CONFIG_H])
+AH_BOTTOM([#endif // BLINK_BLINK_CONFIG_H])
 
 dnl faketime breaks configure and is only needed for make. Disable it here.
 unset FAKETIME
@@ -75,7 +75,7 @@ AC_PATH_TOOL(RANLIB, ranlib)
 AC_PATH_TOOL(STRIP, strip)
 AC_PATH_TOOL(GCOV, gcov)
 AC_PATH_PROG(LCOV, lcov)
-dnl Python 3.x is supported from 3.4 on (see https://github.com/bitcoin/bitcoin/issues/7893)
+dnl Python 3.x is supported from 3.4 on (see https://github.com/blink/blink/issues/7893)
 AC_PATH_PROGS([PYTHON], [python3.6 python3.5 python3.4 python3 python2.7 python2 python])
 AC_PATH_PROG(GENHTML, genhtml)
 AC_PATH_PROG([GIT], [git])
@@ -382,21 +382,21 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build bitcoin-cli bitcoin-tx (default=yes)])],
-  [build_bitcoin_utils=$withval],
-  [build_bitcoin_utils=yes])
+  [build blink-cli blink-tx (default=yes)])],
+  [build_blink_utils=$withval],
+  [build_blink_utils=yes])
 
 AC_ARG_WITH([libs],
   [AS_HELP_STRING([--with-libs],
   [build libraries (default=yes)])],
-  [build_bitcoin_libs=$withval],
-  [build_bitcoin_libs=yes])
+  [build_blink_libs=$withval],
+  [build_blink_libs=yes])
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build bitcoind daemon (default=yes)])],
-  [build_bitcoind=$withval],
-  [build_bitcoind=yes])
+  [build blinkd daemon (default=yes)])],
+  [build_blinkd=$withval],
+  [build_blinkd=yes])
 
 use_pkgconfig=yes
 case $host in
@@ -583,7 +583,7 @@ AC_C_BIGENDIAN
 dnl Check for pthread compile/link requirements
 AX_PTHREAD
 
-# The following macro will add the necessary defines to bitcoin-config.h, but
+# The following macro will add the necessary defines to blink-config.h, but
 # they also need to be passed down to any subprojects. Pull the results out of
 # the cache and add them to CPPFLAGS.
 AC_SYS_LARGEFILE
@@ -840,7 +840,7 @@ AC_SUBST(LIBMEMENV)
 
 if test x$enable_wallet != xno; then
     dnl Check for libdb_cxx only if wallet enabled
-    BITCOIN_FIND_BDB53
+    BLINK_FIND_BDB53
 fi
 
 dnl Check for libminiupnpc (optional)
@@ -852,7 +852,7 @@ if test x$use_upnp != xno; then
   )
 fi
 
-if test x$build_bitcoin_utils$build_bitcoind$use_tests$use_bench = xnonononono; then
+if test x$build_blink_utils$build_blinkd$use_tests$use_bench = xnonononono; then
     use_boost=no
 else
     use_boost=yes
@@ -1036,7 +1036,7 @@ if test x$use_pkgconfig = xyes; then
       PKG_CHECK_MODULES([CRYPTO], [libcrypto],,[AC_MSG_ERROR(libcrypto  not found.)])
       OPENSSL_LIBS="$SSL_LIBS $CRYPTO_LIBS"
 
-      if test x$build_bitcoin_utils$build_bitcoind$use_tests != xnonono; then
+      if test x$build_blink_utils$build_blinkd$use_tests != xnonono; then
         PKG_CHECK_MODULES([EVENT], [libevent],, [AC_MSG_ERROR(libevent not found.)])
         if test x$TARGET_OS != xwindows; then
           PKG_CHECK_MODULES([EVENT_PTHREADS], [libevent_pthreads],, [AC_MSG_ERROR(libevent_pthreads not found.)])
@@ -1062,7 +1062,7 @@ else
   AC_CHECK_LIB([ssl],         [main],SSL_LIBS=-lssl, AC_MSG_ERROR(libssl not found.))
   OPENSSL_LIBS="$SSL_LIBS $CRYPTO_LIBS"
 
-  if test x$build_bitcoin_utils$build_bitcoind$use_tests != xnonono; then
+  if test x$build_blink_utils$build_blinkd$use_tests != xnonono; then
     AC_CHECK_HEADER([event2/event.h],, AC_MSG_ERROR(libevent headers missing),)
     AC_CHECK_LIB([event],[main],EVENT_LIBS=-levent,AC_MSG_ERROR(libevent missing))
     if test x$TARGET_OS != xwindows; then
@@ -1105,7 +1105,7 @@ dnl univalue check
 
 need_bundled_univalue=yes
 
-if test x$build_bitcoin_utils$build_bitcoind$use_tests$use_bench = xnononono; then
+if test x$build_blink_utils$build_blinkd$use_tests$use_bench = xnononono; then
   need_bundled_univalue=no
 else
 
@@ -1149,21 +1149,21 @@ AM_CONDITIONAL([EMBEDDED_UNIVALUE],[test x$need_bundled_univalue = xyes])
 AC_SUBST(UNIVALUE_CFLAGS)
 AC_SUBST(UNIVALUE_LIBS)
 
-AC_MSG_CHECKING([whether to build bitcoind])
-AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
-AC_MSG_RESULT($build_bitcoind)
+AC_MSG_CHECKING([whether to build blinkd])
+AM_CONDITIONAL([BUILD_BLINKD], [test x$build_blinkd = xyes])
+AC_MSG_RESULT($build_blinkd)
 
-AC_MSG_CHECKING([whether to build utils (bitcoin-cli bitcoin-tx)])
-AM_CONDITIONAL([BUILD_BITCOIN_UTILS], [test x$build_bitcoin_utils = xyes])
-AC_MSG_RESULT($build_bitcoin_utils)
+AC_MSG_CHECKING([whether to build utils (blink-cli blink-tx)])
+AM_CONDITIONAL([BUILD_BLINK_UTILS], [test x$build_blink_utils = xyes])
+AC_MSG_RESULT($build_blink_utils)
 
 AC_MSG_CHECKING([whether to build libraries])
-AM_CONDITIONAL([BUILD_BITCOIN_LIBS], [test x$build_bitcoin_libs = xyes])
-if test x$build_bitcoin_libs = xyes; then
+AM_CONDITIONAL([BUILD_BLINK_LIBS], [test x$build_blink_libs = xyes])
+if test x$build_blink_libs = xyes; then
   AC_DEFINE(HAVE_CONSENSUS_LIB, 1, [Define this symbol if the consensus lib has been built])
-  AC_CONFIG_FILES([libbitcoinconsensus.pc:libbitcoinconsensus.pc.in])
+  AC_CONFIG_FILES([libblinkconsensus.pc:libblinkconsensus.pc.in])
 fi
-AC_MSG_RESULT($build_bitcoin_libs)
+AC_MSG_RESULT($build_blink_libs)
 
 AC_LANG_POP
 
@@ -1225,7 +1225,7 @@ fi
 
 AM_CONDITIONAL([ENABLE_ZMQ], [test "x$use_zmq" = "xyes"])
 
-AC_MSG_CHECKING([whether to build test_bitcoin])
+AC_MSG_CHECKING([whether to build test_blink])
 if test x$use_tests = xyes; then
   AC_MSG_RESULT([yes])
   BUILD_TEST="yes"
@@ -1241,7 +1241,7 @@ else
   AC_MSG_RESULT([no])
 fi
 
-if test x$build_bitcoin_utils$build_bitcoin_libs$build_bitcoind$use_bench$use_tests = xnonononono; then
+if test x$build_blink_utils$build_blink_libs$build_blinkd$use_bench$use_tests = xnonononono; then
   AC_MSG_ERROR([No targets! Please specify at least one of: --with-utils --with-libs --with-daemon --enable-bench or --enable-tests])
 fi
 
@@ -1276,9 +1276,9 @@ AC_SUBST(COPYRIGHT_YEAR, _COPYRIGHT_YEAR)
 AC_SUBST(COPYRIGHT_HOLDERS, "_COPYRIGHT_HOLDERS")
 AC_SUBST(COPYRIGHT_HOLDERS_SUBSTITUTION, "_COPYRIGHT_HOLDERS_SUBSTITUTION")
 AC_SUBST(COPYRIGHT_HOLDERS_FINAL, "_COPYRIGHT_HOLDERS_FINAL")
-AC_SUBST(BITCOIN_DAEMON_NAME)
-AC_SUBST(BITCOIN_CLI_NAME)
-AC_SUBST(BITCOIN_TX_NAME)
+AC_SUBST(BLINK_DAEMON_NAME)
+AC_SUBST(BLINK_CLI_NAME)
+AC_SUBST(BLINK_TX_NAME)
 
 AC_SUBST(RELDFLAGS)
 AC_SUBST(ERROR_CXXFLAGS)
@@ -1312,7 +1312,7 @@ AC_SUBST(HAVE_O_CLOEXEC)
 AC_CONFIG_FILES([Makefile src/Makefile doc/man/Makefile share/setup.nsi test/config.ini])
 AC_CONFIG_FILES([contrib/devtools/split-debug.sh],[chmod +x contrib/devtools/split-debug.sh])
 AC_CONFIG_LINKS([test/functional/test_runner.py:test/functional/test_runner.py])
-AC_CONFIG_LINKS([test/util/bitcoin-util-test.py:test/util/bitcoin-util-test.py])
+AC_CONFIG_LINKS([test/util/blink-util-test.py:test/util/blink-util-test.py])
 
 dnl boost's m4 checks do something really nasty: they export these vars. As a
 dnl result, they leak into secp256k1's configure and crazy things happen.

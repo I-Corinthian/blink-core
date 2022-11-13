@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021  Bitcoin Association
+# Copyright (c) 2021  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 import time
@@ -8,7 +8,7 @@ import threading
 from io import BytesIO
 
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import assert_equal, connect_nodes_bi, connect_nodes, sync_blocks, disconnect_nodes_bi, p2p_port
 from test_framework.key import CECKey
 from test_framework.blocktools import create_block, create_coinbase
@@ -206,7 +206,7 @@ class User:
 ### END MOCKING CLASSES
 
 
-class CompetingChainsTest(BitcoinTestFramework):
+class CompetingChainsTest(BlinkTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2

@@ -1,8 +1,8 @@
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_FROZENTXO_H
-#define BITCOIN_FROZENTXO_H
+#ifndef BLINK_FROZENTXO_H
+#define BLINK_FROZENTXO_H
 
 #include <cstdint>
 #include <string>
@@ -137,4 +137,4 @@ private:
     bool disableEnforcingConfiscationTransactionChecks = false;
 };
 
-#endif // BITCOIN_FROZENTXO_H
+#endif // BLINK_FROZENTXO_H

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 The Bitcoin SV developers
+# Copyright (c) 2019 The Blink SV developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 from test_framework.mininode import *
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import p2p_port
 from test_framework.blocktools import create_block, create_coinbase, assert_equal
 
@@ -12,13 +12,13 @@ import datetime
 
 # This test checks TOOBUSY reject message and behaviour that it triggers.
 # Scenario 1:
-#   2 nodes (A and B) send HEADERS message to bitcoind. Bitcoind sends GetData to node A.
+#   2 nodes (A and B) send HEADERS message to blinkd. Blinkd sends GetData to node A.
 #   Node A then sends REJECT_TOOBUSY message. After that, node B should be asked for the same block (GetData).
 # Scenario 2:
-#   Node A sends HEADERS message to bitcoind. Bitcoind sends GetData to node A.
-#   Node A sends REJECT_TOOBUSY message. Bitcoind waits and asks again after 5 seconds.
+#   Node A sends HEADERS message to blinkd. Blinkd sends GetData to node A.
+#   Node A sends REJECT_TOOBUSY message. Blinkd waits and asks again after 5 seconds.
 
-class TooBusyRejectMsgTest(BitcoinTestFramework):
+class TooBusyRejectMsgTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.num_peers = 2
@@ -87,7 +87,7 @@ class TooBusyRejectMsgTest(BitcoinTestFramework):
 
             connection.cb.last_message["getdata"] = []
 
-            # Bitcoind asks again after 5 seconds.
+            # Blinkd asks again after 5 seconds.
             wait_until(lambda: self.getDataLambda(connection.cb, block.sha256), lock=mininode_lock)
 
             end_test = datetime.datetime.now()

@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file
 // LICENSE.
 
@@ -19,13 +19,13 @@
 #include "test/jsonutil.h"
 #include "test/scriptflags.h"
 #include "test/sigutil.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include "util.h"
 #include "utilstrencodings.h"
 #include "config.h"
 
 #if defined(HAVE_CONSENSUS_LIB)
-#include "script/bitcoinconsensus.h"
+#include "script/blinkconsensus.h"
 #endif
 
 #include <array>
@@ -186,10 +186,10 @@ static void DoTest(const CScript &scriptPubKey, const CScript &scriptSig,
 #if defined(HAVE_CONSENSUS_LIB)
     CDataStream stream(SER_NETWORK, PROTOCOL_VERSION);
     stream << tx2;
-    int libconsensus_flags = flags & bitcoinconsensus_SCRIPT_FLAGS_VERIFY_ALL;
+    int libconsensus_flags = flags & blinkconsensus_SCRIPT_FLAGS_VERIFY_ALL;
     if (libconsensus_flags == flags) {
-        if (flags & bitcoinconsensus_SCRIPT_ENABLE_SIGHASH_FORKID) {
-            BOOST_CHECK_MESSAGE(bitcoinconsensus_verify_script_with_amount(
+        if (flags & blinkconsensus_SCRIPT_ENABLE_SIGHASH_FORKID) {
+            BOOST_CHECK_MESSAGE(blinkconsensus_verify_script_with_amount(
                                     config,
                                     scriptPubKey.data(), scriptPubKey.size(),
                                     txCredit.vout[0].nValue.GetSatoshis(),
@@ -197,13 +197,13 @@ static void DoTest(const CScript &scriptPubKey, const CScript &scriptSig,
                                     0, libconsensus_flags, nullptr) == expect,
                                 message);
         } else {
-            BOOST_CHECK_MESSAGE(bitcoinconsensus_verify_script_with_amount(
+            BOOST_CHECK_MESSAGE(blinkconsensus_verify_script_with_amount(
                                     config,
                                     scriptPubKey.data(), scriptPubKey.size(), 0,
                                     (const uint8_t *)&stream[0], stream.size(),
                                     0, libconsensus_flags, nullptr) == expect,
                                 message);
-            BOOST_CHECK_MESSAGE(bitcoinconsensus_verify_script(
+            BOOST_CHECK_MESSAGE(blinkconsensus_verify_script(
                                     config,
                                     scriptPubKey.data(), scriptPubKey.size(),
                                     (const uint8_t *)&stream[0], stream.size(),

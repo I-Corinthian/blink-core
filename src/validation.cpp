@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2018 The Bitcoin developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2017-2018 The Blink developers
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "validation.h"
@@ -76,7 +76,7 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-#error "Bitcoin cannot be compiled without assertions."
+#error "Blink cannot be compiled without assertions."
 #endif
 
 using namespace mining;
@@ -116,7 +116,7 @@ static void CheckBlockIndex(const Consensus::Params &consensusParams);
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const std::string strMessageMagic = "Bitcoin Signed Message:\n";
+const std::string strMessageMagic = "Blink Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -1983,7 +1983,7 @@ static void HandleInvalidP2POrphanTxn(
                 // Do not use rejection cache for witness
                 // transactions or witness-stripped transactions, as
                 // they can have been malleated. See
-                // https://github.com/bitcoin/bitcoin/issues/8279
+                // https://github.com/blink/blink/issues/8279
                 // for details.
                 handlers.mpTxnRecentRejects->insert(tx.GetId());
             }
@@ -2037,7 +2037,7 @@ static void HandleInvalidStateForP2PNonOrphanTxn(
         if (!state.CorruptionPossible()) {
             // Do not use rejection cache for witness transactions or
             // witness-stripped transactions, as they can have been
-            // malleated. See https://github.com/bitcoin/bitcoin/issues/8279
+            // malleated. See https://github.com/blink/blink/issues/8279
             // for details.
             handlers.mpTxnRecentRejects->insert(tx.GetId());
             if (RecursiveDynamicUsage(tx) < 100000) {
@@ -4498,7 +4498,7 @@ static bool ActivateBestChainStep(
 
                     std::vector<TxId> toRemove = mempool.RemoveTxnsAndDescendants(datarefs, changeSet);
                     if (toRemove.size() != funds.size()) {
-                        // if we mined them by error (calling bitcoin-cli generate for e.g.), then we have to
+                        // if we mined them by error (calling blink-cli generate for e.g.), then we have to
                         // store them as potential funds
                         for (const TxId& txid: toRemove) {
                             const auto it = std::find_if(

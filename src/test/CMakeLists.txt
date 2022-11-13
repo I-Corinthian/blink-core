@@ -1,8 +1,8 @@
-# Copyright (c) 2018 The Bitcoin developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2018 The Blink developers
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-project(bitcoin-test)
+project(blink-test)
 
 # Process json files.
 file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/data")
@@ -48,10 +48,10 @@ include(TestSuite)
 include(CheckCXXCompilerFlag)
 include(CheckCCompilerFlag)
 
-create_test_suite(bitcoin)
-add_dependencies(check check-bitcoin)
+create_test_suite(blink)
+add_dependencies(check check-blink)
 
-add_test_to_suite(bitcoin test_bitcoin
+add_test_to_suite(blink test_blink
 	alertnotify_tests.cpp
 	arith_uint256_tests.cpp
 	addrman_tests.cpp
@@ -168,8 +168,8 @@ add_test_to_suite(bitcoin test_bitcoin
 	stream_serialization_tests.cpp
 	string_writer_tests.cpp
 	taskcancellation_tests.cpp
-	test_bitcoin.cpp
-	test_bitcoin_main.cpp
+	test_blink.cpp
+	test_blink_main.cpp
 	test_double_spend_detector.cpp
 	test_orphantxns.cpp
 	test_recent_rejects.cpp
@@ -197,7 +197,7 @@ add_test_to_suite(bitcoin test_bitcoin
 	${JSON_HEADERS}
 )
 
-target_include_directories(test_bitcoin
+target_include_directories(test_blink
 	PUBLIC
 		# To access the generated json headers.
 		${CMAKE_CURRENT_BINARY_DIR}
@@ -208,7 +208,7 @@ target_include_directories(test_bitcoin
 find_package(Boost 1.58 REQUIRED unit_test_framework)
 
 target_link_libraries(
-	test_bitcoin
+	test_blink
 	Boost::unit_test_framework
 	rpcclient
 	server
@@ -223,11 +223,11 @@ check_cxx_source_compiles("
 " BOOST_TEST_DYN_LINK)
 
 if(BOOST_TEST_DYN_LINK)
-	target_compile_definitions(test_bitcoin PRIVATE BOOST_TEST_DYN_LINK)
+	target_compile_definitions(test_blink PRIVATE BOOST_TEST_DYN_LINK)
 endif(BOOST_TEST_DYN_LINK)
 
-if(BUILD_BITCOIN_WALLET)
-	target_sources(test_bitcoin
+if(BUILD_BLINK_WALLET)
+	target_sources(test_blink
 		PRIVATE
 			../wallet/test/wallet_test_fixture.cpp
 			../wallet/test/accounting_tests.cpp

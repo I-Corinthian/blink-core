@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Testing entering and exiting the safe-mode. Testing command line params and RPC methods for ignoring
@@ -17,7 +17,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from json import loads
 
 from test_framework.blocktools import make_block, send_by_headers, wait_for_tip, wait_for_tip_status
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until
 
 
@@ -41,7 +41,7 @@ class WebhookHandler(BaseHTTPRequestHandler):
         pass
 
 
-class SafeMode(BitcoinTestFramework):
+class SafeMode(BlinkTestFramework):
 
     def start_server(self):
         self.serverThread = threading.Thread(target=self.server.serve_forever)

@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include "config/blink-config.h"
 #endif
 
 #include "init.h"
@@ -347,8 +347,8 @@ std::string HelpMessage(HelpMessageMode mode, const Config& config) {
             testnetChainParams->GetConsensus().defaultAssumeValid.GetHex()));
     strUsage += HelpMessageOpt(
         "-conf=<file>", strprintf(_("Specify configuration file (default: %s)"),
-                                  BITCOIN_CONF_FILENAME));
-    if (mode == HMM_BITCOIND) {
+                                  BLINK_CONF_FILENAME));
+    if (mode == HMM_BLINKD) {
 #if HAVE_DECL_DAEMON
         strUsage += HelpMessageOpt(
             "-daemon",
@@ -492,7 +492,7 @@ std::string HelpMessage(HelpMessageMode mode, const Config& config) {
 #ifndef WIN32
     strUsage += HelpMessageOpt(
         "-pid=<file>",
-        strprintf(_("Specify pid file (default: %s)"), BITCOIN_PID_FILENAME));
+        strprintf(_("Specify pid file (default: %s)"), BLINK_PID_FILENAME));
 #endif
 
     strUsage += HelpMessageOpt(
@@ -934,9 +934,9 @@ std::string HelpMessage(HelpMessageMode mode, const Config& config) {
                   CURRENCY_UNIT, FormatMoney(DEFAULT_TRANSACTION_MAXFEE)));
     strUsage += HelpMessageOpt(
         "-printtoconsole",
-        _("Send trace/debug info to console instead of bitcoind.log file"));
+        _("Send trace/debug info to console instead of blinkd.log file"));
     strUsage += HelpMessageOpt("-shrinkdebugfile",
-                               _("Shrink bitcoind.log file on client startup "
+                               _("Shrink blinkd.log file on client startup "
                                  "(default: 1 when no -debug)"));
 
     AppendParamsHelpMessages(strUsage, showDebug);
@@ -1545,8 +1545,8 @@ std::string HelpMessage(HelpMessageMode mode, const Config& config) {
 
 std::string LicenseInfo() {
     const std::string URL_SOURCE_CODE =
-        "<https://github.com/bitcoin-sv/bitcoin-sv>";
-    const std::string URL_WEBSITE = "<https://bitcoinsv.io>";
+        "<https://github.com/blink-sv/blink-sv>";
+    const std::string URL_WEBSITE = "<https://blinksv.io>";
 
     return CopyrightHolders(
                strprintf(_("Copyright (C) %i-%i"), 2009, COPYRIGHT_YEAR) +
@@ -1727,7 +1727,7 @@ void ThreadImport(const Config &config, std::vector<fs::path> vImportFiles, cons
 }
 
 /** Sanity checks
- *  Ensure that Bitcoin is running in a usable environment with all
+ *  Ensure that Blink is running in a usable environment with all
  *  necessary library support.
  */
 bool InitSanityCheck(void) {
@@ -1937,7 +1937,7 @@ bool AppInitBasicSetup() {
     sigaction(SIGTERM, &sa, nullptr);
     sigaction(SIGINT, &sa, nullptr);
 
-    // Reopen bitcoind.log on SIGHUP
+    // Reopen blinkd.log on SIGHUP
     struct sigaction sa_hup;
     sa_hup.sa_handler = HandleSIGHUP;
     sigemptyset(&sa_hup.sa_mask);
@@ -2805,10 +2805,10 @@ bool AppInitParameterInteraction(ConfigInit &config) {
     if (gArgs.GetBoolArg("-peerbloomfilters", DEFAULT_PEERBLOOMFILTERS))
         nLocalServices = ServiceFlags(nLocalServices | NODE_BLOOM);
 
-    // Signal Bitcoin Cash support.
+    // Signal Blink Cash support.
     // TODO: remove some time after the hardfork when no longer needed
     // to differentiate the network nodes.
-    nLocalServices = ServiceFlags(nLocalServices | NODE_BITCOIN_CASH);
+    nLocalServices = ServiceFlags(nLocalServices | NODE_BLINK_CASH);
 
     nMaxTipAge = gArgs.GetArg("-maxtipage", DEFAULT_MAX_TIP_AGE);
 
@@ -2943,7 +2943,7 @@ bool AppInitParameterInteraction(ConfigInit &config) {
 static bool LockDataDirectory(bool probeOnly) {
     std::string strDataDir = GetDataDir().string();
 
-    // Make sure only a single Bitcoin process is using the data directory.
+    // Make sure only a single Blink process is using the data directory.
     fs::path pathLockFile = GetDataDir() / ".lock";
     // empty lock file; created if it doesn't exist.
     FILE *file = fsbridge::fopen(pathLockFile, "a");
@@ -3086,8 +3086,8 @@ bool AppInitMain(ConfigInit &config, boost::thread_group &threadGroup,
 
     bool default_shrinkdebugfile = logger.DefaultShrinkDebugFile();
     if (gArgs.GetBoolArg("-shrinkdebugfile", default_shrinkdebugfile)) {
-        // Do this first since it both loads a bunch of bitcoind.log into memory,
-        // and because this needs to happen before any other bitcoind.log printing.
+        // Do this first since it both loads a bunch of blinkd.log into memory,
+        // and because this needs to happen before any other blinkd.log printing.
         logger.ShrinkDebugFile();
     }
 
@@ -3105,7 +3105,7 @@ bool AppInitMain(ConfigInit &config, boost::thread_group &threadGroup,
     LogPrintf("Using data directory %s\n", GetDataDir().string());
     LogPrintf(
         "Using config file %s\n",
-        GetConfigFile(gArgs.GetArg("-conf", BITCOIN_CONF_FILENAME)).string());
+        GetConfigFile(gArgs.GetArg("-conf", BLINK_CONF_FILENAME)).string());
     LogPrintf("Using at most %i automatic connections (%i file descriptors "
               "available)\n",
               nMaxConnections, nFD);

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #
@@ -13,7 +13,7 @@
 # If the test wouldn't fail, it would need many hours, possibly tens of hours to complete
 # ********
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 import time
 import os
@@ -29,7 +29,7 @@ def calc_usage(blockdir):
     return sum(os.path.getsize(blockdir + f) for f in os.listdir(blockdir) if os.path.isfile(blockdir + f)) / (1024. * 1024.)
 
             
-class PruneTest(BitcoinTestFramework):
+class PruneTest(BlinkTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 6

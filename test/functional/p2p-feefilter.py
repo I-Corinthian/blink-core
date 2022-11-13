@@ -5,7 +5,7 @@
 #
 
 from test_framework.mininode import *
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 import time
 
@@ -38,7 +38,7 @@ class TestNode(NodeConnCB):
             self.txinvs = []
 
 
-class FeeFilterTest(BitcoinTestFramework):
+class FeeFilterTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
 

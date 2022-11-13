@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 """
@@ -7,7 +7,7 @@ Check that unsolicted ADDR messages don't get accepted and relayed.
 """
 
 from test_framework.mininode import *
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 import time
 
@@ -26,7 +26,7 @@ class TestNode(NodeConnCB):
 # 2) Feed in an unsolicited ADDR msg to one of those nodes.
 # 3) If that nodes accepts the ADDR, it will forward it to its other peer and
 #    that peer will eventually also feed it back to us.
-class UnsolictedAddr(BitcoinTestFramework):
+class UnsolictedAddr(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.extra_args = [["-whitelist=127.0.0.1"]] * self.num_nodes

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022 Bitcoin Association
+# Copyright (c) 2022 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 ''' 

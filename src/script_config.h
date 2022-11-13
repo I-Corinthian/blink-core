@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #pragma once
@@ -8,7 +8,7 @@
 /**
  * Configuration interface that contains limits used when evaluating scripts.
  * Class must be defined outside config.h as it is used by a dynamic library
- * (libbitcoinconsensus) which is not connected to the rest of bitcoin code.
+ * (libblinkconsensus) which is not connected to the rest of blink code.
  */
 class CScriptConfig
 {

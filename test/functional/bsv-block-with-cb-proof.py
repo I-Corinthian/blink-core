@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 """
@@ -10,7 +10,7 @@ check if merkleproof returned by getblockheader RPC function and
 """
 
 from test_framework.blocktools import create_block_from_candidate, merkle_root_from_merkle_proof
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.mininode import ToHex
 from test_framework.util import satoshi_round, connect_nodes_bi, create_confirmed_utxos, assert_equal, sync_mempools, sync_blocks
 from decimal import Decimal
@@ -79,7 +79,7 @@ def fill_mempool(fee, node, utxos):
             print("Num sent: {}".format(num_sent))
 
 # The main test class
-class BSVBlockWithCBProof(BitcoinTestFramework):
+class BSVBlockWithCBProof(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 2

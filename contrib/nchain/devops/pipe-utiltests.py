@@ -8,7 +8,7 @@ def main():
     r1 = -1
 
     try:
-        args = ["python3", "test/util/bitcoin-util-test.py", "--verbose"]
+        args = ["python3", "test/util/blink-util-test.py", "--verbose"]
         with open("build/reports/util-test.log","w") as outfile:
             r1 = subprocess.call(args, stdout=outfile)
     except Exception as e:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021  Bitcoin Association
+# Copyright (c) 2021  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 import shutil
@@ -8,7 +8,7 @@ from test_framework.blocktools import (create_block, create_coinbase, ChainManag
                                        create_block_from_candidate, create_transaction)
 from test_framework.mininode import ToHex, msg_block, COIN, FromHex, CTransaction, CTxOut
 from test_framework.script import CScript, OP_TRUE, OP_RETURN
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import (wait_until, assert_raises_rpc_error, assert_equal, sync_blocks, get_datadir_path,
                                  disconnect_nodes_bi, connect_nodes_bi)
 """
@@ -19,7 +19,7 @@ Rpc call getsoftrejectedblocks is tested by calling auxiliary test functions
 """
 
 
-class SoftRejectedBlocks(BitcoinTestFramework):
+class SoftRejectedBlocks(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.setup_clean_chain = True

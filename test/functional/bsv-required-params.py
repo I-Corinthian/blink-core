@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
-Tests setting required parameters in bitcoin.conf configuration file.
+Tests setting required parameters in blink.conf configuration file.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.cdefs import REGTEST_DEFAULT_MAX_BLOCK_SIZE
 from test_framework.util import assert_equal
 
 import os
 
-class BSVRequiredParams(BitcoinTestFramework):
+class BSVRequiredParams(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 1
 
     def setup_chain(self):
         super().setup_chain()
-        with open(os.path.join(self.options.tmpdir + "/node0", "bitcoin.conf"), 'a', encoding='utf8') as configFile:
+        with open(os.path.join(self.options.tmpdir + "/node0", "blink.conf"), 'a', encoding='utf8') as configFile:
             configFile.write("maxstackmemoryusageconsensus=0\n")
             configFile.write("excessiveblocksize=0\n")
             configFile.write("minminingtxfee=500\n")

@@ -1,15 +1,15 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Bitcoin SV
-Upstream-Contact: contact@bitcoinsv.io
-Source: https://github.com/bitcoin-sv/bitcoin-sv
+Upstream-Name: Blink SV
+Upstream-Contact: contact@blinksv.io
+Source: https://github.com/blink-sv/blink-sv
 
 Files: *
-Copyright: 2009-2017, Bitcoin Core Developers, 2017 Bitcoin Developers
+Copyright: 2009-2017, Blink Core Developers, 2017 Blink Developers
 License: Expat
-Comment: The Bitcoin Developers encompasses those contributing to Bitcoin
+Comment: The Blink Developers encompasses those contributing to Blink
          client open source development (various clients).
-         The Bitcoin Core Developers encompasses the current developers
-         listed on bitcoin.org, as well as the numerous contributors to
+         The Blink Core Developers encompasses the current developers
+         listed on blink.org, as well as the numerous contributors to
          the project.
 
 Files: debian/*
@@ -18,10 +18,10 @@ Copyright: 2010-2011, Jonas Smedegaard <dr@jones.dk>
            2017, freetrader <freetrader@tuta.io>
 License: GPL-2+
 
-Files: share/pixmaps/bitcoin*
+Files: share/pixmaps/blink*
 Copyright: Bitboy, Jonas Schnelli
 License: public-domain
-Comment: Site: https://bitcointalk.org/?topic=1756.0
+Comment: Site: https://blinktalk.org/?topic=1756.0
 
 
 License: Expat

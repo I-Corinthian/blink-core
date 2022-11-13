@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 """
 Test the P2P behavior of connections to nodes for the extended > 4GB block messages.
 
-Launch 3 bitcoind nodes.
+Launch 3 blinkd nodes.
     node0 will be fed large trnsactions and will mine a >4GB block.
     node1 will fetch the large block from node0 via a basic block message.
     node2 will fetch the large block from node0 via a cmpctblock message.
@@ -21,10 +21,10 @@ Mine a >4GB block on the node.
     Mine a block containing those transactions.
     Verify that an extended format block message is received over the new connection.
     Verify that no block message is sent over the old connection.
-    Verify that all real bitcoind nodes (version 70016) can sync to the > 4GB block.
+    Verify that all real blinkd nodes (version 70016) can sync to the > 4GB block.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.mininode import MY_VERSION, NodeConnCB, CTxOut, msg_tx, msg_block
 from test_framework.util import wait_until, logger, check_for_log_msg, connect_nodes, disconnect_nodes_bi, sync_blocks
 from test_framework.script import CScript, OP_TRUE, OP_FALSE, OP_RETURN, OP_DROP, OP_CHECKSIG, SignatureHashForkId, SIGHASH_ALL, SIGHASH_FORKID
@@ -58,7 +58,7 @@ class MyConnCB(NodeConnCB):
         if request:
             super().on_inv(conn, message)
 
-class BigBlockTests(BitcoinTestFramework):
+class BigBlockTests(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -170,7 +170,7 @@ class BigBlockTests(BitcoinTestFramework):
             assert(peerinfo[0]['bytesrecv_per_msg']['blocktxn'] > 0)
 
             # Reconnect node0 to node1
-            logger.info("Syncing bitcoind nodes to big block")
+            logger.info("Syncing blinkd nodes to big block")
             connect_nodes(self.nodes, 0, 1)
             self.sync_all(timeout=int(1200 * self.options.timeoutfactor))
 

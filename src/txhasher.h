@@ -1,9 +1,9 @@
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file
 // LICENSE.
 
-#ifndef BITCOIN_TXHASHER_H
-#define BITCOIN_TXHASHER_H
+#ifndef BLINK_TXHASHER_H
+#define BLINK_TXHASHER_H
 
 #include "primitives/transaction.h"
 #include "hash.h"
@@ -35,4 +35,4 @@ public:
     }
 };
 
-#endif // BITCOIN_TXHASHER_H
+#endif // BLINK_TXHASHER_H

@@ -21,7 +21,7 @@ namespace
  * violations.
  *
  * Supported violations include negative integers, excessive padding, garbage at
- * the end, and overly long length descriptors. This is safe to use in Bitcoin
+ * the end, and overly long length descriptors. This is safe to use in Blink
  * because since the activation of BIP66, signatures are verified to be strict
  * DER before being passed to this module, and we know it supports all
  * violations present in the blockchain before that point.
@@ -201,7 +201,7 @@ bool CPubKey::Verify(const uint256& hash,
     }
     /**
      * libsecp256k1's ECDSA verification requires lower-S signatures, which have
-     * not historically been enforced in Bitcoin, so normalize them first.
+     * not historically been enforced in Blink, so normalize them first.
      */
     secp256k1_ecdsa_signature_normalize(
         secp256k1_context_verify.get(), &sig, &sig);

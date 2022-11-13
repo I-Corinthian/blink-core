@@ -1,9 +1,9 @@
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "thread_safe_queue.h"
 
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include <boost/test/unit_test.hpp>
 
 #include <future>

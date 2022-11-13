@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020  Bitcoin Association
+# Copyright (c) 2020  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 
 from test_framework.blocktools import create_coinbase_P2SH, create_block_from_candidate, create_block, create_coinbase
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import p2p_port, assert_equal, assert_raises_rpc_error
 from test_framework.mininode import CBlock, NodeConn, NodeConnCB, NetworkThread, ToHex, msg_block
 
 example_script_hash = "748284390f9e263a4b766a75d0633c50426eb875"
 
-class MiningCoinbaseWithP2SHTest(BitcoinTestFramework):
+class MiningCoinbaseWithP2SHTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True

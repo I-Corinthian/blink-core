@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Testing scenario: our node has one active chain and then connects to node with longer chain but invalid for our
@@ -34,7 +34,7 @@ from test_framework.mininode import (
     msg_headers,
     CBlockHeader
 )
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.util import (
     assert_equal,
     p2p_port,
@@ -45,7 +45,7 @@ from test_framework.blocktools import create_transaction, PreviousSpendableOutpu
 from test_framework.cdefs import MIN_TTOR_VALIDATION_DISTANCE
 import time
 
-class BSVCheckTTORViolation(BitcoinTestFramework):
+class BSVCheckTTORViolation(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -192,7 +192,7 @@ class BSVCheckTTORViolation(BitcoinTestFramework):
 
         # check log file that reorg didnt happen
         disconnect_block_log = False
-        for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/bitcoind.log")[0]):
+        for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/blinkd.log")[0]):
             if f"Disconnect block" in line:
                 disconnect_block_log = True
                 self.log.info("Found line: %s", line.strip())
@@ -203,7 +203,7 @@ class BSVCheckTTORViolation(BitcoinTestFramework):
 
         # check log file that contains information about TTOR violation
         ttor_violation_log = False
-        for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/bitcoind.log")[0]):
+        for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/blinkd.log")[0]):
             if f"violates TTOR order" in line:
                 ttor_violation_log = True
                 self.log.info("Found line: %s", line.strip())

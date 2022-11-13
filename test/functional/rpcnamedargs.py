@@ -5,7 +5,7 @@
 
 from decimal import Decimal
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.authproxy import JSONRPCException
 from test_framework.util import (
     assert_equal,
@@ -15,7 +15,7 @@ from test_framework.util import (
 )
 
 
-class NamedArgumentTest(BitcoinTestFramework):
+class NamedArgumentTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
 

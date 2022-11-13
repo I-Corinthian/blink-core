@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_LIMITEDMAP_H
-#define BITCOIN_LIMITEDMAP_H
+#ifndef BLINK_LIMITEDMAP_H
+#define BLINK_LIMITEDMAP_H
 
 #include <cassert>
 #include <map>
@@ -98,4 +98,4 @@ public:
     }
 };
 
-#endif // BITCOIN_LIMITEDMAP_H
+#endif // BLINK_LIMITEDMAP_H

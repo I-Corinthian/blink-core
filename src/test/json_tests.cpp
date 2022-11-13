@@ -1,7 +1,7 @@
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include "rpc/jsonwriter.h"
 #include "core_io.h"
 #include <boost/test/unit_test.hpp>
@@ -251,7 +251,7 @@ BOOST_AUTO_TEST_CASE(CJWriter_object_with_value)
 
 BOOST_AUTO_TEST_CASE(json_decode_tx_from_mainnet)
 {
-    // Hex represents transaction from mainnet https://blockchair.com/bitcoin-sv/transaction/fd999735b7a3017292d97791d56cb57730efda217d1a75842b4481a7d8ea1b46
+    // Hex represents transaction from mainnet https://blockchair.com/blink-sv/transaction/fd999735b7a3017292d97791d56cb57730efda217d1a75842b4481a7d8ea1b46
     // that caused to produce invalid JSON because it contained 2 outputs with same address and amount
     std::string hexTx = "01000000045add7f1454066a7fe6b561cd0778bf39e2ca4e106ebecf559aff60b3b31de05d020000006a47304"\
                         "40220709a45cfb1552dfdfaa4c212f50f2cb3c15dec8c46cedbeb4810533e8979bcdb022049a91176ef08fa78"\

@@ -5,11 +5,11 @@
 
 # Exercise the wallet keypool, and interaction with wallet encryption/locking
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 
 
-class KeyPoolTest(BitcoinTestFramework):
+class KeyPoolTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
 

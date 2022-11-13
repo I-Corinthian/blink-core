@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021  Bitcoin Association
+# Copyright (c) 2021  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 """
@@ -11,7 +11,7 @@ from test_framework.key import CECKey
 from test_framework.mininode import CTransaction, CTxIn, COutPoint, CTxOut, ToHex, COIN
 from test_framework.script import CScript, hash160, SignatureHashForkId, OP_CHECKSIG, OP_DROP, OP_DUP, OP_EQUALVERIFY, OP_FALSE, OP_HASH160, OP_MUL, OP_TRUE, SIGHASH_ALL, SIGHASH_FORKID
 from test_framework.util import assert_equal, assert_raises_rpc_error, bytes_to_hex_str
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 
 
 # Create and submit block with anyone-can-spend coinbase transaction.
@@ -25,7 +25,7 @@ def make_coinbase(conn_rpc):
     return coinbase_tx
 
 
-class BSV_RPC_verifyscript (BitcoinTestFramework):
+class BSV_RPC_verifyscript (BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

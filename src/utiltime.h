@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_UTILTIME_H
-#define BITCOIN_UTILTIME_H
+#ifndef BLINK_UTILTIME_H
+#define BLINK_UTILTIME_H
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <cstdint>
@@ -44,4 +44,4 @@ public:
     std::ostringstream operator()(int64_t nTime) const;
 };
 
-#endif // BITCOIN_UTILTIME_H
+#endif // BLINK_UTILTIME_H

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017 The Bitcoin developers
+// Copyright (c) 2017 The Blink developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,7 +14,7 @@
 #include "validation.h"
 
 /**
- * Compute the next required proof of work using the legacy Bitcoin difficulty
+ * Compute the next required proof of work using the legacy Blink difficulty
  * adjustment + Emergency Difficulty Adjustment (EDA).
  */
 static uint32_t GetNextEDAWorkRequired(const CBlockIndex *pindexPrev,

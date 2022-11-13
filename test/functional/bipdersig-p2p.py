@@ -7,7 +7,7 @@
 Test that the DERSIG soft-fork activates at (regtest) height 1251.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 from test_framework.mininode import *
 from test_framework.blocktools import create_coinbase, create_block
@@ -51,7 +51,7 @@ def create_transaction(node, coinbase, to_address, amount):
     return tx
 
 
-class BIP66Test(BitcoinTestFramework):
+class BIP66Test(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.extra_args = [
@@ -115,9 +115,9 @@ class BIP66Test(BitcoinTestFramework):
                    lock=mininode_lock)
         with mininode_lock:
             # We can receive different reject messages depending on whether
-            # bitcoind is running with multiple script check threads. If script
+            # blinkd is running with multiple script check threads. If script
             # check threads are not in use, then transaction script validation
-            # happens sequentially, and bitcoind produces more specific reject
+            # happens sequentially, and blinkd produces more specific reject
             # reasons.
             assert node0.last_message["reject"].code in [
                 REJECT_INVALID, REJECT_NONSTANDARD]

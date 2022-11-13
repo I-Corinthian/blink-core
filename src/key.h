@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_KEY_H
-#define BITCOIN_KEY_H
+#ifndef BLINK_KEY_H
+#define BLINK_KEY_H
 
 #include "pubkey.h"
 #include "serialize.h"
@@ -180,4 +180,4 @@ struct CExtKey {
 /** Check that required EC support is available at runtime. */
 bool ECC_InitSanityCheck();
 
-#endif // BITCOIN_KEY_H
+#endif // BLINK_KEY_H

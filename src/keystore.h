@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_KEYSTORE_H
-#define BITCOIN_KEYSTORE_H
+#ifndef BLINK_KEYSTORE_H
+#define BLINK_KEYSTORE_H
 
 #include "key.h"
 #include "pubkey.h"
@@ -35,7 +35,7 @@ public:
                            CPubKey &vchPubKeyOut) const = 0;
 
     //! Support for BIP 0013 : see
-    //! https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki
+    //! https://github.com/blink/bips/blob/master/bip-0013.mediawiki
     virtual bool AddCScript(const CScript &redeemScript) = 0;
     virtual bool HaveCScript(const CScriptID &hash) const = 0;
     virtual bool GetCScript(const CScriptID &hash,
@@ -109,4 +109,4 @@ typedef std::vector<uint8_t, secure_allocator<uint8_t>> CKeyingMaterial;
 typedef std::map<CKeyID, std::pair<CPubKey, std::vector<uint8_t>>>
     CryptedKeyMap;
 
-#endif // BITCOIN_KEYSTORE_H
+#endif // BLINK_KEYSTORE_H

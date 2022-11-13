@@ -1,11 +1,11 @@
-// Copyright (c) 2017 The Bitcoin developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2017 The Blink developers
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "consensus/consensus.h"
 #include "rpc/server.h"
 #include "validation.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>

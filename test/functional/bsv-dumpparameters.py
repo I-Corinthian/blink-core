@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test rpc method dumpparameters. Rpc method dumpparameters returns non-sensitive parameters
@@ -11,11 +11,11 @@ from the response.
 """
 import glob
 import os
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import check_for_log_msg, wait_until
 
 
-class BSVdumpparameters(BitcoinTestFramework):
+class BSVdumpparameters(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.extra_args = [["-excessiveblocksize=300MB"]]
@@ -23,8 +23,8 @@ class BSVdumpparameters(BitcoinTestFramework):
     def setup_chain(self):
         super().setup_chain()
 
-        # Append rpcauth to bitcoin.conf before initialization
-        with open(os.path.join(self.options.tmpdir + "/node0", "bitcoin.conf"), 'a', encoding='utf8') as f:
+        # Append rpcauth to blink.conf before initialization
+        with open(os.path.join(self.options.tmpdir + "/node0", "blink.conf"), 'a', encoding='utf8') as f:
             f.write("rpcauth=user:salt\n")
             f.write("rpcuser=user\n")
             f.write("rpcpassword=password\n")

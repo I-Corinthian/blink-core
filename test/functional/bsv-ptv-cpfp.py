@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021  Bitcoin Association
+# Copyright (c) 2021  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from test_framework.blocktools import create_block, create_coinbase
 from test_framework.key import CECKey
 from test_framework.mininode import CTransaction, msg_tx, ToHex, CTxIn, COutPoint, CTxOut, msg_block, COIN, mininode_lock
 from test_framework.script import CScript, OP_DROP, OP_TRUE, OP_CHECKSIG, SignatureHashForkId, SIGHASH_ALL, SIGHASH_FORKID
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until, wait_for_ptv_completion, check_mempool_equals, assert_greater_than
 from decimal import Decimal
 import time
@@ -26,7 +26,7 @@ c) when the mempool is full verify tx eviction (by a newly received tx which pay
 a) p2p
 b) rpc sendrawtransactions (bulk txs submit)
 """
-class PtvCpfp(BitcoinTestFramework):
+class PtvCpfp(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

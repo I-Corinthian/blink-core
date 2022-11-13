@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020  Bitcoin Association
+# Copyright (c) 2020  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from test_framework.blocktools import create_transaction
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.mininode import msg_block, msg_tx, CTransaction, CTxIn, COutPoint, CTxOut
 from test_framework.util import assert_equal, wait_until, json
 from test_framework.script import CScript, OP_TRUE, OP_RETURN
@@ -20,7 +20,7 @@ def http_get_call(host, port, path, response_object=0):
 
     return conn.getresponse().read().decode('utf-8')
 
-class GetRawMempoolTest(BitcoinTestFramework):
+class GetRawMempoolTest(BlinkTestFramework):
     FORMAT_SEPARATOR = "."
 
     def set_test_params(self):

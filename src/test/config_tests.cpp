@@ -1,11 +1,11 @@
 // Copyright (c) 2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "chainparams.h"
 #include "config.h"
 #include "consensus/consensus.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 
 #include <boost/test/unit_test.hpp>
 #include <string>
@@ -688,7 +688,7 @@ BOOST_AUTO_TEST_CASE(banned_clientua_test)
     BOOST_CHECK(config.IsClientUABanned("is-abc-client"));
     BOOST_CHECK(config.IsClientUABanned("is-bsv-client"));
 
-    // check that default BitcoinSV client is not banned
+    // check that default BlinkSV client is not banned
     BOOST_CHECK(!config.IsClientUABanned(userAgent()));
 }
 

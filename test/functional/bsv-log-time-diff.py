@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from test_framework.mininode import *
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import p2p_port
 from test_framework.blocktools import create_block, create_coinbase, assert_equal
 
@@ -14,14 +14,14 @@ import glob
 # This tests checks scenario of logging about more honest peers.
 # Scenario:
 #    1. Peer1 creates new block b1 with height 2. After 5 seconds, it sends headers message.
-#    2. Bitcoind sends GETDATA to peer1.
+#    2. Blinkd sends GETDATA to peer1.
 #    3. Peer1 sends block b1.
 #    4. Peer2 creates new block b2 with height 2. Right after that, it sends headers message.
-#    5. Bitcoind sends GETDATA to peer2.
+#    5. Blinkd sends GETDATA to peer2.
 #    6. Peer2 sends block b2.
-#    7. Bitcoind logs that more honest block with the same height was received.
+#    7. Blinkd logs that more honest block with the same height was received.
 
-class LogTimeDiffTest(BitcoinTestFramework):
+class LogTimeDiffTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.num_peers = 2
@@ -55,7 +55,7 @@ class LogTimeDiffTest(BitcoinTestFramework):
             # 2. sleep five seconds
             time.sleep(5)
 
-            # 3. connection1 sends HEADERS msg to bitcoind and waits for GETDATA (received time is set)
+            # 3. connection1 sends HEADERS msg to blinkd and waits for GETDATA (received time is set)
             headers_message = msg_headers()
             headers_message.headers = [CBlockHeader(block)]
             connection1.cb.send_message(headers_message)
@@ -67,7 +67,7 @@ class LogTimeDiffTest(BitcoinTestFramework):
             # 5. create second block
             block = self.prepareBlock(2)
 
-            # 6. connection2 sends HEADERS msg to bitcoind
+            # 6. connection2 sends HEADERS msg to blinkd
             headers_message = msg_headers()
             headers_message.headers = [CBlockHeader(block)]
             connection2.cb.send_message(headers_message)
@@ -82,7 +82,7 @@ class LogTimeDiffTest(BitcoinTestFramework):
 
             # check log file for logging about block timestamp and received headers timestamp difference
             time_difference_log_found = False
-            for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/bitcoind.log")[0]):
+            for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/blinkd.log")[0]):
                 if "Chain tip timestamp-to-received-time difference" in line:
                     time_difference_log_found = True
                     logger.info("Found line: %s", line)

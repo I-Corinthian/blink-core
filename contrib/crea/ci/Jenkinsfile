@@ -58,7 +58,7 @@ try {
         stage('Unit Tests') {
             catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                 sh 'mkdir -p build/reports'
-                sh 'cd src/test && ./test_bitcoin --log_format=JUNIT --log_sink=../../build/reports/unittests.xml --run_test=\'!script_tests\''
+                sh 'cd src/test && ./test_blink --log_format=JUNIT --log_sink=../../build/reports/unittests.xml --run_test=\'!script_tests\''
             }
         }
         
@@ -87,7 +87,7 @@ try {
         
         stage('Util Tests') {
             catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                sh 'test/util/bitcoin-util-test.py --verbose > build/reports/util-test.log'
+                sh 'test/util/blink-util-test.py --verbose > build/reports/util-test.log'
             }
         }
         
@@ -123,7 +123,7 @@ try {
         
         stage('Benchmark') {
             catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                sh 'src/bench/bench_bitcoin'
+                sh 'src/bench/bench_blink'
             }
         }
 
@@ -132,10 +132,10 @@ try {
         // Copy bineries
         try {
             sh 'mkdir bin'
-            sh 'cp src/bitcoind bin/'
-            sh 'cp src/bitcoin-cli bin/'
-            sh 'cp src/bitcoin-miner bin/'
-            sh 'cp src/bitcoin-tx bin/'
+            sh 'cp src/blinkd bin/'
+            sh 'cp src/blink-cli bin/'
+            sh 'cp src/blink-miner bin/'
+            sh 'cp src/blink-tx bin/'
         }
         catch (all) {
             echo "Failed to copy binaries"
@@ -180,7 +180,7 @@ try {
             echo "Trying to save artifacts"
             archiveArtifacts artifacts: 'bin/**'
             archiveArtifacts artifacts: 'build/reports/**'
-            archiveArtifacts artifacts: 'tmp_ft/bitcoin*/**/**', excludes: """tmp_ft/bitcoin*/**/node*/regtest/blocks/**"""
+            archiveArtifacts artifacts: 'tmp_ft/blink*/**/**', excludes: """tmp_ft/blink*/**/node*/regtest/blocks/**"""
         } 
         catch(all) {
             echo "Failed saving log artifacts!"
@@ -191,7 +191,7 @@ catch (all) {
     echo "Node failed, trying to save artifacts"
     archiveArtifacts artifacts: 'bin/**'
     archiveArtifacts artifacts: 'build/reports/**'
-    archiveArtifacts artifacts: 'tmp_ft/bitcoin*/**/**', excludes: """tmp_ft/bitcoin*/**/node*/regtest/blocks/**"""
+    archiveArtifacts artifacts: 'tmp_ft/blink*/**/**', excludes: """tmp_ft/blink*/**/node*/regtest/blocks/**"""
 }
 }
 }

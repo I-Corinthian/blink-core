@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test entering and exiting of safe mode by large invalid branch where data of first branch block arrives last
@@ -16,11 +16,11 @@ from test_framework.authproxy import JSONRPCException
 from test_framework.blocktools import make_block, send_by_headers, wait_for_tip, wait_for_tip_status
 from test_framework.mininode import msg_block, CBlock, CTxOut, msg_headers, CBlockHeader
 from test_framework.script import CScript, OP_TRUE
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until, assert_equal
 from test_framework.cdefs import SAFE_MODE_DEFAULT_MIN_FORK_LENGTH, SAFE_MODE_DEFAULT_MAX_FORK_DISTANCE
 
-class TriggerSafeModeAfterReorg(BitcoinTestFramework):
+class TriggerSafeModeAfterReorg(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

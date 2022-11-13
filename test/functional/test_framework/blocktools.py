@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """Utilities for manipulating blocks and transactions."""
 from test_framework.script import SignatureHashForkId, SIGHASH_ALL, SIGHASH_FORKID

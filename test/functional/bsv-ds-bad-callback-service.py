@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 The Bitcoin SV developers
+# Copyright (c) 2021 The Blink SV developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,7 @@ import http.client as httplib
 from functools import partial
 from http.server import HTTPServer
 from ds_callback_service.CallbackService import CallbackService, RECEIVE, STATUS, RESPONSE_TIME, FLAG
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import check_for_log_msg, assert_equal
 from test_framework.mininode import *
 from test_framework.script import *
@@ -29,7 +29,7 @@ Test badly behaving double-spend endpoints:
 LOCAL_HOST_IP = 0x7F000001
 WRONG_IP = 0x7F000002
 
-class DoubleSpendHandlerErrors(BitcoinTestFramework):
+class DoubleSpendHandlerErrors(BlinkTestFramework):
 
     def __del__(self):
         self.kill_server()
@@ -182,7 +182,7 @@ class DoubleSpendHandlerErrors(BitcoinTestFramework):
 
             self.kill_server()
 
-        with self.run_node_with_connections("Server is too slow, bitcoind ignores it", 0, ['-dsendpointport=8080'], 1) as p2p_connections:
+        with self.run_node_with_connections("Server is too slow, blinkd ignores it", 0, ['-dsendpointport=8080'], 1) as p2p_connections:
             # Turn on CallbackService.
             handler = partial(CallbackService, RECEIVE.YES, STATUS.SUCCESS, RESPONSE_TIME.SLOWEST, FLAG.YES)
             self.server = HTTPServer(('localhost', 8080), handler)

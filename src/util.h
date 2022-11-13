@@ -7,11 +7,11 @@
  * Server/client environment: argument handling, config file parsing,
  * thread wrappers, startup time
  */
-#ifndef BITCOIN_UTIL_H
-#define BITCOIN_UTIL_H
+#ifndef BLINK_UTIL_H
+#define BLINK_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include "config/blink-config.h"
 #endif
 
 #include "compat.h"
@@ -47,8 +47,8 @@ public:
 
 extern CTranslationInterface translationInterface;
 
-extern const char *const BITCOIN_CONF_FILENAME;
-extern const char *const BITCOIN_PID_FILENAME;
+extern const char *const BLINK_CONF_FILENAME;
+extern const char *const BLINK_PID_FILENAME;
 
 /**
  * Translation function: Call Translate signal on UI interface, which returns a
@@ -306,4 +306,4 @@ struct AnnotatedType {
 };
 
 
-#endif // BITCOIN_UTIL_H
+#endif // BLINK_UTIL_H

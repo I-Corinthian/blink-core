@@ -1,11 +1,11 @@
 /*
-    simple pipeline to perform all Bitcoin SV tests
+    simple pipeline to perform all Blink SV tests
 
     node requirements:
     - 16GB RAM
     - docker
 
-    Copyright (c) 2019 Bitcoin Association
+    Copyright (c) 2019 Blink Association
     Distributed under the Open BSV software license, see the accompanying file LICENSE.
 */
 pipeline {
@@ -28,7 +28,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 sh 'mkdir -p build/reports'
-                sh 'cd src/test && ./test_bitcoin --log_format=JUNIT --log_sink=../../build/reports/unittests.xml'
+                sh 'cd src/test && ./test_blink --log_format=JUNIT --log_sink=../../build/reports/unittests.xml'
             }
         }
         stage('secp256k1 Tests') {
@@ -53,7 +53,7 @@ pipeline {
         }
         stage('Util Tests') {
             steps {
-                sh 'test/util/bitcoin-util-test.py --verbose > build/reports/util-test.log'
+                sh 'test/util/blink-util-test.py --verbose > build/reports/util-test.log'
             }
         }
         // functional tests dont work with --enable-debug

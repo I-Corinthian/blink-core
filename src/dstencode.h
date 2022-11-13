@@ -1,5 +1,5 @@
-#ifndef BITCOIN_DSTENCODE_H
-#define BITCOIN_DSTENCODE_H
+#ifndef BLINK_DSTENCODE_H
+#define BLINK_DSTENCODE_H
 
 // key.h and pubkey.h are not used here, but gcc doesn't want to instantiate
 // CTxDestination if types are unknown
@@ -20,4 +20,4 @@ bool IsValidDestinationString(const std::string &addr,
 // code.
 std::string EncodeDestination(const CTxDestination &);
 
-#endif // BITCOIN_DSTENCODE_H
+#endif // BLINK_DSTENCODE_H

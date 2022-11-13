@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test that blocks that contain consensus frozen transactions are not re-added to
@@ -24,7 +24,7 @@ from test_framework.mininode import (
     ToHex
 )
 
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.blocktools import create_transaction, PreviousSpendableOutput
 from test_framework.script import CScript, OP_TRUE
 
@@ -53,13 +53,13 @@ class Send_node():
         return False
 
     def check_log(self, line_text):
-        for line in open(glob.glob(self.tmpdir + f"/node{self.node_no}" + "/regtest/bitcoind.log")[0]):
+        for line in open(glob.glob(self.tmpdir + f"/node{self.node_no}" + "/regtest/blinkd.log")[0]):
             if re.search(line_text, line) is not None:
-                self.log.debug("Found line in bitcoind.log: %s", line.strip())
+                self.log.debug("Found line in blinkd.log: %s", line.strip())
                 return True
         return False
 
-class FrozenTXOReindex(BitcoinTestFramework):
+class FrozenTXOReindex(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #
 # Test PrioritiseTransaction code
 #
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 # FIXME: review how this test needs to be adapted w.r.t _LEGACY_MAX_BLOCK_SIZE
 from test_framework.mininode import COIN
 from test_framework.cdefs import LEGACY_MAX_BLOCK_SIZE, ONE_KILOBYTE
 import decimal
 
-class PrioritiseTransactionTest(BitcoinTestFramework):
+class PrioritiseTransactionTest(BlinkTestFramework):
 
     def setup_network(self):
         self.add_nodes(self.num_nodes)

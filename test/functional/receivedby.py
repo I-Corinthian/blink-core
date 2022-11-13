@@ -5,7 +5,7 @@
 
 # Exercise the listreceivedbyaddress API
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 
 
@@ -25,7 +25,7 @@ def get_sub_array_from_array(object_array, to_match):
     return []
 
 
-class ReceivedByTest(BitcoinTestFramework):
+class ReceivedByTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
 

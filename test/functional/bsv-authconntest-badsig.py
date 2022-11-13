@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022 Bitcoin Association
+# Copyright (c) 2022 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 
 from test_framework.miner_id import MinerIdKeys, make_miner_id_block
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until, assert_equal, bytes_to_hex_str, hex_str_to_bytes, disconnect_nodes_bi, connect_nodes_bi, rpc_port, p2p_port
 from test_framework.script import CScript, OP_DUP, OP_HASH160, hash160, OP_EQUALVERIFY, OP_CHECKSIG
 from test_framework.mininode import CTransaction, ToHex, CTxIn, CTxOut, COutPoint, FromHex, sha256
@@ -28,7 +28,7 @@ class AllKeys:
         self.fundingKeys = MinerIdKeys("0{}".format(AllKeys.last_seed_number + 6))
         AllKeys.last_seed_number += 6 + 1
 
-class AuthConnTestReputation(BitcoinTestFramework):
+class AuthConnTestReputation(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 2
@@ -43,7 +43,7 @@ class AuthConnTestReputation(BitcoinTestFramework):
 
     def setup_chain(self):
         #super().setup_chain()
-        # Append rpcauth to bitcoin.conf before initialization
+        # Append rpcauth to blink.conf before initialization
 
         rpcuser0 = "rpcuser=rpcuser0"
         rpcpassword0 = "rpcpassword=rpcpassword0"
@@ -64,7 +64,7 @@ class AuthConnTestReputation(BitcoinTestFramework):
                 os.makedirs(datadir)
             return datadir
 
-        with open(os.path.join(make_datadir(0), "bitcoin.conf"), 'a', encoding='utf8') as f:
+        with open(os.path.join(make_datadir(0), "blink.conf"), 'a', encoding='utf8') as f:
             f.write(rpcuser0 + "\n")
             f.write(user0 + "\n")
             f.write(rpcpassword0 + "\n")
@@ -75,7 +75,7 @@ class AuthConnTestReputation(BitcoinTestFramework):
             f.write("port=" + str(p2p_port(0)) + "\n")
             f.write("shrinkdebugfile=0\n")
 
-        with open(os.path.join(make_datadir(1), "bitcoin.conf"), 'a', encoding='utf8') as f:
+        with open(os.path.join(make_datadir(1), "blink.conf"), 'a', encoding='utf8') as f:
             f.write(rpcuser1 + "\n")
             f.write(user1 + "\n")
             f.write(rpcpassword1 + "\n")

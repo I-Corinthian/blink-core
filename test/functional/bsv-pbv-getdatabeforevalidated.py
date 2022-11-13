@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 First test (__test_getdata):
@@ -39,7 +39,7 @@ from test_framework.mininode import (
     CInv,
     CBlockLocator
 )
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.util import (
     assert_equal,
     p2p_port,
@@ -51,7 +51,7 @@ from bsv_pbv_common import (
 )
 
 
-class PBVCallGetDataBeforeBlockIsValidated(BitcoinTestFramework):
+class PBVCallGetDataBeforeBlockIsValidated(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

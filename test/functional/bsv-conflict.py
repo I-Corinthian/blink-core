@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020  Bitcoin Association
+# Copyright (c) 2020  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from test_framework.blocktools import create_block, create_coinbase
 from test_framework.mininode import CTransaction, msg_tx, CTxIn, COutPoint, CTxOut, msg_block
 from test_framework.script import CScript, OP_DROP, OP_TRUE
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until, check_mempool_equals
 
 # Description:
 # Creating a complex graph of transacions in the mempool, mining some of them and double-spend (in block) some other
 # Checking if descedants of double-spend tx are removed while other stay in mempool
 
-class Conflict(BitcoinTestFramework):
+class Conflict(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

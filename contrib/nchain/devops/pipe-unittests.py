@@ -19,7 +19,7 @@ def main():
         exit(-1)
         
     try:
-        args = ["./test_bitcoin", "--log_format=JUNIT" \
+        args = ["./test_blink", "--log_format=JUNIT" \
                , "--log_sink=../../build/reports/unittests.xml"]
         r1 = subprocess.call(args)
     except Exception as e:

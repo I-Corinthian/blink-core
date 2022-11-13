@@ -1,5 +1,5 @@
-Building Bitcoin
+Building Blink
 ================
 
 See doc/build-*.md for instructions on building the various
-elements of the Bitcoin SV implementation of Bitcoin SV.
+elements of the Blink SV implementation of Blink SV.

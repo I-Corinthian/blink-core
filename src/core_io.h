@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CORE_IO_H
-#define BITCOIN_CORE_IO_H
+#ifndef BLINK_CORE_IO_H
+#define BLINK_CORE_IO_H
 
 #include <string>
 #include <vector>
@@ -56,4 +56,4 @@ void ScriptPublicKeyToJSON(const CScript& scriptPubKey,
                            bool isGenesisEnabled,
                            CJSONWriter& out);
 
-#endif // BITCOIN_CORE_IO_H
+#endif // BLINK_CORE_IO_H

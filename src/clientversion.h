@@ -1,19 +1,19 @@
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_CLIENTVERSION_H
-#define BITCOIN_CLIENTVERSION_H
+#ifndef BLINK_CLIENTVERSION_H
+#define BLINK_CLIENTVERSION_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include "config/blink-config.h"
 #else
 
 /**
  * client versioning and copyright year
  */
 
-//! These need to be macros, as clientversion.cpp's and bitcoin*-res.rc's voodoo
+//! These need to be macros, as clientversion.cpp's and blink*-res.rc's voodoo
 //! requires it
 #define CLIENT_VERSION_MAJOR 1
 #define CLIENT_VERSION_MINOR 0
@@ -44,7 +44,7 @@
     "2009-" STRINGIZE(COPYRIGHT_YEAR) " " COPYRIGHT_HOLDERS_FINAL
 
 /**
- * bitcoind-res.rc includes this file, but it cannot cope with real c++ code.
+ * blinkd-res.rc includes this file, but it cannot cope with real c++ code.
  * WINDRES_PREPROC is defined to indicate that its pre-processor is running.
  * Anything other than a define should be guarded below.
  */
@@ -55,11 +55,11 @@
 #include <vector>
 
 /**
- * Initial bitcoin has its own way of calculating the client version number
- * i.e CLIENT_VERSION. Bitcoin SV start at a very low version numbers.
+ * Initial blink has its own way of calculating the client version number
+ * i.e CLIENT_VERSION. Blink SV start at a very low version numbers.
  * In order to keep backward compatibility, the calculated CLIENT_VERSION
- * is shifted in the way the lowest version of Bitcoin SV is still higher 
- * than the highest calculated version in the traditional Bitcoin.
+ * is shifted in the way the lowest version of Blink SV is still higher 
+ * than the highest calculated version in the traditional Blink.
  */
 const int _SV_VERSION_SHIFT = 100000000;
 static const int CLIENT_VERSION = _SV_VERSION_SHIFT +
@@ -75,4 +75,4 @@ std::string FormatSubVersion(const std::string &name, int nClientVersion,
 
 #endif // WINDRES_PREPROC
 
-#endif // BITCOIN_CLIENTVERSION_H
+#endif // BLINK_CLIENTVERSION_H

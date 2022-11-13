@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 """
@@ -11,7 +11,7 @@ allows applying this test to standard p2pkh transactions.
 """
 
 import glob
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import assert_raises_rpc_error, connect_nodes_bi, disconnect_nodes_bi, satoshi_round, assert_equal, hashToHex, sync_blocks
 from test_framework.mininode import FromHex, CTransaction, COIN
 from decimal import Decimal
@@ -23,7 +23,7 @@ def getInputScriptPubKey(node, input, index):
     tx.rehash()
     return tx.vout[index].scriptPubKey
 
-class ConsolidationP2PKHTest(BitcoinTestFramework):
+class ConsolidationP2PKHTest(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 2
@@ -145,7 +145,7 @@ class ConsolidationP2PKHTest(BitcoinTestFramework):
         # Verify deprecation warning is logged
         self.stop_nodes()
         deprecation_log = False
-        for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/bitcoind.log")[0]):
+        for line in open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/blinkd.log")[0]):
             if f"Option -minconsolidationinputmaturity is deprecated, use -minconfconsolidationinput instead" in line:
                 deprecation_log = True
                 #self.log.info("Found line: %s", line.strip())

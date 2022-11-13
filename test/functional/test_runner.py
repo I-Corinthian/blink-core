@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
-# Copyright (c) 2017 The Bitcoin developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """Run regression test suite.
 
@@ -9,7 +9,7 @@ This module calls down into individual test cases via subprocess. It will
 forward all unrecognized arguments onto the individual test scripts.
 
 For a description of arguments recognized by test scripts, see
-`test/functional/test_framework/test_framework.py:BitcoinTestFramework.main`.
+`test/functional/test_framework/test_framework.py:BlinkTestFramework.main`.
 
 """
 
@@ -191,7 +191,7 @@ def main():
     parser.add_argument('--watch', type=str,
                         default=None, help="Showing specified file in the console and monitoring its changes, usefull "
                                            "for live viewing of the log files. If it is of the form 'nodeX' where X is integer, "
-                                           "it will show bitcoind.log file of the specified node")
+                                           "it will show blinkd.log file of the specified node")
     parser.add_argument('--large-block-tests', action='store_true', help="Runs large block file tests.")
     parser.add_argument('--output-type', type=int, default=2, help="Output type: 2 - Automatic detection. 0 - Primitive output suited for CI. 1 - Advanced suited for console.")
     parser.add_argument('--timeout-factors', type=str, default="1", help="Purpose of this flag is to adjust timeouts in specific tests as needed by test environment (e.g. debug builds need longer timeouts)."
@@ -222,7 +222,7 @@ def main():
     logging.basicConfig(format='%(message)s', level=logging_level)
 
     # Create base test directory
-    tmpdir = os.path.join("%s", "bitcoin_test_runner_%s") % (
+    tmpdir = os.path.join("%s", "blink_test_runner_%s") % (
         args.tmpdirprefix, datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))
     os.makedirs(tmpdir)
 
@@ -230,11 +230,11 @@ def main():
 
     enable_wallet = config["components"].getboolean("ENABLE_WALLET")
     enable_utils = config["components"].getboolean("ENABLE_UTILS")
-    enable_bitcoind = config["components"].getboolean("ENABLE_BITCOIND")
+    enable_blinkd = config["components"].getboolean("ENABLE_BLINKD")
 
-    if not (enable_wallet and enable_utils and enable_bitcoind):
+    if not (enable_wallet and enable_utils and enable_blinkd):
         print(
-            "No functional tests to run. Wallet, utils, and bitcoind must all be enabled")
+            "No functional tests to run. Wallet, utils, and blinkd must all be enabled")
         print(
             "Rerun `configure` with -enable-wallet, -with-utils and -with-daemon and rerun make")
         sys.exit(0)
@@ -343,11 +343,11 @@ def main():
 
 
 def run_tests(test_list, build_dir, tests_dir, junitouput, exeext, tmpdir, jobs=1, enable_coverage=False, args=[],  build_timings=None, buildconfig="", file_for_monitoring=None, console=False, solo_position_start=-1):
-    # Warn if bitcoind is already running (unix only)
+    # Warn if blinkd is already running (unix only)
     try:
-        pidofOutput = subprocess.check_output(["pidof", "bitcoind"])
+        pidofOutput = subprocess.check_output(["pidof", "blinkd"])
         if pidofOutput is not None and pidofOutput != b'':
-            print("%sWARNING!%s There is already a bitcoind process running on this system. Tests may fail unexpectedly due to resource contention!" % (
+            print("%sWARNING!%s There is already a blinkd process running on this system. Tests may fail unexpectedly due to resource contention!" % (
                 BOLD[1], BOLD[0]))
     except (OSError, subprocess.SubprocessError):
         pass
@@ -359,20 +359,20 @@ def run_tests(test_list, build_dir, tests_dir, junitouput, exeext, tmpdir, jobs=
             BOLD[1], BOLD[0], cache_dir))
 
     # Set env vars
-    if "BITCOIND" not in os.environ:
-        os.environ["BITCOIND"] = os.path.join(
-            build_dir, 'src', buildconfig, 'bitcoind' + exeext)
-        os.environ["BITCOINCLI"] = os.path.join(
-            build_dir, 'src', buildconfig, 'bitcoin-cli' + exeext)
+    if "BLINKD" not in os.environ:
+        os.environ["BLINKD"] = os.path.join(
+            build_dir, 'src', buildconfig, 'blinkd' + exeext)
+        os.environ["BLINKCLI"] = os.path.join(
+            build_dir, 'src', buildconfig, 'blink-cli' + exeext)
 
-    if not os.path.isfile(os.environ["BITCOIND"]):
-        print("%sERROR!%s Can not find bitcoind executable here: %s. " % (
-            BOLD[1], BOLD[0], os.environ["BITCOIND"]))
+    if not os.path.isfile(os.environ["BLINKD"]):
+        print("%sERROR!%s Can not find blinkd executable here: %s. " % (
+            BOLD[1], BOLD[0], os.environ["BLINKD"]))
         sys.exit(0)
 
-    if not os.path.isfile(os.environ["BITCOINCLI"]):
-        print("%sERROR!%s Can not find bitcoin-cli executable here: %s. " % (
-            BOLD[1], BOLD[0], os.environ["BITCOINCLI"]))
+    if not os.path.isfile(os.environ["BLINKCLI"]):
+        print("%sERROR!%s Can not find blink-cli executable here: %s. " % (
+            BOLD[1], BOLD[0], os.environ["BLINKCLI"]))
         sys.exit(0)
 
     flags = [os.path.join("--srcdir={}".format(build_dir), "src")] + args
@@ -477,13 +477,13 @@ class TestHandler:
         self.console = console
         self.test_count = 0
         self.solo_position_start=solo_position_start
-        # In case there is a graveyard of zombie bitcoinds, we can apply a
+        # In case there is a graveyard of zombie blinkds, we can apply a
         # pseudorandom offset to hopefully jump over them.
         # (625 is PORT_RANGE/MAX_NODES)
         self.portseed_offset = int(time.time() * 1000) % 625
         if (file_for_monitoring is not None):
             if file_for_monitoring[:4] == "node" and file_for_monitoring[4:].isnumeric():
-                file_for_monitoring = os.path.join(file_for_monitoring, "regtest", "bitcoind.log")
+                file_for_monitoring = os.path.join(file_for_monitoring, "regtest", "blinkd.log")
             if file_for_monitoring == "test":
                 file_for_monitoring = "test_framework.log"
         self.file_for_monitoring = file_for_monitoring
@@ -674,7 +674,7 @@ class RPCCoverage():
     Coverage calculation works by having each test script subprocess write
     coverage files into a particular directory. These files contain the RPC
     commands invoked during testing, as well as a complete listing of RPC
-    commands per `bitcoin-cli help` (`rpc_interface.txt`).
+    commands per `blink-cli help` (`rpc_interface.txt`).
 
     After all tests complete, the commands run are combined and diff'd against
     the complete list to calculate uncovered RPC commands.
@@ -742,7 +742,7 @@ def save_results_as_junit(test_results, file_name, time):
     See http://llg.cubic.org/docs/junit/ for specification of format
     """
     e_test_suite = ET.Element("testsuite",
-                              {"name": "bitcoin_sv_tests",
+                              {"name": "blink_sv_tests",
                                "tests": str(len(test_results)),
                                #"errors":
                                "failures": str(len([t for t in test_results if t.status == "Failed"])),

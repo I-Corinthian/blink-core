@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022 Bitcoin Association
+# Copyright (c) 2022 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from test_framework.miner_id import create_miner_info_scriptPubKey, MinerIdKeys, make_miner_id_block
-from test_framework.test_framework import BitcoinTestFramework, sync_blocks
+from test_framework.test_framework import BlinkTestFramework, sync_blocks
 from test_framework.util import wait_until, assert_equal, bytes_to_hex_str, disconnect_nodes_bi, connect_nodes_bi
 from test_framework.script import CScript, OP_DUP, OP_HASH160, hash160, OP_EQUALVERIFY, OP_CHECKSIG
 from test_framework.mininode import CTransaction, ToHex, CTxIn, CTxOut, COutPoint, FromHex
@@ -32,7 +32,7 @@ class AllKeys:
         self.compromisedKeys = MinerIdKeys("06")
         self.fundingKeys = MinerIdKeys("10")
 
-class CreateMinerInfoTest(BitcoinTestFramework):
+class CreateMinerInfoTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.setup_clean_chain = True

@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "chainparams.h"
@@ -155,10 +155,10 @@ public:
 
         // Note that of those with the service bits flag, most only support a
         // subset of possible options.
-        // Bitcoin SV seeder
-        vSeeds.push_back(CDNSSeedData("bitcoinsv.io", "seed.bitcoinsv.io", true));
+        // Blink SV seeder
+        vSeeds.push_back(CDNSSeedData("blinksv.io", "seed.blinksv.io", true));
         vSeeds.push_back(CDNSSeedData("satoshisvision.network", "seed.satoshisvision.network", true));
-        vSeeds.push_back(CDNSSeedData("bitcoinseed.directory", "seed.bitcoinseed.directory", true));
+        vSeeds.push_back(CDNSSeedData("blinkseed.directory", "seed.blinkseed.directory", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<uint8_t>(1, 0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<uint8_t>(1, 5);
@@ -219,7 +219,7 @@ public:
             // UNIX timestamp of last known number of transactions.
             1522608016,
             // Total number of transactions between genesis and that timestamp
-            // (the tx=... number in the SetBestChain bitcoind.log lines)
+            // (the tx=... number in the SetBestChain blinkd.log lines)
             248589038,
             // Estimated number of transactions per second after that timestamp.
             3.2};
@@ -300,9 +300,9 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("bitcoinsv.io", "stn-seed.bitcoinsv.io", true));
-        vSeeds.push_back(CDNSSeedData("bitcoinseed.directory",
-                                      "stn-seed.bitcoinseed.directory",
+        vSeeds.push_back(CDNSSeedData("blinksv.io", "stn-seed.blinksv.io", true));
+        vSeeds.push_back(CDNSSeedData("blinkseed.directory",
+                                      "stn-seed.blinkseed.directory",
                                       true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<uint8_t>(1, 111);
@@ -412,13 +412,13 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        // Bitcoin SV seeder
-        vSeeds.push_back(CDNSSeedData("bitcoinsv.io", "testnet-seed.bitcoinsv.io", true));
-        vSeeds.push_back(CDNSSeedData("bitcoincloud.net",
-                                      "testnet-seed.bitcoincloud.net",
+        // Blink SV seeder
+        vSeeds.push_back(CDNSSeedData("blinksv.io", "testnet-seed.blinksv.io", true));
+        vSeeds.push_back(CDNSSeedData("blinkcloud.net",
+                                      "testnet-seed.blinkcloud.net",
                                       true));
-        vSeeds.push_back(CDNSSeedData("bitcoinseed.directory",
-                                      "testnet-seed.bitcoinseed.directory",
+        vSeeds.push_back(CDNSSeedData("blinkseed.directory",
+                                      "testnet-seed.blinkseed.directory",
                                       true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<uint8_t>(1, 111);

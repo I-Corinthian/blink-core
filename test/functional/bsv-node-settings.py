@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test RPC method getsettings that returns expected values that are used when constructing/accepting a block
@@ -9,7 +9,7 @@ or a transaction.
 from decimal import Decimal
 from itertools import chain
 from collections import defaultdict
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import assert_equal, check_for_log_msg, wait_until
 
 def scale_params(*params, scale):
@@ -17,7 +17,7 @@ def scale_params(*params, scale):
         params = params.split()
     return ((param, scale) for param in params)
 
-class BSVNodeSettings(BitcoinTestFramework):
+class BSVNodeSettings(BlinkTestFramework):
 
     def set_test_params(self):
 

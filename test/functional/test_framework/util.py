@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """Helpful routines for regression testing."""
 
@@ -332,7 +332,7 @@ def initialize_datadir(dirname, n):
     datadir = os.path.join(dirname, "node" + str(n))
     if not os.path.isdir(datadir):
         os.makedirs(datadir)
-    with open(os.path.join(datadir, "bitcoin.conf"), 'w', encoding='utf8') as f:
+    with open(os.path.join(datadir, "blink.conf"), 'w', encoding='utf8') as f:
         f.write("regtest=1\n")
         f.write("port=" + str(p2p_port(n)) + "\n")
         f.write("rpcport=" + str(rpc_port(n)) + "\n")
@@ -346,8 +346,8 @@ def get_datadir_path(dirname, n):
 def get_auth_cookie(datadir):
     user = None
     password = None
-    if os.path.isfile(os.path.join(datadir, "bitcoin.conf")):
-        with open(os.path.join(datadir, "bitcoin.conf"), 'r', encoding='utf8') as f:
+    if os.path.isfile(os.path.join(datadir, "blink.conf")):
+        with open(os.path.join(datadir, "blink.conf"), 'r', encoding='utf8') as f:
             for line in f:
                 if line.startswith("rpcuser="):
                     assert user is None  # Ensure that there is only one rpcuser line
@@ -839,7 +839,7 @@ def loghash(inhash=None):
 
 def check_for_log_msg(rpc, log_msg, node_dir=None):
     """
-    Checks for occurrence of the log_msg in the bitcoind.log
+    Checks for occurrence of the log_msg in the blinkd.log
     rpc can be any object which has .log member (logger)
     If node_dir is None, the rpc must be an TestNode instance and the logfile to search will be the one associated with this TestNode instance.
     """
@@ -847,9 +847,9 @@ def check_for_log_msg(rpc, log_msg, node_dir=None):
 
     if node_dir is None:
         assert hasattr(rpc, "datadir")
-        logfile_path = os.path.join(rpc.datadir, "regtest", "bitcoind.log")
+        logfile_path = os.path.join(rpc.datadir, "regtest", "blinkd.log")
     else:
-        logfile_path = glob.glob(rpc.options.tmpdir + node_dir + "/regtest/bitcoind.log")[0]
+        logfile_path = glob.glob(rpc.options.tmpdir + node_dir + "/regtest/blinkd.log")[0]
 
     with open(logfile_path) as f:
         for line in f:
@@ -860,7 +860,7 @@ def check_for_log_msg(rpc, log_msg, node_dir=None):
 
 def count_log_msg(rpc, log_msg, node_dir=None):
     """
-    Checks for number of occurrences of the log_msg in the bitcoind.log
+    Checks for number of occurrences of the log_msg in the blinkd.log
     rpc can be any object which has .log member (logger)
     If node_dir is None, the rpc must be an TestNode instance and the logfile to search will be the one associated with this TestNode instance.
     """
@@ -868,9 +868,9 @@ def count_log_msg(rpc, log_msg, node_dir=None):
 
     if node_dir is None:
         assert hasattr(rpc, "datadir")
-        logfile_path = os.path.join(rpc.datadir, "regtest", "bitcoind.log")
+        logfile_path = os.path.join(rpc.datadir, "regtest", "blinkd.log")
     else:
-        logfile_path = glob.glob(rpc.options.tmpdir + node_dir + "/regtest/bitcoind.log")[0]
+        logfile_path = glob.glob(rpc.options.tmpdir + node_dir + "/regtest/blinkd.log")[0]
 
     count = 0
     with open(logfile_path) as f:
@@ -884,7 +884,7 @@ def hashToHex(hash):
     return format(hash, '064x')
 
 def check_zmq_test_requirements(configfile, skip_test_exception):
-    # Check that bitcoin has been built with ZMQ enabled
+    # Check that blink has been built with ZMQ enabled
     config = configparser.ConfigParser()
     if not configfile:
         if os.path.exists(os.path.dirname(__file__) + "/../../../build/test/config.ini"):
@@ -898,7 +898,7 @@ def check_zmq_test_requirements(configfile, skip_test_exception):
     if not config["components"].getboolean("ENABLE_ZMQ"):
         raise skip_test_exception
 
-    # if we built bitcoind with ZMQ enabled, then we need zmq package to test its functionality
+    # if we built blinkd with ZMQ enabled, then we need zmq package to test its functionality
     try:
         import zmq
     except ImportError:

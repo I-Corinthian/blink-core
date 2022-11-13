@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 This test checks whether block files are created as expected in different cases.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.comptool import TestInstance
 from test_framework.cdefs import (ONE_MEGABYTE)
 from test_framework.blocktools import ChainManager, prepare_init_chain
 from test_framework.mininode import (NetworkThread, NodeConn, NodeConnCB, msg_block)
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import (p2p_port, assert_equal)
 import glob
 import time
@@ -68,7 +68,7 @@ class RunnerNode(NodeConnCB):
         return block, self.next_block - 1
 
 
-class BlockStoringInFile(BitcoinTestFramework):
+class BlockStoringInFile(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 3
         self.runner_nodes = []

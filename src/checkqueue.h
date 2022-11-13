@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CHECKQUEUE_H
-#define BITCOIN_CHECKQUEUE_H
+#ifndef BLINK_CHECKQUEUE_H
+#define BLINK_CHECKQUEUE_H
 
 #include <algorithm>
 #include <atomic>
@@ -463,4 +463,4 @@ public:
     }
 };
 
-#endif // BITCOIN_CHECKQUEUE_H
+#endif // BLINK_CHECKQUEUE_H

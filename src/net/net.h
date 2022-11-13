@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017 The Bitcoin developers
-// Copyright (c) 2019-2020 Bitcoin Association
+// Copyright (c) 2017 The Blink developers
+// Copyright (c) 2019-2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_NET_H
-#define BITCOIN_NET_H
+#ifndef BLINK_NET_H
+#define BLINK_NET_H
 
 #include "addrdb.h"
 #include "addrman.h"
@@ -1165,4 +1165,4 @@ public:
 int64_t PoissonNextSend(int64_t nNow, int average_interval_seconds);
 
 std::string userAgent();
-#endif // BITCOIN_NET_H
+#endif // BLINK_NET_H

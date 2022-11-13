@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2018-2019 Bitcoin Association
+// Copyright (c) 2018-2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_SCRIPT_SCRIPT_H
-#define BITCOIN_SCRIPT_SCRIPT_H
+#ifndef BLINK_SCRIPT_SCRIPT_H
+#define BLINK_SCRIPT_SCRIPT_H
 
 #include "consensus/consensus.h"
 #include "crypto/common.h"
@@ -220,7 +220,7 @@ public:
     }
 
     /**
-     * Pre-version-0.6, Bitcoin always counted CHECKMULTISIGs as 20 sigops. With
+     * Pre-version-0.6, Blink always counted CHECKMULTISIGs as 20 sigops. With
      * pay-to-script-hash, that changed: CHECKMULTISIGs serialized in scriptSigs
      * are counted more accurately, assuming they are of the form
      *  ... OP_N CHECKMULTISIG ...
@@ -325,4 +325,4 @@ public:
     virtual ~CReserveScript() {}
 };
 
-#endif // BITCOIN_SCRIPT_SCRIPT_H
+#endif // BLINK_SCRIPT_SCRIPT_H

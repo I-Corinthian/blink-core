@@ -6,7 +6,7 @@
 #include "net/net.h"
 #include "validation.h"
 
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 
 #include <boost/signals2/signal.hpp>
 #include <boost/test/unit_test.hpp>

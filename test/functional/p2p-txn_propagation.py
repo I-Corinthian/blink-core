@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2019 Bitcoin Association
+# Copyright (c) 2018-2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Check the P2P transaction propagation changes.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 import time
 
-class P2PTxnPropagation(BitcoinTestFramework):
+class P2PTxnPropagation(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 8

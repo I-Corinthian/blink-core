@@ -1,4 +1,4 @@
-// Pipeline for building Bitcoin SV
+// Pipeline for building Blink SV
 String cron_string = BRANCH_NAME == "develop" ? "@daily" : ""
 
 pipeline {
@@ -85,10 +85,10 @@ pipeline {
 	    
             bitbucketStatusNotify(buildState: 'SUCCESSFUL')        
             archiveArtifacts 'release-notes.txt \
-                             , src/bitcoin-cli \
-                             , src/bitcoin-miner \
-                             , src/bitcoin-txt \
-                             , src/bitcoind \
+                             , src/blink-cli \
+                             , src/blink-miner \
+                             , src/blink-txt \
+                             , src/blinkd \
                              , build/reports/**'
             junit 'build/reports/*.xml'
         }

@@ -7,7 +7,7 @@
 #include "config.h"
 #include "pow.h"
 #include "random.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include "util.h"
 #include "block_index_store.h"
 

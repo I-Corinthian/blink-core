@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """Base class for RPC testing."""
 
@@ -22,7 +22,7 @@ from .associations import Association, AssociationCB
 
 from .authproxy import JSONRPCException
 from . import coverage
-from .test_node import TestNode, TestNode_process_list, BITCOIND_PROC_WAIT_TIMEOUT
+from .test_node import TestNode, TestNode_process_list, BLINKD_PROC_WAIT_TIMEOUT
 from .util import (
     MAX_NODES,
     PortSeed,
@@ -54,10 +54,10 @@ TEST_EXIT_FAILED = 1
 TEST_EXIT_SKIPPED = 77
 
 
-class BitcoinTestFramework():
-    """Base class for a bitcoin test script.
+class BlinkTestFramework():
+    """Base class for a blink test script.
 
-    Individual bitcoin test scripts should subclass this class and override the set_test_params() and run_test() methods.
+    Individual blink test scripts should subclass this class and override the set_test_params() and run_test() methods.
 
     Individual tests can also override the following methods to customize the test setup:
 
@@ -76,7 +76,7 @@ class BitcoinTestFramework():
         self.nodes = []
         self.mocktime = 0
         self.runNodesWithRequiredParams = True
-        self.bitcoind_proc_wait_timeout = BITCOIND_PROC_WAIT_TIMEOUT
+        self.blinkd_proc_wait_timeout = BLINKD_PROC_WAIT_TIMEOUT
         self.set_test_params()
 
         assert hasattr(
@@ -87,11 +87,11 @@ class BitcoinTestFramework():
 
         parser = optparse.OptionParser(usage="%prog [options]")
         parser.add_option("--nocleanup", dest="nocleanup", default=False, action="store_true",
-                          help="Leave bitcoinds and test.* datadir on exit or error")
+                          help="Leave blinkds and test.* datadir on exit or error")
         parser.add_option("--noshutdown", dest="noshutdown", default=False, action="store_true",
-                          help="Don't stop bitcoinds after the test execution")
+                          help="Don't stop blinkds after the test execution")
         parser.add_option("--srcdir", dest="srcdir", default=os.path.normpath(os.path.dirname(os.path.realpath(__file__)) + "/../../../src"),
-                          help="Source directory containing bitcoind/bitcoin-cli (default: %default)")
+                          help="Source directory containing blinkd/blink-cli (default: %default)")
         parser.add_option("--cachedir", dest="cachedir", default=os.path.normpath(os.path.dirname(os.path.realpath(__file__)) + "/../../cache"),
                           help="Directory for caching pregenerated datadirs")
         parser.add_option("--tmpdir", dest="tmpdir",
@@ -109,7 +109,7 @@ class BitcoinTestFramework():
         parser.add_option("--pdbonfailure", dest="pdbonfailure", default=False, action="store_true",
                           help="Attach a python debugger if test fails")
         parser.add_option("--waitforpid", dest="waitforpid", default=False, action="store_true",
-                          help="Display the bitcoind pid and wait for the user before proceeding. Useful for (eg) attaching a debugger to bitcoind.")
+                          help="Display the blinkd pid and wait for the user before proceeding. Useful for (eg) attaching a debugger to blinkd.")
         parser.add_option("--timeoutfactor", dest="timeoutfactor", default=1, type='float',
                           help="Multiply timeouts in specific tests with this factor to enable successful tests in slower environments.")
         self.add_options(parser)
@@ -165,7 +165,7 @@ class BitcoinTestFramework():
                 self.stop_nodes()
         else:
             self.log.info(
-                "Note: bitcoinds were not stopped and may still be running")
+                "Note: blinkds were not stopped and may still be running")
             # Remove all node processes from list of running external processes
             # so that they will not be killed when Python exists.
             TestNode_process_list.clear()
@@ -188,7 +188,7 @@ class BitcoinTestFramework():
                 import glob
                 filenames = [os.path.join(self.options.tmpdir, "test_framework.log")]
                 filenames += glob.glob(os.path.join(self.options.tmpdir,
-                                       "node*", "regtest", "bitcoind.log"))
+                                       "node*", "regtest", "blinkd.log"))
                 MAX_LINES_TO_PRINT = 1000
                 for fn in filenames:
                     try:
@@ -276,7 +276,7 @@ class BitcoinTestFramework():
             initialize_datadir(self.options.tmpdir, i)
 
     def start_node(self, i, extra_args=None, stderr=None):
-        """Start a bitcoind"""
+        """Start a blinkd"""
 
         node = self.nodes[i]
 
@@ -288,7 +288,7 @@ class BitcoinTestFramework():
             coverage.write_all_rpc_commands(self.options.coveragedir, node.rpc)
 
     def start_nodes(self, extra_args=None):
-        """Start multiple bitcoinds"""
+        """Start multiple blinkds"""
 
         if extra_args is None:
             extra_args = [None] * self.num_nodes
@@ -301,7 +301,7 @@ class BitcoinTestFramework():
                 wait_until(lambda: node.rpc.getinfo()["initcomplete"])
                 if(self.options.waitforpid):
                     print('Node {} started, pid is {}'.format(i, node.process.pid))
-                    print('Do what you need (eg; gdb ./bitcoind {}) and then press <return> to continue...'.format(node.process.pid))
+                    print('Do what you need (eg; gdb ./blinkd {}) and then press <return> to continue...'.format(node.process.pid))
                     input()
         except:
             # If one node failed to start, stop the others
@@ -313,8 +313,8 @@ class BitcoinTestFramework():
                 coverage.write_all_rpc_commands(
                     self.options.coveragedir, node.rpc)
 
-    # This method runs and stops bitcoind node with index 'node_index'.
-    # It also creates (and handles closing of) 'number_of_connections' connections to bitcoind node with index 'node_index'.
+    # This method runs and stops blinkd node with index 'node_index'.
+    # It also creates (and handles closing of) 'number_of_connections' connections to blinkd node with index 'node_index'.
     @contextlib.contextmanager
     def run_node_with_connections(self, title, node_index, args, number_of_connections, connArgs=[{}], cb_class=NodeConnCB, ip='127.0.0.1', wait_for_verack=True):
         logger.debug("setup %s", title)
@@ -407,9 +407,9 @@ class BitcoinTestFramework():
         self.stop_nodes()
         logger.debug("finished %s", title)
 
-    # This method runs and stops bitcoind node with index 'node_index'.
+    # This method runs and stops blinkd node with index 'node_index'.
     # It also creates (and handles closing of) some number of associations (desribed by their stream policies)
-    # to bitcoind node with index 'node_index'.
+    # to blinkd node with index 'node_index'.
     @contextlib.contextmanager
     def run_node_with_associations(self, title, node_index, args, stream_policies, cb_class=AssociationCB, ip='127.0.0.1', connArgs={}):
         logger.debug("setup %s", title)
@@ -448,19 +448,19 @@ class BitcoinTestFramework():
         logger.debug("finished %s", title)
 
     def stop_node(self, i):
-        """Stop a bitcoind test node"""
+        """Stop a blinkd test node"""
         self.nodes[i].stop_node()
-        self.nodes[i].wait_until_stopped(timeout=self.bitcoind_proc_wait_timeout)
+        self.nodes[i].wait_until_stopped(timeout=self.blinkd_proc_wait_timeout)
 
     def stop_nodes(self):
-        """Stop multiple bitcoind test nodes"""
+        """Stop multiple blinkd test nodes"""
         for node in self.nodes:
             # Issue RPC to stop nodes
             node.stop_node()
 
         for node in self.nodes:
             # Wait for nodes to stop
-            node.wait_until_stopped(timeout=self.bitcoind_proc_wait_timeout)
+            node.wait_until_stopped(timeout=self.blinkd_proc_wait_timeout)
 
     def restart_node(self, i, extra_args=None):
         """Stop and start a test node"""
@@ -474,7 +474,7 @@ class BitcoinTestFramework():
                 self.stop_node(i)
             except Exception as e:
                 self.wait_for_node_exit(i,1) # wait until process properly terminates and resources are cleaned up
-                assert 'bitcoind exited' in str(e)  # node must have shutdown
+                assert 'blinkd exited' in str(e)  # node must have shutdown
                 if expected_msg is not None:
                     log_stderr.seek(0)
                     stderr = log_stderr.read().decode('utf-8')
@@ -483,9 +483,9 @@ class BitcoinTestFramework():
                             "Expected error \"" + expected_msg + "\" not found in:\n" + stderr)
             else:
                 if expected_msg is None:
-                    assert_msg = "bitcoind should have exited with an error"
+                    assert_msg = "blinkd should have exited with an error"
                 else:
-                    assert_msg = "bitcoind should have exited with expected error " + expected_msg
+                    assert_msg = "blinkd should have exited with expected error " + expected_msg
                 raise AssertionError(assert_msg)
 
     def wait_for_node_exit(self, i, timeout):
@@ -545,7 +545,7 @@ class BitcoinTestFramework():
         ll = int(self.options.loglevel) if self.options.loglevel.isdigit(
         ) else self.options.loglevel.upper()
         ch.setLevel(ll)
-        # Format logs the same as bitcoind's bitcoind.log with microprecision (so log files can be concatenated and sorted)
+        # Format logs the same as blinkd's blinkd.log with microprecision (so log files can be concatenated and sorted)
         formatter = logging.Formatter(
             fmt='%(asctime)s.%(msecs)03d000 %(name)s (%(levelname)s): %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
         formatter.converter = time.gmtime
@@ -556,7 +556,7 @@ class BitcoinTestFramework():
         self.log.addHandler(ch)
 
         if self.options.trace_rpc:
-            rpc_logger = logging.getLogger("BitcoinRPC")
+            rpc_logger = logging.getLogger("BlinkRPC")
             rpc_logger.setLevel(logging.DEBUG)
             rpc_handler = logging.StreamHandler(sys.stdout)
             rpc_handler.setLevel(logging.DEBUG)
@@ -584,10 +584,10 @@ class BitcoinTestFramework():
                     shutil.rmtree(os.path.join(
                         self.options.cachedir, "node" + str(i)))
 
-            # Create cache directories, run bitcoinds:
+            # Create cache directories, run blinkds:
             for i in range(MAX_NODES):
                 datadir = initialize_datadir(self.options.cachedir, i)
-                args = [os.getenv("BITCOIND", "bitcoind"), "-server",
+                args = [os.getenv("BLINKD", "blinkd"), "-server",
                         "-keypool=1", "-datadir=" + datadir, "-discover=0"]
                 if i > 0:
                     args.append("-connect=127.0.0.1:" + str(p2p_port(0)))
@@ -622,7 +622,7 @@ class BitcoinTestFramework():
             self.nodes = []
             self.disable_mocktime()
             for i in range(MAX_NODES):
-                os.remove(log_filename(self.options.cachedir, i, "bitcoind.log"))
+                os.remove(log_filename(self.options.cachedir, i, "blinkd.log"))
                 os.remove(log_filename(self.options.cachedir, i, "db.log"))
                 os.remove(log_filename(self.options.cachedir, i, "peers.dat"))
 
@@ -630,7 +630,7 @@ class BitcoinTestFramework():
             from_dir = os.path.join(self.options.cachedir, "node" + str(i))
             to_dir = os.path.join(self.options.tmpdir, "node" + str(i))
             shutil.copytree(from_dir, to_dir)
-            # Overwrite port/rpcport in bitcoin.conf
+            # Overwrite port/rpcport in blink.conf
             initialize_datadir(self.options.tmpdir, i)
 
     def _initialize_chain_clean(self):
@@ -642,10 +642,10 @@ class BitcoinTestFramework():
             initialize_datadir(self.options.tmpdir, i)
 
 
-class ComparisonTestFramework(BitcoinTestFramework):
+class ComparisonTestFramework(BlinkTestFramework):
     """Test framework for doing p2p comparison testing
 
-    Sets up some bitcoind binaries:
+    Sets up some blinkd binaries:
     - 1 binary: test binary
     - 2 binaries: 1 test binary, 1 ref binary
     - n>2 binaries: 1 test binary, n-1 ref binaries"""
@@ -656,17 +656,17 @@ class ComparisonTestFramework(BitcoinTestFramework):
         self.destAddr = destAddress
         self._network_thread = None
         if not hasattr(self, "testbinary"):
-            self.testbinary = [os.getenv("BITCOIND", "bitcoind")]
+            self.testbinary = [os.getenv("BLINKD", "blinkd")]
         if not hasattr(self, "refbinary"):
-            self.refbinary = [os.getenv("BITCOIND", "bitcoind")]
+            self.refbinary = [os.getenv("BLINKD", "blinkd")]
 
     def set_test_params(self):
         self.num_nodes = 2
         self.setup_clean_chain = True
 
     def add_options(self, parser):
-        parser.add_option("--testbinary", dest="testbinary", help="bitcoind binary to test")
-        parser.add_option("--refbinary", dest="refbinary", help="bitcoind binary to use for reference nodes (if any)")
+        parser.add_option("--testbinary", dest="testbinary", help="blinkd binary to test")
+        parser.add_option("--refbinary", dest="refbinary", help="blinkd binary to use for reference nodes (if any)")
 
     def setup_network(self):
         extra_args = [['-whitelist=127.0.0.1']] * self.num_nodes

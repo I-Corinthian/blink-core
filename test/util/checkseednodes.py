@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Script that prints out version string for every seed node
@@ -23,13 +23,13 @@ from test_framework.mininode import (
 
 # dns seed data is taken from chainparams.cpp
 # format of seeds: [(name1, host1), ... , (nameN, hostN)]
-dnsseeds_mainnet = [("bitcoinsv.io", "seed.bitcoinsv.io"),
+dnsseeds_mainnet = [("blinksv.io", "seed.blinksv.io"),
                     ("cascharia.com", "seed.cascharia.com"),
                     ("satoshisvision.network", "seed.satoshisvision.network")]
-dnsseeds_stn = [("bitcoinsv.io", "stn-seed.bitcoinsv.io")]
-dnsseeds_testnet = [("bitcoinsv.io", "testnet-seed.bitcoinsv.io"),
+dnsseeds_stn = [("blinksv.io", "stn-seed.blinksv.io")]
+dnsseeds_testnet = [("blinksv.io", "testnet-seed.blinksv.io"),
                     ("cascharia.com", "testnet-seed.cascharia.com"),
-                    ("bitcoincloud.net", "testnet-seed.bitcoincloud.net")]
+                    ("blinkcloud.net", "testnet-seed.blinkcloud.net")]
 
 dnsseed_map = {
     "mainnet" : dnsseeds_mainnet,

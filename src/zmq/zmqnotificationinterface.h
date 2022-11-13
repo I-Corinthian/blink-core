@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_ZMQ_ZMQNOTIFICATIONINTERFACE_H
-#define BITCOIN_ZMQ_ZMQNOTIFICATIONINTERFACE_H
+#ifndef BLINK_ZMQ_ZMQNOTIFICATIONINTERFACE_H
+#define BLINK_ZMQ_ZMQNOTIFICATIONINTERFACE_H
 
 #include "validationinterface.h"
 #include "zmq_publisher.h"
@@ -61,4 +61,4 @@ private:
     std::shared_ptr<CZMQPublisher> zmqPublisher;
 };
 
-#endif // BITCOIN_ZMQ_ZMQNOTIFICATIONINTERFACE_H
+#endif // BLINK_ZMQ_ZMQNOTIFICATIONINTERFACE_H

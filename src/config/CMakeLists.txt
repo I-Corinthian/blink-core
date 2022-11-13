@@ -1,5 +1,5 @@
-# Copyright (c) 2017 The Bitcoin developers
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2017 The Blink developers
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 # This generates config.h which provides numerous defines
@@ -9,7 +9,7 @@ include(CheckIncludeFiles)
 include(CheckSymbolExists)
 
 # Package informations
-set(PACKAGE_NAME "Bitcoin SV")
+set(PACKAGE_NAME "Blink SV")
 
 # Version
 set(CLIENT_VERSION_MAJOR 1)
@@ -27,7 +27,7 @@ endif()
 # Copyright
 set(COPYRIGHT_YEAR 2022)
 set(COPYRIGHT_HOLDERS "The %s developers")
-set(COPYRIGHT_HOLDERS_SUBSTITUTION Bitcoin)
+set(COPYRIGHT_HOLDERS_SUBSTITUTION Blink)
 string(REPLACE "%s" ${COPYRIGHT_HOLDERS_SUBSTITUTION} COPYRIGHT_HOLDERS_FINAL ${COPYRIGHT_HOLDERS})
 
 # Endianness
@@ -123,10 +123,10 @@ set(CMAKE_REQUIRED_LIBRARIES ${OPENSSL_CRYPTO_LIBRARY})
 check_symbol_exists(EVP_MD_CTX_new "openssl/evp.h" HAVE_DECL_EVP_MD_CTX_NEW)
 
 # Activate wallet
-set(ENABLE_WALLET ${BUILD_BITCOIN_WALLET})
+set(ENABLE_WALLET ${BUILD_BLINK_WALLET})
 
 # Activate ZeroMQ
-set(ENABLE_ZMQ ${BUILD_BITCOIN_ZMQ})
+set(ENABLE_ZMQ ${BUILD_BLINK_ZMQ})
 
 # Generate the config
-configure_file(bitcoin-config.h.cmake.in bitcoin-config.h ESCAPE_QUOTES)
+configure_file(blink-config.h.cmake.in blink-config.h ESCAPE_QUOTES)

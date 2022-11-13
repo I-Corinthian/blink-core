@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Testing rpc call sendrawtransactions to return doublespend transactions
@@ -20,12 +20,12 @@ Test steps:
 4. send tx2, tx3, and receive that transactions tx2, tx3 collided with transaction tx1
 """
 from test_framework.script import CTransaction, CScript, OP_TRUE, CTxOut
-from test_framework.test_framework import BitcoinTestFramework, ToHex, FromHex
+from test_framework.test_framework import BlinkTestFramework, ToHex, FromHex
 from test_framework.util import assert_equal, wait_until
 from test_framework.mininode import CTxIn, COutPoint
 
 
-class BSVsendrawtransactionsCollided(BitcoinTestFramework):
+class BSVsendrawtransactionsCollided(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True

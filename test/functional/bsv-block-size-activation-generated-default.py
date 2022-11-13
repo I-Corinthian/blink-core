@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test that the new default generated (mined) block size works correctly without the use
@@ -10,7 +10,7 @@ parameter then after the NEW_BLOCKSIZE_ACTIVATION_TIME date the default generate
 size should increase to DEFAULT_MAX_BLOCK_SIZE_*_AFTER
 """
 import math
-from test_framework.test_framework import BitcoinTestFramework, SkipTest
+from test_framework.test_framework import BlinkTestFramework, SkipTest
 from test_framework.util import *
 from test_framework.mininode import *
 from test_framework.script import CScript, OP_TRUE, OP_RETURN
@@ -24,7 +24,7 @@ DEFAULT_MAX_GENERATED_BLOCK_SIZE_BEFORE = REGTEST_DEFAULT_MAX_GENERATED_BLOCK_SI
 DEFAULT_MAX_GENERATED_BLOCK_SIZE_AFTER = REGTEST_DEFAULT_MAX_GENERATED_BLOCK_SIZE_AFTER
 
 
-class BSVGeneratedBlockSizeActivation(BitcoinTestFramework):
+class BSVGeneratedBlockSizeActivation(BlinkTestFramework):
 
     def add_options(self, parser):
         super().add_options(parser)
@@ -114,7 +114,7 @@ class BSVGeneratedBlockSizeActivation(BitcoinTestFramework):
 
         node = self.nodes[0]
 
-        # set bitcoind time to be before activation time
+        # set blinkd time to be before activation time
         node.setmocktime(self.activation_time - 3600)
 
         activation_time = self.activation_time

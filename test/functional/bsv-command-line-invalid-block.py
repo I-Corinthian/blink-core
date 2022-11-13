@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019  Bitcoin Association
+# Copyright (c) 2019  Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from time import sleep
@@ -9,11 +9,11 @@ from test_framework.blocktools import create_block, create_coinbase
 from test_framework.key import CECKey
 from test_framework.mininode import CTransaction, msg_tx, CTxIn, COutPoint, CTxOut, msg_block, ToHex
 from test_framework.script import CScript, SignatureHashForkId, SIGHASH_ALL, SIGHASH_FORKID, OP_CHECKSIG, OP_ADD
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until, assert_raises_rpc_error
 
 
-class InvalidateBlock(BitcoinTestFramework):
+class InvalidateBlock(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

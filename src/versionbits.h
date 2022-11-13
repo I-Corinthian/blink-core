@@ -1,9 +1,9 @@
 // Copyright (c) 2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_CONSENSUS_VERSIONBITS
-#define BITCOIN_CONSENSUS_VERSIONBITS
+#ifndef BLINK_CONSENSUS_VERSIONBITS
+#define BLINK_CONSENSUS_VERSIONBITS
 
 #include <cstdint>
 

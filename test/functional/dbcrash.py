@@ -35,7 +35,7 @@ from decimal import Decimal
 
 from test_framework.mininode import *
 from test_framework.script import *
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 
 HTTP_DISCONNECT_ERRORS = [http.client.CannotSendRequest]
@@ -45,7 +45,7 @@ except AttributeError:
     pass
 
 
-class ChainstateWriteCrashTest(BitcoinTestFramework):
+class ChainstateWriteCrashTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
         self.setup_clean_chain = False
@@ -95,14 +95,14 @@ class ChainstateWriteCrashTest(BitcoinTestFramework):
                 return utxo_hash
             except:
                 # An exception here should mean the node is about to crash.
-                # If bitcoind exits, then try again.  wait_for_node_exit()
-                # should raise an exception if bitcoind doesn't exit.
+                # If blinkd exits, then try again.  wait_for_node_exit()
+                # should raise an exception if blinkd doesn't exit.
                 self.wait_for_node_exit(node_index, timeout=10)
             self.crashed_on_restart += 1
             time.sleep(1)
 
-        # If we got here, bitcoind isn't coming back up on restart. Could be a
-        # bug in bitcoind, or -dbcrashnotbefore is not long enough?
+        # If we got here, blinkd isn't coming back up on restart. Could be a
+        # bug in blinkd, or -dbcrashnotbefore is not long enough?
         # perhaps we generated a test case that blew up our cache?
         raise AssertionError(
             "Unable to successfully restart node %d in allotted time", node_index)

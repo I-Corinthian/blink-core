@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "base58.h"
@@ -76,11 +76,11 @@ UniValue importprivkey(const Config &config, const JSONRPCRequest &request) {
 
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 3)
         throw std::runtime_error(
-            "importprivkey \"bitcoinprivkey\" ( \"label\" ) ( rescan )\n"
+            "importprivkey \"blinkprivkey\" ( \"label\" ) ( rescan )\n"
             "\nAdds a private key (as returned by dumpprivkey) to your "
             "wallet.\n"
             "\nArguments:\n"
-            "1. \"bitcoinprivkey\"   (string, required) The private key (see "
+            "1. \"blinkprivkey\"   (string, required) The private key (see "
             "dumpprivkey)\n"
             "2. \"label\"            (string, optional, default=\"\") An "
             "optional label\n"
@@ -121,7 +121,7 @@ UniValue importprivkey(const Config &config, const JSONRPCRequest &request) {
                            "Rescan is disabled in pruned mode");
     }
 
-    CBitcoinSecret vchSecret;
+    CBlinkSecret vchSecret;
     bool fGood = vchSecret.SetString(strSecret);
 
     if (!fGood) {
@@ -282,7 +282,7 @@ UniValue importaddress(const Config &config, const JSONRPCRequest &request) {
                      fP2SH);
     } else {
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                           "Invalid Bitcoin address or script");
+                           "Invalid Blink address or script");
     }
 
     if (fRescan) {
@@ -546,7 +546,7 @@ UniValue importwallet(const Config &config, const JSONRPCRequest &request) {
         if (vstr.size() < 2) {
             continue;
         }
-        CBitcoinSecret vchSecret;
+        CBlinkSecret vchSecret;
         if (!vchSecret.SetString(vstr[0])) {
             continue;
         }
@@ -620,7 +620,7 @@ UniValue dumpprivkey(const Config &config, const JSONRPCRequest &request) {
             "\nReveals the private key corresponding to 'address'.\n"
             "Then the importprivkey can be used with this output\n"
             "\nArguments:\n"
-            "1. \"address\"   (string, required) The bitcoin address for the "
+            "1. \"address\"   (string, required) The blink address for the "
             "private key\n"
             "\nResult:\n"
             "\"key\"                (string) The private key\n"
@@ -639,7 +639,7 @@ UniValue dumpprivkey(const Config &config, const JSONRPCRequest &request) {
         DecodeDestination(strAddress, config.GetChainParams());
     if (!IsValidDestination(dest)) {
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                           "Invalid Bitcoin address");
+                           "Invalid Blink address");
     }
     const CKeyID *keyID = boost::get<CKeyID>(&dest);
     if (!keyID) {
@@ -651,7 +651,7 @@ UniValue dumpprivkey(const Config &config, const JSONRPCRequest &request) {
                            "Private key for address " + strAddress +
                                " is not known");
     }
-    return CBitcoinSecret(vchSecret).ToString();
+    return CBlinkSecret(vchSecret).ToString();
 }
 
 UniValue dumpwallet(const Config &config, const JSONRPCRequest &request) {
@@ -668,7 +668,7 @@ UniValue dumpwallet(const Config &config, const JSONRPCRequest &request) {
             "files.\n"
             "\nArguments:\n"
             "1. \"filename\"    (string, required) The filename with path "
-            "(either absolute or relative to bitcoind)\n"
+            "(either absolute or relative to blinkd)\n"
             "\nResult:\n"
             "{                           (json object)\n"
             "  \"filename\" : {        (string) The filename with full "
@@ -688,7 +688,7 @@ UniValue dumpwallet(const Config &config, const JSONRPCRequest &request) {
     /**
      * Prevent arbitrary files from being overwritten. There have been reports
      * that users have overwritten wallet files this way:
-     * https://github.com/bitcoin/bitcoin/issues/9934
+     * https://github.com/blink/blink/issues/9934
      * It may also avoid other security issues.
      */
     if (fs::exists(filepath)) {
@@ -721,7 +721,7 @@ UniValue dumpwallet(const Config &config, const JSONRPCRequest &request) {
     std::sort(vKeyBirth.begin(), vKeyBirth.end());
 
     // produce output
-    file << strprintf("# Wallet dump created by Bitcoin %s\n", CLIENT_BUILD);
+    file << strprintf("# Wallet dump created by Blink %s\n", CLIENT_BUILD);
     file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
     file << strprintf("# * Best block at time of backup was %i (%s),\n",
                       chainActive.Height(),
@@ -738,7 +738,7 @@ UniValue dumpwallet(const Config &config, const JSONRPCRequest &request) {
             CExtKey masterKey;
             masterKey.SetMaster(key.begin(), key.size());
 
-            CBitcoinExtKey b58extkey;
+            CBlinkExtKey b58extkey;
             b58extkey.SetKey(masterKey);
 
             file << "# extended private masterkey: " << b58extkey.ToString()
@@ -753,7 +753,7 @@ UniValue dumpwallet(const Config &config, const JSONRPCRequest &request) {
         std::string strAddr = EncodeDestination(keyid);
         CKey key;
         if (pwallet->GetKey(keyid, key)) {
-            file << strprintf("%s %s ", CBitcoinSecret(key).ToString(),
+            file << strprintf("%s %s ", CBlinkSecret(key).ToString(),
                               strTime);
             if (pwallet->mapAddressBook.count(keyid)) {
                 file << strprintf(
@@ -927,7 +927,7 @@ UniValue ProcessImport(CWallet *const pwallet, const UniValue &data,
                 for (size_t i = 0; i < keys.size(); i++) {
                     const std::string &privkey = keys[i].get_str();
 
-                    CBitcoinSecret vchSecret;
+                    CBlinkSecret vchSecret;
                     bool fGood = vchSecret.SetString(privkey);
 
                     if (!fGood) {
@@ -1050,7 +1050,7 @@ UniValue ProcessImport(CWallet *const pwallet, const UniValue &data,
                 const std::string &strPrivkey = keys[0].get_str();
 
                 // Checks.
-                CBitcoinSecret vchSecret;
+                CBlinkSecret vchSecret;
                 bool fGood = vchSecret.SetString(strPrivkey);
 
                 if (!fGood) {

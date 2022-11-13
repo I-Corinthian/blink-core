@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 - Send tx1 that spends transaction output that will be frozen later.
@@ -40,11 +40,11 @@ from test_framework.mininode import (
     msg_block,
     msg_tx
 )
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.blocktools import create_transaction, PreviousSpendableOutput
 from test_framework.script import CScript, OP_TRUE, OP_NOP
 
-class FrozenTXOTransactionMining(BitcoinTestFramework):
+class FrozenTXOTransactionMining(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -114,9 +114,9 @@ class FrozenTXOTransactionMining(BitcoinTestFramework):
         return tx
 
     def check_log(self, node, line_text):
-        for line in open(glob.glob(node.datadir + "/regtest/bitcoind.log")[0]):
+        for line in open(glob.glob(node.datadir + "/regtest/blinkd.log")[0]):
             if re.search(line_text, line) is not None:
-                self.log.debug("Found line in bitcoind.log: %s", line.strip())
+                self.log.debug("Found line in blinkd.log: %s", line.strip())
                 return True
         return False
 
@@ -232,7 +232,7 @@ class FrozenTXOTransactionMining(BitcoinTestFramework):
             bt = [template_txns[0]['txid'], template_txns[1]['txid']]
             assert(spend_unfrozen_tx3.hash in mp and spend_unfrozen_tx4.hash in bt)
 
-            # bitcoind sould not unnecessarily scan whole mempool to find transactions that spend TXOs, which could become frozen again.
+            # blinkd sould not unnecessarily scan whole mempool to find transactions that spend TXOs, which could become frozen again.
             assert( not self.check_log(self.nodes[no], mempool_scan_check_log_string) )
 
         self.log.info("Invalidating chain tip on both nodes to force reorg back to height where TXO is still frozen")
@@ -245,7 +245,7 @@ class FrozenTXOTransactionMining(BitcoinTestFramework):
             assert_equal(self.nodes[no].getrawmempool(), [])
             assert_equal(self.nodes[no].getblocktemplate()["transactions"], [])
 
-            # bitcoind now should scan whole mempool.
+            # blinkd now should scan whole mempool.
             assert( self.check_log(self.nodes[no], mempool_scan_check_log_string) )
 
         self.log.info("Unfreezing all frozen outputs on both nodes")

@@ -1,11 +1,11 @@
 Sample configuration files for:
 
-SystemD: bitcoind.service
-Upstart: bitcoind.conf
-OpenRC:  bitcoind.openrc
-         bitcoind.openrcconf
-CentOS:  bitcoind.init
-OS X:    org.bitcoin.bitcoind.plist
+SystemD: blinkd.service
+Upstart: blinkd.conf
+OpenRC:  blinkd.openrc
+         blinkd.openrcconf
+CentOS:  blinkd.init
+OS X:    org.blink.blinkd.plist
 
 have been made available to assist packagers in creating node packages here.
 

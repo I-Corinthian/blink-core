@@ -1,4 +1,4 @@
-// Copyright (c) 2022 Bitcoin Association
+// Copyright (c) 2022 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "amount.h"
@@ -60,7 +60,7 @@ static CKey privKeyFromStringBIP32(std::string const & strkey)
 {
     // parse the BIP32 key and convert it to ECDSA format.
     CKey key;
-    CBitcoinExtKey bip32ExtPrivKey {strkey};
+    CBlinkExtKey bip32ExtPrivKey {strkey};
     CExtKey newKey = bip32ExtPrivKey.GetKey();
     key.Set(newKey.key.begin(), newKey.key.end(), true);
     return key;
@@ -606,7 +606,7 @@ static UniValue makeminerinfotxsigningkey(const Config &config, const JSONRPCReq
 
     CExtKey masterKey {};
     masterKey.SetMaster(privKey.begin(), privKey.size());
-    CBitcoinExtKey bip32key;
+    CBlinkExtKey bip32key;
     bip32key.SetKey(masterKey);
 
     privKey = bip32key.GetKey().key;

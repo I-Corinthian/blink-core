@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 '''
@@ -7,14 +7,14 @@ Verify that a large reorg across the Genesis boundary does not result in any
 journal errors.
 '''
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.mininode import *
 from test_framework.util import *
 from test_framework.script import CScript, OP_TRUE, OP_FALSE, OP_RETURN, OP_ADD, OP_DROP, OP_4, OP_CHECKSIG
 from test_framework.blocktools import create_transaction
 import codecs
 
-class JournalReorg(BitcoinTestFramework):
+class JournalReorg(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

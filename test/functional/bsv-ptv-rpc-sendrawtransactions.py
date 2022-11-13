@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 Bitcoin Association
+# Copyright (c) 2020 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 """
@@ -413,10 +413,10 @@ class RPCSendRawTransactions(ComparisonTestFramework):
 
         # There should be to_mine rejected transactions.
         assert_equal(len(rejected_txns['invalid']), len(to_mine))
-        # bitcoind knows about the outputs of the last already mined transaction
+        # blinkd knows about the outputs of the last already mined transaction
         assert_equal(len([tx for tx in rejected_txns['invalid']
                           if tx['reject_reason'] == 'txn-already-known']), 1)
-        # bitcoind knows nothing about the previous already mined transactions so it considers them orphans
+        # blinkd knows nothing about the previous already mined transactions so it considers them orphans
         assert_equal(len([tx for tx in rejected_txns['invalid']
                           if tx['reject_reason'] == 'missing-inputs']), len(to_mine) - 1)
         # No transactions that were already mined should be in the mempool. The rest should be

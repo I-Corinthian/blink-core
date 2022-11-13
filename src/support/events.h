@@ -1,9 +1,9 @@
 // Copyright (c) 2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_SUPPORT_EVENTS_H
-#define BITCOIN_SUPPORT_EVENTS_H
+#ifndef BLINK_SUPPORT_EVENTS_H
+#define BLINK_SUPPORT_EVENTS_H
 
 #include <ios>
 #include <memory>
@@ -53,4 +53,4 @@ inline raii_evhttp_connection obtain_evhttp_connection_base(struct event_base *b
     return result;
 }
 
-#endif // BITCOIN_SUPPORT_EVENTS_H
+#endif // BLINK_SUPPORT_EVENTS_H

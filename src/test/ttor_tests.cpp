@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "block_index_store.h"
@@ -8,7 +8,7 @@
 #include "consensus/consensus.h"
 #include "pow.h"
 #include "primitives/transaction.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include "uint256.h"
 #include "util.h"
 #include "validation.h"

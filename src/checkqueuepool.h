@@ -1,8 +1,8 @@
-// Copyright (c) 2019 Bitcoin Association.
+// Copyright (c) 2019 Blink Association.
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_CHECKQUEUEPOOL_H
-#define BITCOIN_CHECKQUEUEPOOL_H
+#ifndef BLINK_CHECKQUEUEPOOL_H
+#define BLINK_CHECKQUEUEPOOL_H
 
 #include <chrono>
 #include <condition_variable>
@@ -182,7 +182,7 @@ public:
 
         mScriptCheckQueue.reserve(poolSize);
 
-        constexpr auto baseThreadName{"bitcoin-scriptch_"};
+        constexpr auto baseThreadName{"blink-scriptch_"};
         for(size_t queueNum=0; queueNum<poolSize; ++queueNum)
         {
             auto& queue =
@@ -344,4 +344,4 @@ private:
 
 }
 
-#endif // BITCOIN_CHECKQUEUEPOOL_H
+#endif // BLINK_CHECKQUEUEPOOL_H

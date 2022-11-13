@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (C) 2018-2019 Bitcoin Association
+# Copyright (C) 2018-2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 '''
 Test checks if transactions included in inv message are in the same order 
@@ -8,7 +8,7 @@ the node from broadcasting of each transaction separately it processed. Only one
 in mempool after 10s instead.
 '''
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.blocktools import *
 from test_framework.util import *
 from test_framework.script import *
@@ -27,7 +27,7 @@ def invsOrderedbyTime(invListExpected, txinvs):
     return True
 
 
-class TxnInvOrder(BitcoinTestFramework):
+class TxnInvOrder(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.num_txns = 3

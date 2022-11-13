@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """ TimeoutsTest -- test various net timeouts (only in extended tests)
 
-- Create three bitcoind nodes:
+- Create three blinkd nodes:
 
     no_verack_node - we never send a verack in response to their version
     no_version_node - we never send a version (only a ping)
@@ -24,7 +24,7 @@
 from time import sleep
 
 from test_framework.mininode import *
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 
 
@@ -34,7 +34,7 @@ class TestNode(NodeConnCB):
         pass
 
 
-class TimeoutsTest(BitcoinTestFramework):
+class TimeoutsTest(BlinkTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "frozentxo_db.h"
@@ -6,7 +6,7 @@
 #include "uint256.h"
 #include "arith_uint256.h"
 
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include <boost/test/unit_test.hpp>
 
 #include <random>

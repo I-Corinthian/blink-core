@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Test next block file calulation, writing and reading from block files that are larger than 4GB
@@ -24,7 +24,7 @@ class LargeBlockFileIO(ComparisonTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 1
-        self.bitcoind_proc_wait_timeout = 180
+        self.blinkd_proc_wait_timeout = 180
         self.setup_clean_chain = True
         self.genesisactivationheight = 104
         self.nocleanup = True

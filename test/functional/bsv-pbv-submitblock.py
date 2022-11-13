@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 We will test the following situation where block 1 is the tip and three blocks
@@ -41,13 +41,13 @@ from test_framework.mininode import (
     ToHex,
     CInv
 )
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from bsv_pbv_common import (
     wait_for_waiting_blocks,
     wait_for_validating_blocks
 )
 
-class PBVSubmitBlock(BitcoinTestFramework):
+class PBVSubmitBlock(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -121,7 +121,7 @@ class PBVSubmitBlock(BitcoinTestFramework):
         # *** Complete early announcement setup by sending getheaders message
         #     with a non-null locator (pointing to the last block that we know
         #     of on python side - we claim that we know of all the blocks that
-        #     bitcoind node knows of)
+        #     blinkd node knows of)
         #
         #     We also set on_cmpctblock handler as early announced blocks are
         #     announced via compact block messages instead of inv messages
@@ -166,7 +166,7 @@ class PBVSubmitBlock(BitcoinTestFramework):
 
         # *** Make sure that we receive compact block announcement of the block
         #     after the validation is complete even though it was not the first
-        #     block that was received by bitcoind node.
+        #     block that was received by blinkd node.
         #
         #     Also make sure that we receive inv announcement of the block after
         #     the validation is complete by the nodes that are not using early

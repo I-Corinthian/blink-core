@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_PRIMITIVES_TRANSACTION_H
-#define BITCOIN_PRIMITIVES_TRANSACTION_H
+#ifndef BLINK_PRIMITIVES_TRANSACTION_H
+#define BLINK_PRIMITIVES_TRANSACTION_H
 
 #include "amount.h"
 #include "script/script.h"
@@ -397,4 +397,4 @@ struct PrecomputedTransactionData {
 // Test for double-spend notification enabled output on a transaction
 [[nodiscard]] std::pair<bool, size_t> TxnHasDSNotificationOutput(const CTransaction& txn);
 
-#endif // BITCOIN_PRIMITIVES_TRANSACTION_H
+#endif // BLINK_PRIMITIVES_TRANSACTION_H

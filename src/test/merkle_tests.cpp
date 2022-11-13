@@ -1,5 +1,5 @@
 // Copyright (c) 2015-2016 The Bitcoin Core developers
-// Copyright (c) 2020 Bitcoin Association
+// Copyright (c) 2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 #include <algorithm>
 #include <stdexcept>
@@ -18,7 +18,7 @@
 #include "serialize.h"
 #include "support/allocators/zeroafterfree.h"
 #include "task_helpers.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include "uint256.h"
 
 namespace ba = boost::algorithm;
@@ -382,7 +382,7 @@ BOOST_AUTO_TEST_CASE(deserialize_tx)
 
 BOOST_AUTO_TEST_CASE(deserialize_std_example)
 {
-    // Taken from: github.com/bitcoin-sv-specs/merkle-proof-standard-example
+    // Taken from: github.com/blink-sv-specs/merkle-proof-standard-example
     using namespace std;
 
     // clang-format off

@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Bitcoin SV developers
+// Copyright (c) 2019 The Blink SV developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -142,7 +142,7 @@ CValidationState CTxnValidator::processValidation(
     // It needs to be in that way as the wallet itself (and it's rpc interface) locks
     // cs_main in many places and holds it (mostly rpc interface) for an entire duration of the call.
     // A synchronous interface is called from a different threads:
-    // - bitcoin-main, bitcoin-loadblk. bitcoin-httpwor.
+    // - blink-main, blink-loadblk. blink-httpwor.
     LOCK(cs_main);
     std::unique_lock lock { mMainMtx };
     CTxnValResult result {};
@@ -220,7 +220,7 @@ CTxnValidator::RejectedTxns CTxnValidator::processValidation(
     // It needs to be in that way as the wallet itself (and it's rpc interface) locks
     // cs_main in many places and holds it (mostly rpc interface) for an entire duration of the call.
     // A synchronous interface is called from a different threads:
-    // - bitcoin-main, bitcoin-loadblk. bitcoin-httpwor.
+    // - blink-main, blink-loadblk. blink-httpwor.
     LOCK(cs_main);
     std::unique_lock lock { mMainMtx };
     // A vector of accepted txns

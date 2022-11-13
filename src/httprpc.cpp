@@ -1,5 +1,5 @@
 // Copyright (c) 2015-2016 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "httprpc.h"
@@ -341,7 +341,7 @@ static bool InitRPCAuthentication() {
         if (!GenerateAuthCookie(&strRPCUserColonPass)) {
             // Same message as AbortNode.
             uiInterface.ThreadSafeMessageBox(
-                _("Error: A fatal internal error occurred, see bitcoind.log for "
+                _("Error: A fatal internal error occurred, see blinkd.log for "
                   "details"),
                 "", CClientUIInterface::MSG_ERROR);
             return false;

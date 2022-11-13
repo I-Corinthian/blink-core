@@ -4,8 +4,8 @@
 //
 // C++ wrapper around ctaes, a constant-time AES implementation
 
-#ifndef BITCOIN_CRYPTO_AES_H
-#define BITCOIN_CRYPTO_AES_H
+#ifndef BLINK_CRYPTO_AES_H
+#define BLINK_CRYPTO_AES_H
 
 extern "C" {
 #include "crypto/ctaes/ctaes.h"
@@ -111,4 +111,4 @@ private:
     uint8_t iv[AES_BLOCKSIZE];
 };
 
-#endif // BITCOIN_CRYPTO_AES_H
+#endif // BLINK_CRYPTO_AES_H

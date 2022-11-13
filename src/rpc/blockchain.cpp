@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2019 The Bitcoin Core developers
-// Copyright (c) 2019 Bitcoin Association
+// Copyright (c) 2019 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file
 // LICENSE.
 
@@ -1852,8 +1852,8 @@ UniValue gettxout(const Config &config, const JSONRPCRequest &request) {
             "signatures\n"
             "     \"type\" : \"pubkeyhash\", (string) The type, eg pubkeyhash\n"
             "     \"addresses\" : [          (array of string) array of "
-            "bitcoin addresses\n"
-            "        \"address\"     (string) bitcoin address\n"
+            "blink addresses\n"
+            "        \"address\"     (string) blink address\n"
             "        ,...\n"
             "     ]\n"
             "  },\n"
@@ -2722,7 +2722,7 @@ Arguments:
 Result:
 Nothing (JSON null value) if successful and an error code otherwise.
     -1: Specified block cannot be marked as soft rejected.
-        Response contains general error description while details are provided in bitcoind log file.
+        Response contains general error description while details are provided in blinkd log file.
         Common reasons for this error are:
             - Block is already considered soft rejected because of its parent and cannot be marked independently.
             - Block is currently marked as soft rejected for the next N block(s) and this number can only be increased when rejecting.
@@ -2794,7 +2794,7 @@ Arguments:
 Result:
 Nothing (JSON null value) if successful and an error code otherwise.
     -1: Specified block cannot be unmarked as soft rejected.
-        Response contains general error description while details are provided in bitcoind log file.
+        Response contains general error description while details are provided in blinkd log file.
         Common reasons for this error are:
             - Block is not soft rejected.
             - Block is soft rejected because of its parent and cannot be accepted independently.

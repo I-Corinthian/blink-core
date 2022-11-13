@@ -5,12 +5,12 @@
 
 # Test for -rpcbind, as well as -rpcallowip and -rpcconnect
 
-from test_framework.test_framework import BitcoinTestFramework, SkipTest
+from test_framework.test_framework import BlinkTestFramework, SkipTest
 from test_framework.util import *
 from test_framework.netutil import *
 
 
-class RPCBindTest(BitcoinTestFramework):
+class RPCBindTest(BlinkTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

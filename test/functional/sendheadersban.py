@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2019 Bitcoin Association
+# Copyright (c) 2018-2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 import time
 from test_framework.mininode import *
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 
 
@@ -15,7 +15,7 @@ class TestNode(NodeConnCB):
         self.last_blockhash_announced = None
 
 
-class TestSendHeadersBanScore(BitcoinTestFramework):
+class TestSendHeadersBanScore(BlinkTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes=1

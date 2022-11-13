@@ -1,0 +1,22 @@
+[Unit]
+Description=Blink's distributed currency daemon
+After=network.target
+
+[Service]
+User=blink
+Group=blink
+
+Type=forking
+PIDFile=/var/lib/blinkd/blinkd.pid
+ExecStart=/usr/bin/blinkd -daemon -pid=/var/lib/blinkd/blinkd.pid \
+-conf=/etc/blink/blink.conf -datadir=/var/lib/blinkd -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

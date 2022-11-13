@@ -11,7 +11,7 @@ import json
 import os
 import time
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
@@ -28,7 +28,7 @@ def EncodeDecimal(o):
     raise TypeError(repr(o) + " is not JSON serializable")
 
 
-class GetblockstatsTest(BitcoinTestFramework):
+class GetblockstatsTest(BlinkTestFramework):
 
     start_height = 101
     max_stat_pos = 2

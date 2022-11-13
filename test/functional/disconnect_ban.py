@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test node disconnect and ban behavior"""
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
@@ -13,7 +13,7 @@ from test_framework.util import (
 )
 
 
-class DisconnectBanTest(BitcoinTestFramework):
+class DisconnectBanTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 from test_framework.mininode import msg_getdata, CInv, wait_until
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.blocktools import assert_equal
 
 # This tests checks GETDATA P2P message.
@@ -12,7 +12,7 @@ from test_framework.blocktools import assert_equal
 # 3. Check that sending GETDATA of unknown transaction returns NOTFOUND message.
 # 4. Check that sending GETDATA of known transaction returns TX message.
 
-class GetDataTest(BitcoinTestFramework):
+class GetDataTest(BlinkTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 1

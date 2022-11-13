@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file
 // LICENSE.
 
@@ -15,7 +15,7 @@
 
 /**
  * Class to model a merkle proof conforming to the TSC standard:
- * https://tsc.bitcoinassociation.net/standards/merkle-proof-standardised-format/
+ * https://tsc.blinkassociation.net/standards/merkle-proof-standardised-format/
  *
  * Currently only supports a target of type merkle root.
  */

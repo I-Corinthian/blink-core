@@ -1,11 +1,11 @@
 # Public Keys
 The following public keys are used for signing releases and for communicating with 
-the Bitcoin SV Security Team.
+the Blink SV Security Team.
 
 
-## Bitcoin SV Node Implementation Release Keys
+## Blink SV Node Implementation Release Keys
 
-* User id: Daniel Connolly (Bitcoin SV binary release signing key) <d.connolly@nchain.com>
+* User id: Daniel Connolly (Blink SV binary release signing key) <d.connolly@nchain.com>
 * Fingerprint: `2E6B64609F97BD0C3ABD89E1169E3EC06431FF95`
 
 ```
@@ -52,7 +52,7 @@ vxs6Yrz+Qc/XncC1NcoM3WbvkH19BzWYuSTZfDS/oD04tdY8AKU81n9jArHVIg==
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-* User id: Richard Mills (Bitcoin SV binary release signing key) <r.mills@nchain.com>
+* User id: Richard Mills (Blink SV binary release signing key) <r.mills@nchain.com>
 * Fingerprint: `AF6A46C19D67A45F502F9C4CED31BEA249693597`
 
 ```
@@ -109,7 +109,7 @@ l2zNTLMEVNAL7cbtdystLKdasbEN12WkI7lTAm8CjAoxzV4vXO1lqFxm8GJzRA==
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-* User id: Chris Gibson (Bitcoin SV binary release signing key) <c.gibson@nchain.com>
+* User id: Chris Gibson (Blink SV binary release signing key) <c.gibson@nchain.com>
 * Fingerprint: `B754A56E39949FB735AA33C228574C360C84118C`
 
 ```
@@ -166,9 +166,9 @@ bgQcybBEmy6qzK3qj3co79wKjZpayn3fG07vvD/8qIDFVqc6KMFlrs9mQgZv5Q==
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-## Bitcoin SV Security Team
+## Blink SV Security Team
 
-* User id: Bitcoin SV Security Team <security@bitcoinsv.io>
+* User id: Blink SV Security Team <security@blinksv.io>
 * Fingerprint: `E8EB970A1C607DF0822E1388F96976FD7A20AB62`
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----

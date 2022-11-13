@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2019 Bitcoin Association
+# Copyright (c) 2018-2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 Check the P2P connection with magicbytes parameter.
 """
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import connect_nodes_bi, wait_until
 
-class MagicBytes(BitcoinTestFramework):
+class MagicBytes(BlinkTestFramework):
 
     def set_test_params(self):
         self._magicbyte='0a0b0c0d'

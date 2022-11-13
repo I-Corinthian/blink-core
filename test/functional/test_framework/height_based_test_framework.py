@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 Bitcoin Association
+# Copyright (c) 2019 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 from collections import defaultdict
 
@@ -7,7 +7,7 @@ from test_framework.blocktools import create_block, create_coinbase, create_tran
 from test_framework.mininode import msg_block, msg_tx, ToHex, CTransaction, CTxIn, COutPoint, CTxOut, COIN
 from test_framework.script import CScript, OP_CHECKSIG, OP_TRUE, SignatureHashForkId, SIGHASH_ALL, SIGHASH_FORKID, \
     OP_FALSE, OP_RETURN
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import wait_until, try_rpc, loghash
 from test_framework.cdefs import DEFAULT_MAX_ASYNC_TASKS_RUN_DURATION
 
@@ -190,7 +190,7 @@ class HeightBasedSimpleTestsCase(HeightBasedTestsCase):
                 self.log.info(f"Created Test Tx {loghash(tx.hash)} for scenario: \"{t.scenario or self.NAME}\" and for test_label: {t.label}")
                 tx_collection.add_tx(tx, t.p2p_reject_reason, t.block_reject_reason)
 
-class SimplifiedTestFramework(BitcoinTestFramework):
+class SimplifiedTestFramework(BlinkTestFramework):
 
     def __init__(self, genesis_tests):
         self._gen_tests = genesis_tests

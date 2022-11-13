@@ -1,8 +1,8 @@
-// Copyright (c) 2021 Bitcoin Association
+// Copyright (c) 2021 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_ABORTNODE_H
-#define BITCOIN_ABORTNODE_H
+#ifndef BLINK_ABORTNODE_H
+#define BLINK_ABORTNODE_H
 
 #include <iostream>
 #include "consensus/validation.h"

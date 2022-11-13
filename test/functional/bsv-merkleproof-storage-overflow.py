@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022 Bitcoin Association
+# Copyright (c) 2022 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 import glob
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.script import CScript, OP_TRUE
 from test_framework.mininode import CTransaction, ToHex, CTxIn, CTxOut, COutPoint
 from test_framework.blocktools import create_block, create_coinbase
@@ -13,7 +13,7 @@ create a merkle tree that has memory requirements below available and check that
 create a merkle tree that has memory requirements above available and check that error log is emitted
 '''
 
-class CreateMinerInfoTest(BitcoinTestFramework):
+class CreateMinerInfoTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True
@@ -71,7 +71,7 @@ class CreateMinerInfoTest(BitcoinTestFramework):
         self.nodes[0].getmerkleproof2(bhash, test_txid)
 
     def find_overflow_message_in_logs(self):
-        with open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/bitcoind.log")[0], encoding="utf8") as file:
+        with open(glob.glob(self.options.tmpdir + "/node0" + "/regtest/blinkd.log")[0], encoding="utf8") as file:
             for line in file:
                 if "Merkle Tree of size" in line and "will not be written to keep disk size hard limit" in line:
                     return True

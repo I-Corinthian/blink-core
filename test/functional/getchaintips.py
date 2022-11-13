@@ -7,11 +7,11 @@
 # on chains of different lengths, and join the network together again.
 # This gives us two tips, verify that it works.
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import assert_equal
 
 
-class GetChainTipsTest (BitcoinTestFramework):
+class GetChainTipsTest (BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
 

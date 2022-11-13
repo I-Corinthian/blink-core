@@ -33,12 +33,12 @@ and confirm again balances are correct.
 from random import randint
 import shutil
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import *
 from test_framework.blocktools import wait_for_tip
 
 
-class WalletBackupTest(BitcoinTestFramework):
+class WalletBackupTest(BlinkTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
         self.setup_clean_chain = True

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 The Bitcoin SV developers
+# Copyright (c) 2020 The Blink SV developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 from test_framework.mininode import CInv, LEGACY_MAX_PROTOCOL_PAYLOAD_LENGTH, logger, NodeConn, NodeConnCB, \
     NetworkThread, msg_protoconf, CProtoconf, msg_inv
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BlinkTestFramework
 from test_framework.util import assert_equal, assert_greater_than,  p2p_port
 from math import ceil
 
-class BsvProtoconfTest(BitcoinTestFramework):
+class BsvProtoconfTest(BlinkTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -23,7 +23,7 @@ class BsvProtoconfTest(BitcoinTestFramework):
         """
         This method starts the node and creates a connection to the node.
         It takes care of exchanging protoconf messages between node and python connection.
-        Max size of bitcoin nodes' inv message is determined by maxprotocolrecvpayloadlength.
+        Max size of blink nodes' inv message is determined by maxprotocolrecvpayloadlength.
         Max size of python connections' inv message is LEGACY_MAX_PROTOCOL_PAYLOAD_LENGTH.
         If called with parameter recvinvqueuefactor it also sets this setting on the node.
 
@@ -44,7 +44,7 @@ class BsvProtoconfTest(BitcoinTestFramework):
         def on_getdata(conn, message):
             test_node.wanted_inv_lengths.append(len(message.inv))
         test_node.on_getdata = on_getdata
-        # Send protoconf message from python node to bitcoind node
+        # Send protoconf message from python node to blinkd node
         def send_protoconf_default_msg_length(conn):
             conn.send_message(msg_protoconf(CProtoconf(1, LEGACY_MAX_PROTOCOL_PAYLOAD_LENGTH)))
         test_node.send_protoconf = send_protoconf_default_msg_length
@@ -55,7 +55,7 @@ class BsvProtoconfTest(BitcoinTestFramework):
         # Prepare initial block. Needed so that GETDATA can be send back.
         self.nodes[0].generate(1)
 
-        # Receive bitcoind's protoconf and save max_recv_payload_length.
+        # Receive blinkd's protoconf and save max_recv_payload_length.
         test_node.wait_for_protoconf()
         test_node.max_recv_payload_length = test_node.last_message["protoconf"].protoconf.max_recv_payload_length
 
@@ -71,16 +71,16 @@ class BsvProtoconfTest(BitcoinTestFramework):
         # start node, protoconf messages, ...
         test_node = self.start_node_with_protoconf(maxprotocolrecvpayloadlength)
 
-        # Check if maxprotocolrecvpayloadlength is not set and use default value from bitcoind
+        # Check if maxprotocolrecvpayloadlength is not set and use default value from blinkd
         if not maxprotocolrecvpayloadlength:
             maxprotocolrecvpayloadlength = 2 * LEGACY_MAX_PROTOCOL_PAYLOAD_LENGTH
 
-        # Assert received max payload length from bitcoind node to be the same as we set in kwargs
+        # Assert received max payload length from blinkd node to be the same as we set in kwargs
         assert_equal(test_node.max_recv_payload_length, maxprotocolrecvpayloadlength)
-        # Calculate maximum number of elements that bitcoind node is willing to receive
+        # Calculate maximum number of elements that blinkd node is willing to receive
         maxInvElements = CInv.estimateMaxInvElements(test_node.max_recv_payload_length)
         logger.info(
-            "Received bitcoind max message size: {} B, which represents {} elements. ".format(test_node.max_recv_payload_length, maxInvElements))
+            "Received blinkd max message size: {} B, which represents {} elements. ".format(test_node.max_recv_payload_length, maxInvElements))
 
         # Calculate our max size for inv message we can accept and how many element it contains.
         # Remote node has to respect our settings.
@@ -94,7 +94,7 @@ class BsvProtoconfTest(BitcoinTestFramework):
         test_node.sync_with_ping()
         assert_equal(len(self.nodes[0].listbanned()), 0)
         test_node.wait_for_getdata()
-        logger.info("Received GetData from bitcoind.")
+        logger.info("Received GetData from blinkd.")
 
         # We should receive GetData messages with 1MB size (29126 elements = CInv.estimateMaxInvElements(LEGACY_MAX_PROTOCOL_PAYLOAD_LENGTH))
         # and last GetData message with remaining elements.
@@ -127,22 +127,22 @@ class BsvProtoconfTest(BitcoinTestFramework):
 
         maxInvElements = CInv.estimateMaxInvElements(test_node.max_recv_payload_length)
         logger.info(
-            "Received bitcoind max message size: {} B, which represents {} elements. ".format(test_node.max_recv_payload_length,
+            "Received blinkd max message size: {} B, which represents {} elements. ".format(test_node.max_recv_payload_length,
                                                                                               maxInvElements))
         ### TEST WITH maxInvElements - 1, maxInvElements and maxInvElements + 1
-        # 1. Send bitcoind Inv message that is smaller than max_recv_payload_length.
+        # 1. Send blinkd Inv message that is smaller than max_recv_payload_length.
         logger.info("Sending inv message with: {} elements. Max allowed : {}".format(maxInvElements-1, maxInvElements))
         test_node.send_message(msg_inv([CInv(CInv.TX, i) for i in range(0, maxInvElements - 1)]))
         test_node.sync_with_ping()
         assert_equal(len(self.nodes[0].listbanned()), 0)  # not banned
 
-        # 2. Send bitcoind Inv message that is equal to max_recv_payload_length.
+        # 2. Send blinkd Inv message that is equal to max_recv_payload_length.
         logger.info("Sending inv message with: {} elements. Max allowed : {}".format(maxInvElements, maxInvElements))
         test_node.send_message(msg_inv([CInv(CInv.TX, maxInvElements+i) for i in range(0, maxInvElements)]))
         test_node.sync_with_ping()
         assert_equal(len(self.nodes[0].listbanned()), 0)  # not banned
 
-        # 3. Send bitcoind Inv message that is larger than max_recv_payload_length.
+        # 3. Send blinkd Inv message that is larger than max_recv_payload_length.
         logger.info( "Sending inv message with: {} elements. Max allowed : {}".format(maxInvElements + 1, maxInvElements))
         logger.info("Expecting to be banned...")
         test_node.send_message(msg_inv([CInv(CInv.TX, 2*maxInvElements+i) for i in range(0, maxInvElements + 1)]))
@@ -165,7 +165,7 @@ class BsvProtoconfTest(BitcoinTestFramework):
 
         maxInvElements = CInv.estimateMaxInvElements(test_node.max_recv_payload_length)
 
-        # Send enough inv messages to fill the queue in bitcoind
+        # Send enough inv messages to fill the queue in blinkd
         for n in range(0, 4*recvinvqueuefactor):
             test_node.send_message(msg_inv([CInv(CInv.TX, n*maxInvElements+i) for i in range(0, maxInvElements)]))
             test_node.sync_with_ping()
@@ -194,7 +194,7 @@ class BsvProtoconfTest(BitcoinTestFramework):
         self.run_maxprotocolrecvpayloadlength_test(CInv.estimateMaxInvElements(3*ONE_MiB), 500*ONE_MiB)
         # Run ban test sends 3 INVs with sizes (max-1, max, max+1). In the last attempt it should be banned
         self.run_ban_test(2*ONE_MiB)
-        # Send many INV messages and check when they fill up queue in bitcoind and some of them get missing
+        # Send many INV messages and check when they fill up queue in blinkd and some of them get missing
         self.run_recvinvqueuefactor_test(ONE_MiB, 2)
 
 if __name__ == '__main__':

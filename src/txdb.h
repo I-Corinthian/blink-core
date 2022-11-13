@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_TXDB_H
-#define BITCOIN_TXDB_H
+#ifndef BLINK_TXDB_H
+#define BLINK_TXDB_H
 
 #include "chain.h"
 #include "coins.h"
@@ -36,7 +36,7 @@ static const int64_t nMaxBlockDBCache = 2;
 //! Max memory allocated to block tree DB specific cache, if -txindex (MiB)
 // Unlike for the UTXO database, for the txindex scenario the leveldb cache make
 // a meaningful difference:
-// https://github.com/bitcoin/bitcoin/pull/8273#issuecomment-229601991
+// https://github.com/blink/blink/pull/8273#issuecomment-229601991
 static const int64_t nMaxBlockDBAndTxIndexCache = 1024;
 //! Max memory allocated to coin DB specific cache (MiB)
 static const int64_t nMaxCoinsDBCache = 8;
@@ -388,4 +388,4 @@ public:
     std::unique_ptr<CDBIterator> GetIterator();
 };
 
-#endif // BITCOIN_TXDB_H
+#endif // BLINK_TXDB_H

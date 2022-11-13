@@ -230,7 +230,7 @@ bool CKey::VerifyPubKey(const CPubKey &pubkey) const {
         return false;
     }
     uint8_t rnd[8];
-    std::string str = "Bitcoin key verification\n";
+    std::string str = "Blink key verification\n";
     GetRandBytes(rnd, sizeof(rnd));
     uint256 hash;
     CHash256()

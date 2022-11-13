@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 Bitcoin Association
+# Copyright (c) 2021 Blink Association
 # Distributed under the Open BSV software license, see the accompanying file LICENSE.
 """
 The intent of this test is to make sure we can start the node even in case
@@ -23,11 +23,11 @@ from test_framework.mininode import (
     msg_headers,
     CBlockHeader
 )
-from test_framework.test_framework import BitcoinTestFramework, ChainManager
+from test_framework.test_framework import BlinkTestFramework, ChainManager
 from test_framework.util import p2p_port, assert_equal
 
 
-class PBVSameBlock(BitcoinTestFramework):
+class PBVSameBlock(BlinkTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True

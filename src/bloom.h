@@ -1,9 +1,9 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
-// Copyright (c) 2019-2020 Bitcoin Association
+// Copyright (c) 2019-2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
-#ifndef BITCOIN_BLOOM_H
-#define BITCOIN_BLOOM_H
+#ifndef BLINK_BLOOM_H
+#define BLINK_BLOOM_H
 
 #include "serialize.h"
 
@@ -143,4 +143,4 @@ private:
     int nHashFuncs;
 };
 
-#endif // BITCOIN_BLOOM_H
+#endif // BLINK_BLOOM_H

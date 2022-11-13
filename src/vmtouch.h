@@ -1,4 +1,4 @@
-// Copyright 2019 The Bitcoin SV Developers
+// Copyright 2019 The Blink SV Developers
 
 #ifndef VMTOUCH_H
 #define VMTOUCH_H
@@ -37,7 +37,7 @@ struct dev_and_inode
 
 /**
  * @brief The VMTouch class. This class implements the VM touch functionality into
- * bitcoind. It used to preload chainstate leveldb databse into memory.
+ * blinkd. It used to preload chainstate leveldb databse into memory.
  */
 class VMTouch
 {

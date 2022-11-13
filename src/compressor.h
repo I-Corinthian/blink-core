@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_COMPRESSOR_H
-#define BITCOIN_COMPRESSOR_H
+#ifndef BLINK_COMPRESSOR_H
+#define BLINK_COMPRESSOR_H
 
 #include "consensus/consensus.h"
 #include "primitives/transaction.h"
@@ -135,4 +135,4 @@ public:
     }
 };
 
-#endif // BITCOIN_COMPRESSOR_H
+#endif // BLINK_COMPRESSOR_H

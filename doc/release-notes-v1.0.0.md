@@ -1,4 +1,4 @@
-# Bitcoin SV version 1.0.0 Release Notes
+# Blink SV version 1.0.0 Release Notes
 
 ## List of Changes since 0.2.2
 * Increase or remove limits, final version of default values
@@ -87,7 +87,7 @@
 * Update SPV bloom filters re attack mitigation
 * Rename acceptp2sh to acceptp2sh_ashashpuzzle
 * Fix block send queue overflow
-* Fix bug: bitcoin-cli help getblock not working in 0.2.2
+* Fix bug: blink-cli help getblock not working in 0.2.2
 * Improve performance of prevector deserialization
 * Uncomment parts of functional tests that was depended on other now complete code.
 * Parallel Block Validation
@@ -123,14 +123,14 @@
 
 ## More Details
 For a more detailed description of the new Genesis changes and an explanation on them, please
-see the Bitcoin SV [website.](https://bitcoinsv.io/genesis-hard-fork/)
+see the Blink SV [website.](https://blinksv.io/genesis-hard-fork/)
 
 ## Scaling Test Network (STN) Reset
 NA
 
 # Previous Releases
-* [Version 0.1.0](release-notes-v0.1.0.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.1.0/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.1.0) - 2018-10-15
-* [Version 0.1.1](release-notes-v0.1.1.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.1.1/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.1.1) - 2019-02-11
-* [Version 0.2.0](release-notes-v0.2.0.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.2.0/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.2.0) - 2019-06-05
-* [Version 0.2.1](release-notes-v0.2.1.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.2.1/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.2.1) - 2019-07-12
-* [Version 0.2.2.beta](release-notes-v0.2.2-beta.md) - [Download](https://download.bitcoinsv.io/bitcoinsv/0.2.2.beta/) - [Source](https://github.com/bitcoin-sv/bitcoin-sv/tree/v0.2.2.beta) - 2019-10-30
+* [Version 0.1.0](release-notes-v0.1.0.md) - [Download](https://download.blinksv.io/blinksv/0.1.0/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.1.0) - 2018-10-15
+* [Version 0.1.1](release-notes-v0.1.1.md) - [Download](https://download.blinksv.io/blinksv/0.1.1/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.1.1) - 2019-02-11
+* [Version 0.2.0](release-notes-v0.2.0.md) - [Download](https://download.blinksv.io/blinksv/0.2.0/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.2.0) - 2019-06-05
+* [Version 0.2.1](release-notes-v0.2.1.md) - [Download](https://download.blinksv.io/blinksv/0.2.1/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.2.1) - 2019-07-12
+* [Version 0.2.2.beta](release-notes-v0.2.2-beta.md) - [Download](https://download.blinksv.io/blinksv/0.2.2.beta/) - [Source](https://github.com/blink-sv/blink-sv/tree/v0.2.2.beta) - 2019-10-30

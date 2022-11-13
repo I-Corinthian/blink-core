@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017 The Bitcoin developers
+// Copyright (c) 2017 The Blink developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_UNDO_H
-#define BITCOIN_UNDO_H
+#ifndef BLINK_UNDO_H
+#define BLINK_UNDO_H
 
 #include "coins.h"
 #include "compressor.h"
@@ -136,4 +136,4 @@ DisconnectResult UndoCoinSpend(const CoinWithScript &undo, CCoinsViewCache &view
                                const COutPoint &out, const Config &config);
 
 
-#endif // BITCOIN_UNDO_H
+#endif // BLINK_UNDO_H

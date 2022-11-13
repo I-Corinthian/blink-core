@@ -6,7 +6,7 @@
 
 #include "base58.h"
 #include "dstencode.h"
-#include "test/test_bitcoin.h"
+#include "test/test_blink.h"
 #include "uint256.h"
 #include "util.h"
 #include "utilstrencodings.h"
@@ -44,7 +44,7 @@ void dumpKeyInfo(uint256 privkey) {
     for (int nCompressed = 0; nCompressed < 2; nCompressed++) {
         bool fCompressed = nCompressed == 1;
         printf("  * %s:\n", fCompressed ? "compressed" : "uncompressed");
-        CBitcoinSecret bsecret;
+        CBlinkSecret bsecret;
         bsecret.SetSecret(secret, fCompressed);
         printf("    * secret (base58): %s\n", bsecret.ToString().c_str());
         CKey key;
@@ -52,7 +52,7 @@ void dumpKeyInfo(uint256 privkey) {
         std::vector<uint8_t> vchPubKey = key.GetPubKey();
         printf("    * pubkey (hex): %s\n", HexStr(vchPubKey).c_str());
         printf("    * address (base58): %s\n",
-               CBitcoinAddress(vchPubKey).ToString().c_str());
+               CBlinkAddress(vchPubKey).ToString().c_str());
     }
 }
 #endif
@@ -60,7 +60,7 @@ void dumpKeyInfo(uint256 privkey) {
 BOOST_FIXTURE_TEST_SUITE(key_tests, BasicTestingSetup)
 
 BOOST_AUTO_TEST_CASE(key_test1) {
-    CBitcoinSecret bsecret1, bsecret2, bsecret1C, bsecret2C, baddress1;
+    CBlinkSecret bsecret1, bsecret2, bsecret1C, bsecret2C, baddress1;
     BOOST_CHECK(bsecret1.SetString(strSecret1));
     BOOST_CHECK(bsecret2.SetString(strSecret2));
     BOOST_CHECK(bsecret1C.SetString(strSecret1C));

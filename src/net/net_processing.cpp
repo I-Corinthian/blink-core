@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2019-2020 Bitcoin Association
+// Copyright (c) 2019-2020 Blink Association
 // Distributed under the Open BSV software license, see the accompanying file LICENSE.
 
 #include "net/net_processing.h"
@@ -62,7 +62,7 @@
 #include <shared_mutex>
 
 #if defined(NDEBUG)
-#error "Bitcoin cannot be compiled without assertions."
+#error "Blink cannot be compiled without assertions."
 #endif
 
 using namespace std;
@@ -2760,7 +2760,7 @@ class CBlockHeaderEnriched
 {
     struct TxnAndProof
     {
-        // Contains Merkle proof in binary TSC format (https://tsc.bitcoinassociation.net/standards/merkle-proof-standardised-format)
+        // Contains Merkle proof in binary TSC format (https://tsc.blinkassociation.net/standards/merkle-proof-standardised-format)
         using TSCMerkleProof = ::MerkleProof;
 
         // Serialisation
